@@ -17,11 +17,12 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             patients = new ModelePatients();
         }
 
-        public void AjouterPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
+        public void CreerPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
         {
             this.patients = new ModelePatients(codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, job, g_s, p_Respon, lienARespon, typeP, createdby, datecreated);
-            patients.AjouterPatient();
+            patients.CreerPatient();
         }
+        
 
         public string Codepatient(string nomP, string prenomP)
         {

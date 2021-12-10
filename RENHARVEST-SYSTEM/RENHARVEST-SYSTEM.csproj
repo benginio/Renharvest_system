@@ -83,6 +83,7 @@
     <Content Include="VUE\build\js\custom.js" />
     <Content Include="VUE\build\js\custom.min.js" />
     <Content Include="VUE\Default.aspx" />
+    <Content Include="VUE\UpdatePatient.aspx" />
     <Content Include="VUE\vendors\animate.css\animate.css" />
     <Content Include="VUE\vendors\animate.css\animate.min.css" />
     <Content Include="VUE\vendors\animate.css\gulpfile.js" />
@@ -2857,6 +2858,13 @@
     </Compile>
     <Compile Include="VUE\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\UpdatePatient.aspx.cs">
+      <DependentUpon>UpdatePatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\UpdatePatient.aspx.designer.cs">
+      <DependentUpon>UpdatePatient.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

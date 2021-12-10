@@ -2967,7 +2967,9 @@ a.btn-success, a.btn-primary, a.btn-warning, a.btn-danger {
 
 .btn-success {
   background: #26B99A;
-  border: 1px solid #169F85; }
+  border: 1px solid #169F85;
+    width: 93px;
+}
   .btn-pam{
     background: #2A3F54;
     color: #fff;

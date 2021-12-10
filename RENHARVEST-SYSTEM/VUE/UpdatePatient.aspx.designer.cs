@@ -11,7 +11,7 @@ namespace RENHARVEST_SYSTEM.VUE
 {
 
 
-    public partial class AjouterPatient
+    public partial class UpdatePatient
     {
 
         /// <summary>

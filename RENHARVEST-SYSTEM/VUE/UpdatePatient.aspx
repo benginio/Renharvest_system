@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AjouterPatient.aspx.cs" Inherits="RENHARVEST_SYSTEM.VUE.AjouterPatient" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UpdatePatient.aspx.cs" Inherits="RENHARVEST_SYSTEM.VUE.UpdatePatient" %>
 
 <!DOCTYPE html>
 
@@ -166,7 +166,7 @@
           <div class="">
             <div class="page-title">
               
-                <h5> &nbsp;Ajoujer patients</h5>
+                <h5> &nbsp;Modifier Patients</h5>
               
             </div>
 
@@ -318,5 +318,3 @@
     <script src="build/js/custom.min.js"></script>
   </body>
 </html>
-
-   
