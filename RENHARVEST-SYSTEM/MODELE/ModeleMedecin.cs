@@ -11,11 +11,11 @@ using RENHARVEST_SYSTEM.VUE;
 
 namespace RENHARVEST_SYSTEM.MODELE
 {
-    public class ModelePatients
+    public class ModeleMedecin
     {
         string chcon = ConfigurationManager.ConnectionStrings["DBCONNECT"].ConnectionString;
         private DataSet data;
-        private string codePatient;
+        private string codeMedecin;
         private string nomP;
         private string prenomP;
         private string sexe;
@@ -26,15 +26,18 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string matricule;
         private string job;
         private string g_s;
-        private string p_Respon;
-        private string lienARespon;
+        private string special;
+        private string dateEmbauch;
         private string typeP;
         private string createdby;
         private string datecreated;
+        private string pseudo;
+        private string password;
+        private string status;
 
-        public ModelePatients(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
+        public ModeleMedecin(string codeMedecin, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string special, string dateEmbauch, string typeP, string pseudo, string password, string status, string createdby, string datecreated)
         {
-            this.codePatient = codePatient;
+            this.codeMedecin = codeMedecin;
             this.nomP = nomP;
             this.prenomP = prenomP;
             this.sexe = sexe;
@@ -45,23 +48,25 @@ namespace RENHARVEST_SYSTEM.MODELE
             this.matricule = matricule;
             this.job = job;
             this.g_s = g_s;
-            this.p_Respon = p_Respon;
-            this.lienARespon = lienARespon;
+            this.special = special;
+            this.dateEmbauch = dateEmbauch;
             this.typeP = typeP;
+            this.pseudo = pseudo;
+            this.password = password;
             this.createdby = createdby;
+            this.status = status;
             this.datecreated = datecreated;
         }
 
-    public ModelePatients() :this(null, null, null,null, null,null,null,null, null, null, null, null, null, null, null, null)
+        public ModeleMedecin() : this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
         { }
-
-    public string CodePatient
+        public string CodeMedecin
         {
-            get { return this.codePatient; }
-            set { this.codePatient = value; }
+            get { return this.codeMedecin; }
+            set { this.codeMedecin = value; }
         }
 
-        public string NomP
+            public string NomP
         {
             get { return this.nomP; }
             set { this.nomP = value; }
@@ -108,7 +113,6 @@ namespace RENHARVEST_SYSTEM.MODELE
             get { return this.matricule; }
             set { this.matricule = value; }
         }
-
         public string Job
         {
             get { return this.job; }
@@ -121,28 +125,45 @@ namespace RENHARVEST_SYSTEM.MODELE
             set { this.g_s = value; }
         }
 
-        public string P_Respon
+        public string Special
         {
-            get { return this.p_Respon; }
-            set { this.p_Respon = value; }
+            get { return this.special; }
+            set { this.special = value; }
         }
 
-        public string LienArespon
+        public string DateEmbauch
         {
-            get { return this.lienARespon; }
-            set { this.lienARespon = value; }
+            get { return this.dateEmbauch; }
+            set { this.dateEmbauch = value; }
         }
 
         public string TypeP
         {
             get { return this.typeP; }
-            set { this.typeP= value; }
+            set { this.typeP = value; }
         }
 
+        public string Pseudo
+        {
+            get { return this.pseudo; }
+            set { this.pseudo = value; }
+        }
+
+        public string Password
+        {
+            get { return this.password; }
+            set { this.password = value; }
+        }
+
+        public string Status
+        {
+            get { return this.status; }
+            set { this.status = value; }
+        }
         public string Createdby
         {
             get { return this.createdby; }
-            set { this.createdby= value; }
+            set { this.createdby = value; }
         }
 
         public string Datecreated
@@ -151,14 +172,17 @@ namespace RENHARVEST_SYSTEM.MODELE
             set { this.datecreated = value; }
         }
 
-       
-        public void CreerPatient()
+
+        public void CreerMedecin()
         {
-            string Req = string.Format("INSERT INTO tbpersonne VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, createdby, datecreated);
-            string Req2 = string.Format("INSERT INTO tbpatient (codePatient,codepers,persResp,LienApersResp,createdby,datecreated) VALUES ('" + codePatient + "','" + codePatient+ "','"+p_Respon+"', '"+lienARespon+"', '" + createdby+"', '"+datecreated+"')");
+            string Req = string.Format("INSERT INTO tbpersonne VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')", codeMedecin, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, createdby, datecreated);
+            string Req2 = string.Format("INSERT INTO tbmedecin (codeMedecin,codepers, specialisation, dateEmbauch, createdby,datecreated) VALUES ('" + codeMedecin + "','" + codeMedecin + "', '"+special+"', '"+dateEmbauch+"',  '" + createdby + "', '" + datecreated + "')");
+            string Req3 = string.Format("INSERT INTO tbutilisateur (codepers,pseudo, password,status,createdby,datecreated) VALUES ('" + codeMedecin + "', '" + status + "','" + pseudo + "', '" + password + "', '" + createdby + "', '" + datecreated + "')");
+            
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
             SqlCommand cmd2 = null;
+            SqlCommand cmd3 = null;
 
             con.Open();
             cmd = new SqlCommand(Req, con);
@@ -166,36 +190,78 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             cmd2 = new SqlCommand(Req2, con);
             cmd2.ExecuteNonQuery();
+
+            cmd3 = new SqlCommand(Req3, con);
+            cmd3.ExecuteNonQuery();
             con.Close();
         }
-        
 
-        public string Codepatient(string nomP, string prenomP)
+
+        public string CodeMedecins(string nomP, string prenomP)
         {
-              string nombrePatient;
-              string codePatient;
+            string nombreMedecin;
+            string codeMedecin;
             SqlConnection con = new SqlConnection(chcon);
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbpatient", con);
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbmedecin", con);
 
             con.Open();
             Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
             if (count > 0)
             {
-                nombrePatient = Convert.ToString(count.ToString());
+                nombreMedecin = Convert.ToString(count.ToString());
             }
             else
             {
-                nombrePatient = "0";
+                nombreMedecin = "0";
             }
             con.Close();
 
-            codePatient = nomP.Substring(0, 2) + prenomP.Substring(0, 2) + nombrePatient;
-            return codePatient;
+            codeMedecin = nomP.Substring(0, 2) + prenomP.Substring(0, 2) + nombreMedecin;
+            return codeMedecin;
         }
 
-        public bool RecherchePatient(string codePatient)
+        public string CodeMedecins1(string nomP, string prenomP)
         {
-            string chReq = string.Format("SELECT * FROM V_listePatient WHERE  codepers='{0}'", codePatient);
+            string nombreUser;
+            string codeUser;
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbutilisateur", con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreUser = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreUser = "0";
+            }
+            con.Close();
+
+            codeUser = "DH"+nomP.Substring(0, 2) + prenomP.Substring(0, 2) + nombreUser;
+            return codeUser;
+        }
+
+        public void ModifierMedecin()
+        {
+            string Req = string.Format("UPDATE tbpersonne SET nomP='{1}', prenomP='{2}', sexe='{3}',dateNaiss='{4}', adresse='{5}',  telephone='{6}', email='{7}', matricule='{8}', job='{9}', gps='{10}' where codepers='{0}'", codeMedecin, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s);
+            string Req1 = string.Format("UPDATE tbmedecin SET specialisation='{1}', dateEmbauch='{2}', createdby='{3}' WHERE codeMedecin='{0}' ", codeMedecin, special , dateEmbauch, createdby);
+            SqlConnection con = new SqlConnection(chcon);
+
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand(Req, con);
+            SqlCommand cmd1 = new SqlCommand(Req1, con);
+
+            cmd.ExecuteNonQuery();
+            cmd1.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public bool RechercherMedecin(string codeMedecin)
+        {
+            string chReq = string.Format("SELECT * FROM V_listeMedecin WHERE  codepers='{0}'", codeMedecin);
 
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
@@ -210,7 +276,7 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             if (reader.Read())
             {
-                codePatient = reader[0].ToString();
+                codeMedecin = reader[0].ToString();
                 nomP = reader[1].ToString();
                 prenomP = reader[2].ToString();
                 sexe = reader[3].ToString();
@@ -221,8 +287,8 @@ namespace RENHARVEST_SYSTEM.MODELE
                 matricule = reader[8].ToString();
                 job = reader[9].ToString();
                 g_s = reader[10].ToString();
-                p_Respon = reader[11].ToString();
-                lienARespon = reader[12].ToString();
+                special = reader[11].ToString();
+                dateEmbauch = reader[12].ToString();
                 typeP = reader[13].ToString();
                 createdby = reader[14].ToString();
                 trouve = true;
@@ -236,96 +302,78 @@ namespace RENHARVEST_SYSTEM.MODELE
             // {
             //     return trouve;
             //}
-
         }
-        public void ModifierPatient()
-        {
-            string Req = string.Format("UPDATE tbpersonne SET nomP='{1}', prenomP='{2}', sexe='{3}', dateNaiss='{4}', adresse='{5}',  telephone='{6}', email='{7}', matricule='{8}', job='{9}', gps='{10}' where codepers='{0}'", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s);
-            string Req1 = string.Format("UPDATE tbpatient SET persResp='{1}', LienApersResp='{2}',createdby='{3}' WHERE codePatient='{0}' ",codePatient, p_Respon, lienARespon, createdby);
-            SqlConnection con = new SqlConnection(chcon);
-
-
-            con.Open();
-            SqlCommand cmd = new SqlCommand(Req, con);
-            SqlCommand cmd1 = new SqlCommand(Req1, con);
-
-            cmd.ExecuteNonQuery();
-            cmd1.ExecuteNonQuery();
-            con.Close();
-
-
-
-        }
-        public DataSet ListerPatient()
+        public DataSet ListerMedecin()
         {
             SqlDataAdapter adapter;
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listePatient ");
+            string command = string.Format("SELECT * FROM V_listeMedecin");
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
             SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
             data = new DataSet();
 
-            adapter.Fill(data, "V_listePatient"); 
-            con.Close();
-
-            return data;
-        }
-        public DataSet ListerPatientN(string nomP)
-        {
-            SqlDataAdapter adapter;
-            SqlConnection con;
-
-            con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listePatient     where nomP='{0}'", nomP);
-
-            con.Open();
-            adapter = new SqlDataAdapter(command, con);
-            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
-            data = new DataSet();
-
-            adapter.Fill(data, "V_listePatient");
+            adapter.Fill(data, "V_listeMedecin");
             con.Close();
 
             return data;
         }
 
-        public DataSet ListerPatientP(string prenomP)
+        public DataSet ListerMedecinP(string prenomP)
         {
             SqlDataAdapter adapter;
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listePatient     where prenomP='{0}'", prenomP);
+            string command = string.Format("SELECT * FROM V_listeMedecin where prenomP='{0}'", prenomP);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
             SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
             data = new DataSet();
 
-            adapter.Fill(data, "V_listePatient");
+            adapter.Fill(data, "V_listeMedecin");
             con.Close();
 
             return data;
         }
 
-        public DataSet ListerPatientM(string matricule)
+        public DataSet ListerMedecinN(string nomP)
         {
             SqlDataAdapter adapter;
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listePatient  where matricule='{0}'", matricule);
+            string command = string.Format("SELECT * FROM V_listeMedecin where nomP='{0}'", nomP);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
             SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
             data = new DataSet();
 
-            adapter.Fill(data, "V_listePatient");
+            adapter.Fill(data, "V_listeMedecin");
+            con.Close();
+
+            return data;
+        }
+
+        public DataSet ListerMedecinM(string matricule)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeMedecin where matricule='{0}'", matricule);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeMedecin");
             con.Close();
 
             return data;

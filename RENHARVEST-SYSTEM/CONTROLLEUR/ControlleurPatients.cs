@@ -17,12 +17,17 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             patients = new ModelePatients();
         }
 
-        public void CreerPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
+        public void CreerPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
         {
-            this.patients = new ModelePatients(codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, job, g_s, p_Respon, lienARespon, typeP, createdby, datecreated);
+            this.patients = new ModelePatients(codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, createdby, datecreated);
             patients.CreerPatient();
         }
-        
+
+        public void ModifierPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
+        {
+            this.patients = new ModelePatients(codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, createdby, datecreated);
+            patients.ModifierPatient();
+        }
 
         public string Codepatient(string nomP, string prenomP)
         {
@@ -34,7 +39,24 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             return (patients.ListerPatient());
         }
 
+        public DataSet GetListerPatientN(string nomP)
+        {
+            return (patients.ListerPatientN(nomP));
+        }
 
+        public DataSet GetListerPatientP(string prenomP)
+        {
+            return (patients.ListerPatientP(prenomP));
+        }
+        public DataSet GetListerPatientM(string matricule)
+        {
+            return (patients.ListerPatientM(matricule));
+        }
+
+        public bool Recherchepatient(string codePatient)
+        {
+            return (patients.RecherchePatient(codePatient));
+        }
 
 
         public string getCodePatient()
@@ -97,6 +119,14 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             if (patients != null)
                 return patients.Email;
+            else
+                return null;
+        }
+
+        public string getMatricule()
+        {
+            if (patients != null)
+                return patients.Matricule;
             else
                 return null;
         }
