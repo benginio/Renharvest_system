@@ -77,13 +77,19 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public void AjouterPaiement()
         {
+            string typeAction = "Insertion";
             string req = string.Format("INSERT INTO tbpaiement VALUES ('{0}','{1)','{2}','{3}','{4}','{5}','{6}')", codepatient, montantA, montantP, balance, modeP, createdby, datecreated);
+            string req1 = string.Format("INSERT INTO tbhisPaiement VALUES ('{0}','{1)','{2}','{3}','{4}','{5}','{6}','{7}')", codepatient, montantA, montantP, balance, modeP, typeAction, createdby, datecreated);
+
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
+            SqlCommand cmd1 = null;
 
             con.Open();
             cmd = new SqlCommand(req, con);
             cmd.ExecuteNonQuery();
+            cmd1 = new SqlCommand(req, con);
+            cmd1.ExecuteNonQuery();
             con.Close();
         }
 

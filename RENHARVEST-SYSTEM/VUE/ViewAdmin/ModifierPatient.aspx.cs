@@ -87,21 +87,28 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
 
         protected void tbnsearch_Click(object sender, EventArgs e)
         {
-            
-            if (DDtrier.Text.Equals("Prenom"))
+
+            if (tsearch.Text.Equals(""))
             {
-            AfficheP();
-                
-            }
-            else if (DDtrier.Text.Equals("Nom"))
-            {
-            AfficherN();
+                Response.Redirect("ModifierPatient.aspx");
             }
             else
             {
-            AfficherM();
+                if (DDtrier.Text.Equals("Prenom"))
+                {
+                    AfficheP();
+
+                }
+                else if (DDtrier.Text.Equals("Nom"))
+                {
+                    AfficherN();
+                }
+                else
+                {
+                    AfficherM();
+                }
             }
-                
+
         }
 
         protected void btnliste_Click(object sender, EventArgs e)

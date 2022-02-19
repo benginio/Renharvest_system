@@ -57,7 +57,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
             tjob.Text = medecin.getJob();
             ddg_s.Text = medecin.getG_S();
             ddspecial.Text = medecin.getSpecial();
-            tdateEmbauch.Text = medecin.getDateEmbauch();
+           
             Labe1.Text = medecin.getNomP();
             Label2.Text = medecin.getPrenomP();
 
@@ -80,7 +80,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
         protected void btnvalider_Click(object sender, EventArgs e)
         {
             string code = Label1.Text;
-            medecin.ModifierMedecin(code, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, ddspecial.Text, tdateEmbauch.Text, null, null, null, null, tusername.Text, tdatenow.Text);
+            medecin.ModifierMedecin(code, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, ddspecial.Text, null, null, null, null, null, tusername.Text, tdatenow.Text);
         }
 
         protected void tbnsearch_Click(object sender, EventArgs e)

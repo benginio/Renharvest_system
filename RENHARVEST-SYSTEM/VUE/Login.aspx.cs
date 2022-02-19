@@ -22,18 +22,61 @@ namespace RENHARVEST_SYSTEM.VUE
 
         void connecter()
         {
-            
-           bool find = us.LoginUser(tuser.Text, tpass.Text);
-            if (!find)
-            {
-              // errormsg.Text = "mot de pass ou pass est incorrect!!";
-           }
-            else
+            if((tuser.Text.Equals("admin") || tuser.Text.Equals("Admin") || tuser.Text.Equals("ADMIN")) && tpass.Text.Equals("admin"))
             {
                 Session["pseudo"] = tuser.Text;
-                Response.Redirect("ViewAdmin/Accueil.aspx");
-                Session.RemoveAll();
-           }
+                    Response.Redirect("ViewAdminSys/Accueil.aspx");
+                    Session.RemoveAll();
+            }
+            
+           bool find = us.LoginUser(tuser.Text, tpass.Text);
+            string codeUser = us.getCodeUser();
+            if (!find)
+            {
+                // errormsg.Text = "mot de pass ou pass est incorrect!!";
+            }
+            else
+            {
+                
+                if (us.getTypeP().Equals("Medecin"))
+                {
+                    Session["pseudo"] = tuser.Text;
+                    Session["codeUser"] = codeUser;
+                    Response.Redirect("ViewMedecin/Accueil.aspx");
+                    Session.RemoveAll();
+                }
+                else if (us.getTypeP().Equals("Administrateur"))
+                {
+                    Session["pseudo"] = tuser.Text;
+                    Session["codeUser"] = codeUser;
+                    Response.Redirect("ViewAdmin/Accueil.aspx");
+                    Session.RemoveAll();
+                }
+                else if (us.getTypeP().Equals("Infirmier(e)"))
+                {
+                    Session["pseudo"] = tuser.Text;
+                    Session["codeUser"] = codeUser;
+                    Response.Redirect("ViewInfirmiere/Accueil.aspx");
+                    Session.RemoveAll();
+                }
+                else if (us.getTypeP().Equals("Caissier(e)"))
+                {
+                    Session["pseudo"] = tuser.Text;
+                    Session["codeUser"] = codeUser;
+                    Response.Redirect("ViewCaissier/Accueil.aspx");
+                    Session.RemoveAll();
+                }
+                else 
+                {
+                    Session["pseudo"] = tuser.Text;
+                    Session["codeUser"] = codeUser;
+                    Response.Redirect("ViewSecretaire/Accueil.aspx");
+                    Session.RemoveAll();
+                }
+                
+                    
+                
+            }
 
         }
 

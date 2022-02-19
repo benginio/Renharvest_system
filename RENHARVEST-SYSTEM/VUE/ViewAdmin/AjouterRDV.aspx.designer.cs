@@ -132,15 +132,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
         protected global::System.Web.UI.WebControls.TextBox theure;
 
         /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-
-        /// <summary>
         /// tspecial control.
         /// </summary>
         /// <remarks>
@@ -150,22 +141,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
         protected global::System.Web.UI.WebControls.TextBox tspecial;
 
         /// <summary>
-        /// magrid1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView magrid1;
-
-        /// <summary>
         /// btnvalider control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnvalider;
+        protected global::System.Web.UI.WebControls.LinkButton btnvalider;
 
         /// <summary>
         /// btnannuler control.
@@ -175,6 +157,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnannuler;
+
+        /// <summary>
+        /// magrid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView magrid1;
 
         /// <summary>
         /// update1 control.

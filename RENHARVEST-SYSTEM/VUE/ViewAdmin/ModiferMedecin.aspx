@@ -282,17 +282,6 @@
                               </asp:DropDownList>
                             </div>
 
-                          <div class="col-md-4 col-sm-4">
-                          <label>Date Embauchement</label>
-                            <asp:TextBox ID="tdateEmbauch" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required"  onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" runat="server"></asp:TextBox>
-												<script>
-                                                    function timeFunctionLong(TextBox) {
-                                                        setTimeout(function (input) {
-                                                            input.type = 'text';
-                                                        }, 60000);
-                                                    }
-                                                </script>
-                          </div>
                           </div>
 
 

@@ -20,21 +20,23 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string poids;
         private string temperature;
         private string tensionA;
+        private string taille;
         private string createdby;
         private string datecreated;
 
-        public ModeleSigneV(string code, string codePatient, string poids, string temperature, string tensionA, string createdby, string datecreated)
+        public ModeleSigneV(string code, string codePatient, string poids, string temperature, string tensionA, string taille, string createdby, string datecreated)
         {
-            this.Code = Code;
+            this.code = code;
             this.codePatient = codePatient;
             this.poids = poids;
             this.temperature = temperature;
             this.tensionA = tensionA;
+            this.taille = taille;
             this.createdby = createdby;
             this.datecreated = datecreated;
         }
 
-        public ModeleSigneV() :this (null, null, null, null, null, null, null) {}
+        public ModeleSigneV() : this(null, null, null, null, null, null, null, null) {}
 
         public string Code
         {
@@ -64,6 +66,11 @@ namespace RENHARVEST_SYSTEM.MODELE
             get { return this.tensionA; }
             set { this.tensionA = value; }
         }
+        public string Taille
+        {
+            get { return this.taille; }
+            set { this.taille = value; }
+        }
 
         public string Createdby
         {
@@ -79,22 +86,29 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public void AjouterSigneV()
         {
-            string Req = string.Format("INSERT INTO tbsigneV VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", code, codePatient, poids, temperature, tensionA, createdby, datecreated);
+            string typeAction = "Insertion";
+            string Req = string.Format("INSERT INTO tbsigneV VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", code, codePatient, poids, temperature, tensionA, taille, createdby, datecreated);
+            string Req1 = string.Format("INSERT INTO tbhisSigneV VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')", code, codePatient, poids, temperature, tensionA, taille, typeAction, createdby, datecreated);
+
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
+            SqlCommand cmd1 = null;
             con.Open();
 
             cmd = new SqlCommand(Req, con);
             cmd.ExecuteNonQuery();
 
+            cmd1 = new SqlCommand(Req1, con);
+            cmd1.ExecuteNonQuery();
+
             con.Close();
 
         }
 
-        public string CodeSigneV(string codePatient)
+        public string CodeSigneV()
         {
             string nombrePatient;
-            string codePatien;
+            string sign;
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbsigneV", con);
 
@@ -110,10 +124,40 @@ namespace RENHARVEST_SYSTEM.MODELE
             }
             con.Close();
 
-            codePatien = "DH"+codePatient.Substring(0, 3) + nombrePatient;
-            return codePatient;
+            sign = "SV"+nombrePatient;
+            return sign;
         }
+        public void ModifierSigneV()
+        {
+            string typeAction = "Modification";
+            string Req = string.Format("UPDATE tbsigneV SET poids='{1}', temperature='{2}', tensionA='{3}', taille='{4}' where codesigneV='{0}'",code, poids, temperature, tensionA, taille);
+            string Req1 = string.Format("INSERT INTO tbhisSigneV VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')",code,codePatient, poids, temperature, tensionA, taille, typeAction, createdby, datecreated);
 
+            SqlConnection con = new SqlConnection(chcon);
+
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand(Req, con);
+            SqlCommand cmd1 = new SqlCommand(Req1, con);
+
+            cmd.ExecuteNonQuery();
+            cmd1.ExecuteNonQuery();
+            con.Close();
+        }
+        public void DeleteSigneV(string code)
+        {
+            string Req = string.Format("DELETE FROM tbsigneV WHERE codesigneV='{0}'", code);
+
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = null;
+            con.Open();
+
+            cmd = new SqlCommand(Req, con);
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+
+        }
         public bool RechercheSigneV(string code)
         {
             string chReq = string.Format("SELECT * FROM tbsigneV WHERE  codesigneV='{0}'", code);
@@ -136,8 +180,47 @@ namespace RENHARVEST_SYSTEM.MODELE
                 poids = reader[2].ToString();
                 temperature = reader[3].ToString();
                 tensionA = reader[4].ToString();
-                createdby = reader[5].ToString();
-                datecreated = reader[6].ToString();
+                taille = reader[5].ToString();
+                createdby = reader[6].ToString();
+                datecreated = reader[7].ToString();
+                trouve = true;
+            }
+
+            reader.Close();
+            con.Close();
+            return trouve;
+            //  }
+            // catch (Exception)
+            // {
+            //     return trouve;
+            //}
+
+        }
+        public bool RechercheSigneVPatient(string codePatient)
+        {
+            string chReq = string.Format("SELECT * FROM tbsigneV WHERE  codePatient='{0}' ORDER BY datecreated DESC", codePatient);
+
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = null;
+
+            bool trouve = false;
+
+            //try
+            //{
+            con.Open();
+            cmd = new SqlCommand(chReq, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                code = reader[0].ToString();
+                codePatient = reader[1].ToString();
+                poids = reader[2].ToString();
+                temperature = reader[3].ToString();
+                tensionA = reader[4].ToString();
+                taille = reader[5].ToString();
+                createdby = reader[6].ToString();
+                datecreated = reader[7].ToString();
                 trouve = true;
             }
 
@@ -158,7 +241,7 @@ namespace RENHARVEST_SYSTEM.MODELE
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM tbsigneV ");
+            string command = string.Format("SELECT * FROM tbsigneV  ORDER BY datecreated DESC ");
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
@@ -177,7 +260,7 @@ namespace RENHARVEST_SYSTEM.MODELE
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM tbsigneV WHERE codePatient='{0}'", codePatient);
+            string command = string.Format("SELECT * FROM tbsigneV WHERE codePatient='{0}' order by datecreated desc", codePatient);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);

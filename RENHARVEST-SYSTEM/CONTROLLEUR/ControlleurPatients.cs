@@ -33,10 +33,18 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return patients.Codepatient(nomP, prenomP);
         }
+        public string Age(string dateNaiss, string codePatient)
+        {
+            return patients.Age(codePatient, dateNaiss);
+        }
 
         public DataSet GetListerPatient()
         {
             return (patients.ListerPatient());
+        }
+        public DataSet GetListerhisPatient()
+        {
+            return (patients.ListerhisPatient());
         }
 
         public DataSet GetListerPatientN(string nomP)

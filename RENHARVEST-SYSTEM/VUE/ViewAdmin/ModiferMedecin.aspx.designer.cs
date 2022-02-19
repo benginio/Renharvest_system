@@ -204,15 +204,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
         protected global::System.Web.UI.WebControls.DropDownList ddspecial;
 
         /// <summary>
-        /// tdateEmbauch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tdateEmbauch;
-
-        /// <summary>
         /// btnvalider control.
         /// </summary>
         /// <remarks>

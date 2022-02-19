@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RENHARVEST_SYSTEM.VUE
+namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
 {
 
 

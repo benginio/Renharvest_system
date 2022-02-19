@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AjouterPatient.aspx.cs" Inherits="RENHARVEST_SYSTEM.VUE.AjouterPatient" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AjouterPatient.aspx.cs" Inherits="RENHARVEST_SYSTEM.VUE.ViewAdmin.AjouterPatient" %>
 
 <!DOCTYPE html>
 

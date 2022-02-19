@@ -42,8 +42,12 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (medecin.ListerMedecin());
         }
+        public DataSet GetListerhisMedecin()
+        {
+            return (medecin.ListerhisMedecin());
+        }
 
-       
+
         public DataSet GetListerMedecinN(string nomP)
         {
             return (medecin.ListerMedecinN(nomP));

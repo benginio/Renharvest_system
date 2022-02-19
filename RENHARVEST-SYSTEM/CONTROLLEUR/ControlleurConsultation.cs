@@ -11,5 +11,139 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
 {
     public class ControlleurConsultation
     {
+
+        private ModeleConsultation cons;
+        public ControlleurConsultation()
+        {
+            cons = new ModeleConsultation();
+        }
+
+        public void AjouterConsultation(string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated)
+        {
+            this.cons = new ModeleConsultation(codepatient, codemedecin, age, signe, symptomes, histoire,  detail, comment, createdby, datecreated);
+            cons.AjouterConsultation();
+        }
+
+        public DataSet getListerConsPM(string codepatient, string codemedecin)
+        {
+            return (cons.ListerConsultationPM(codepatient, codemedecin));
+        }
+        public DataSet getListerCons()
+        {
+            return (cons.ListerConsultation());
+        }
+
+        public DataSet getListerCons(string codemedecin)
+        {
+            return (cons.ListerConsultation(codemedecin));
+        }
+
+        //public bool RechercheCons(string codePatient)
+        //{
+        //    return (cons.RechercheConsultation(codePatient));
+        //}
+
+        public string getCodepatient()
+        {
+            if (cons != null)
+            {
+                return cons.Codepatient;
+            }
+            else
+                return null;
+        }
+        public string getCodemedecin()
+        {
+            if (cons != null)
+            {
+                return cons.Codemedecin;
+            }
+            else
+                return null;
+        }
+        public string getAge()
+        {
+            if (cons != null)
+            {
+                return cons.Age;
+            }
+            else
+                return null;
+        }
+        //public string getMotif()
+        //{
+        //    if (cons != null)
+        //    {
+        //        return cons.Motif;
+        //    }
+        //    else
+        //        return null;
+        //}
+        public string getSigne()
+        {
+            if (cons != null)
+            {
+                return cons.Signe;
+            }
+            else
+                return null;
+        }
+        public string getSymptomes()
+        {
+            if (cons != null)
+            {
+                return cons.Symptomes;
+            }
+            else
+                return null;
+        }
+        public string getHistoire()
+        {
+            if (cons != null)
+            {
+                return cons.Histoire;
+            }
+            else
+                return null;
+        }
+       
+        public string getDetail()
+        {
+            if (cons != null)
+            {
+                return cons.Detail;
+            }
+            else
+                return null;
+        }
+        public string getComment()
+        {
+            if (cons != null)
+            {
+                return cons.Comment;
+            }
+            else
+                return null;
+        }
+        public string getCreatedby()
+        {
+            if (cons != null)
+            {
+                return cons.Createdby;
+            }
+            else
+                return null;
+        }
+        public string getDatecreated()
+        {
+            if (cons != null)
+            {
+                return cons.Datecreated;
+            }
+            else
+                return null;
+        }
+
+
     }
 }

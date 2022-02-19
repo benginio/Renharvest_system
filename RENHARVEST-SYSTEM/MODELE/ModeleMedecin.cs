@@ -28,7 +28,7 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string g_s;
         private string special;
         private string dateEmbauch;
-        private string typeP;
+        private string typeP="Medecin";
         private string createdby;
         private string datecreated;
         private string pseudo;
@@ -175,14 +175,19 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public void CreerMedecin()
         {
+            string typeAction = "Insertion";
             string Req = string.Format("INSERT INTO tbpersonne VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')", codeMedecin, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, createdby, datecreated);
-            string Req2 = string.Format("INSERT INTO tbmedecin (codeMedecin,codepers, specialisation, dateEmbauch, createdby,datecreated) VALUES ('" + codeMedecin + "','" + codeMedecin + "', '"+special+"', '"+dateEmbauch+"',  '" + createdby + "', '" + datecreated + "')");
-            string Req3 = string.Format("INSERT INTO tbutilisateur (codepers,pseudo, password,status,createdby,datecreated) VALUES ('" + codeMedecin + "', '" + status + "','" + pseudo + "', '" + password + "', '" + createdby + "', '" + datecreated + "')");
-            
+            string Req2 = string.Format("INSERT INTO tbmedecin (codeMedecin,codepers, specialisation, createdby,datecreated) VALUES ('" + codeMedecin + "','" + codeMedecin + "', '"+special+"', '" + createdby + "', '" + datecreated + "')");
+            string Req3 = string.Format("INSERT INTO tbutilisateur (codepers,status,pseudo,password, dateEmbauch, createdby,datecreated) VALUES ('" + codeMedecin + "', '" + status + "','" + pseudo + "', '" + password + "', '" + dateEmbauch + "', '" + createdby + "', '" + datecreated + "')");
+            string Req4 = string.Format("INSERT INTO tbhisUser VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}')", codeMedecin, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, pseudo, password, dateEmbauch, typeAction, createdby, datecreated);
+            string Req5 = string.Format("INSERT INTO tbhisMedecin VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}')", codeMedecin, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, special, typeAction, createdby, datecreated);
+
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
             SqlCommand cmd2 = null;
             SqlCommand cmd3 = null;
+            SqlCommand cmd4 = null;
+            SqlCommand cmd5 = null;
 
             con.Open();
             cmd = new SqlCommand(Req, con);
@@ -193,6 +198,12 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             cmd3 = new SqlCommand(Req3, con);
             cmd3.ExecuteNonQuery();
+
+            cmd4 = new SqlCommand(Req4, con);
+            cmd4.ExecuteNonQuery();
+
+            cmd5 = new SqlCommand(Req5, con);
+            cmd5.ExecuteNonQuery();
             con.Close();
         }
 
@@ -220,33 +231,36 @@ namespace RENHARVEST_SYSTEM.MODELE
             return codeMedecin;
         }
 
-        public string CodeMedecins1(string nomP, string prenomP)
-        {
-            string nombreUser;
-            string codeUser;
-            SqlConnection con = new SqlConnection(chcon);
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbutilisateur", con);
+        //public string CodeMedecins1(string nomP, string prenomP)
+        //{
+        //    string nombreUser;
+        //    string codeUser;
+        //    SqlConnection con = new SqlConnection(chcon);
+        //    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbutilisateur", con);
 
-            con.Open();
-            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
-            if (count > 0)
-            {
-                nombreUser = Convert.ToString(count.ToString());
-            }
-            else
-            {
-                nombreUser = "0";
-            }
-            con.Close();
+        //    con.Open();
+        //    Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+        //    if (count > 0)
+        //    {
+        //        nombreUser = Convert.ToString(count.ToString());
+        //    }
+        //    else
+        //    {
+        //        nombreUser = "0";
+        //    }
+        //    con.Close();
 
-            codeUser = "DH"+nomP.Substring(0, 2) + prenomP.Substring(0, 2) + nombreUser;
-            return codeUser;
-        }
+        //    codeUser = "DH"+nomP.Substring(0, 2) + prenomP.Substring(0, 2) + nombreUser;
+        //    return codeUser;
+        //}
 
         public void ModifierMedecin()
         {
+            string typeAction = "Modification";
             string Req = string.Format("UPDATE tbpersonne SET nomP='{1}', prenomP='{2}', sexe='{3}',dateNaiss='{4}', adresse='{5}',  telephone='{6}', email='{7}', matricule='{8}', job='{9}', gps='{10}' where codepers='{0}'", codeMedecin, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s);
-            string Req1 = string.Format("UPDATE tbmedecin SET specialisation='{1}', dateEmbauch='{2}', createdby='{3}' WHERE codeMedecin='{0}' ", codeMedecin, special , dateEmbauch, createdby);
+            string Req1 = string.Format("UPDATE tbmedecin SET specialisation='{1}', createdby='{2}' WHERE codeMedecin='{0}' ", codeMedecin, special , createdby);
+            string Req5 = string.Format("INSERT INTO tbhisMedecin VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}')", codeMedecin, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, special, typeAction, createdby, datecreated);
+
             SqlConnection con = new SqlConnection(chcon);
 
 
@@ -288,9 +302,8 @@ namespace RENHARVEST_SYSTEM.MODELE
                 job = reader[9].ToString();
                 g_s = reader[10].ToString();
                 special = reader[11].ToString();
-                dateEmbauch = reader[12].ToString();
-                typeP = reader[13].ToString();
-                createdby = reader[14].ToString();
+                typeP = reader[12].ToString();
+                createdby = reader[13].ToString();
                 trouve = true;
             }
 
@@ -309,7 +322,7 @@ namespace RENHARVEST_SYSTEM.MODELE
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listeMedecin");
+            string command = string.Format("SELECT * FROM V_listeMedecin ORDER BY datecreated DESC");
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
@@ -317,6 +330,24 @@ namespace RENHARVEST_SYSTEM.MODELE
             data = new DataSet();
 
             adapter.Fill(data, "V_listeMedecin");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerhisMedecin()
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM tbhisMedecin  ORDER BY datecreated DESC");
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "tbhisMedecin");
             con.Close();
 
             return data;

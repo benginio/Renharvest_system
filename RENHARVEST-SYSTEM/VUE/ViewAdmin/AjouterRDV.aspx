@@ -187,9 +187,9 @@
                   <div class="x_title">
                     <div class="form-group row">
                       <div class="col-md-5 col-sm-5">
-                           <h5> Code:
+                           <h5> Patient:
                            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                               <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+                            Medecin:   <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
                             </h5>
                           
                         </div> 
@@ -198,9 +198,9 @@
                   <div class="x_content">
                        <div class="form-horizontal">
                       
-
+                    <div class="col-md-4 col-sm-4">
                       <div class="form-group row">
-                        <div class="col-md-6 col-sm-6 offset-3">
+                        <div class="col-md-10 col-sm-10 ">
                           <label>Date*</label>
                             <asp:TextBox ID="tdate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required"  onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" runat="server"></asp:TextBox>
 												<script>
@@ -214,36 +214,41 @@
                           </div>
 
                         <div class="form-group row">
-                          <div class="col-md-6 col-sm-6 offset-3">
+                          <div class="col-md-10 col-sm-10">
                             <label>Heure*</label>
                               <asp:TextBox ID="theure" runat="server" class="form-control time"  type="time" name="time" required="required"></asp:TextBox>
                             </div>
                         </div>
                            
                           <div class="form-group row">
-                            <div class="col-md-6 col-sm-6 offset-3">
-                              <label>Specialiste*</label>
-                                <asp:Button ID="Button1" runat="server" Text="Button" data-toggle="modal" data-target=".bs-example-modal-lg" />
-                                <asp:TextBox ID="tspecial" class="form-control" placeholder="" runat="server" ></asp:TextBox>
+                            <div class="col-md-12 col-sm-12 ">
+                              <label>Specialiste*</label><br />
+                                <asp:TextBox ID="tspecial" class="form-control" placeholder="" runat="server" Enabled="False"></asp:TextBox>
                               </div>
                             </div>
 
-                            <!-- Large modal -->
-                  <div class="modal bs-example-modal-lg" id="mymoda">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
+                          
+                      <div class="form-group row">
+                        <div class="col-md-8 col-sm-8">
+                            <asp:LinkButton ID="btnvalider" runat="server" class="btn btn-success" OnClick="btnvalider_Click" >Valider</asp:LinkButton>
+                            <asp:Button ID="btnannuler" class="btn btn-pam" runat="server" Text="Annuler" />
 
-                        <div class="modal-header">
-                          <h4 class="modal-title" id="myModalLabel">Specialiste</h4>
-                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                          </button>
                         </div>
-                        <div class="modal-body">
-                           <div class="table-responsive">
+                      </div>
+                        </div>
+                        
+                           <div class="col-md-8 col-sm-8">
+                               <h6>Selectionner un specialiste</h6>
+                            <div class="table-responsive">
                         <asp:GridView ID="magrid1" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codepers" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
                             <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
 
                             <Columns>  
+                                             <asp:TemplateField HeaderText="-->">                       
+                                           <ItemTemplate>                            
+                                              <asp:LinkButton ID="btnb" runat="server" Height="30px" CssClass="btn btn-success" OnClick="btnb_Click"><span class="me-2"><i class="fa fa-check-square-o"></i></span></asp:LinkButton>
+                                           </ItemTemplate>                         
+                                           </asp:TemplateField>
                                             <asp:BoundField DataField="codepers" HeaderText="code" ReadOnly="True" SortExpression="codePatient" />  
                                             <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                             <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
@@ -252,40 +257,20 @@
                                             <asp:BoundField DataField="matricule" HeaderText="matricule" SortExpression="matricule" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
                                             <asp:BoundField DataField="specialisation" HeaderText="specialisation" SortExpression="specialisation" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
 
-                                            <asp:TemplateField HeaderText="-->">                       
-                                           <ItemTemplate>                            
-                                              <asp:LinkButton ID="btnb" runat="server" data-dismiss="modal" Height="30px" CssClass="btn btn-success" OnClick="btnb_Click"><span class="me-2"><i class="fa fa-eye"></i></span></asp:LinkButton>
-                                           </ItemTemplate>                         
-                                           </asp:TemplateField>
+                                           
                              </Columns> 
 
                         </asp:GridView>
                         
                         </div>
-                          </div>
+                           </div>
 
-                      </div>
-                    </div>
-                  </div>
+                    </div><!--end form horizontal-->
+                  </div><!-- end x_content-->
+                </div><!-- end x_panel-->
+                </div><!-- end row-->
+            </div><!-- end class=""-->
 
-                      <div class="form-group row">
-                        <div class="col-md-9 col-sm-9  offset-md-4">
-                            <asp:Button ID="btnvalider" class="btn btn-success" runat="server" Text="Valider" />
-                            <asp:Button ID="btnannuler" class="btn btn-pam" runat="server" Text="Annuler" />
-
-                        </div>
-                      </div>
-  
-                    </div>
-  
-                    
-                  </div>
-                </div>
-                </div>
-            </div>
-
-                
-          </div>
              </ContentTemplate></asp:UpdatePanel>
         </div>
         <!-- /page content -->

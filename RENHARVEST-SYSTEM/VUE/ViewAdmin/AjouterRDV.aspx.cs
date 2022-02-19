@@ -12,6 +12,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
 {
     public partial class AjouterRDV : System.Web.UI.Page
     {
+        private ControlleurRDV rdv = new ControlleurRDV();
         private ControlleurPatients patient = new ControlleurPatients();
         private ControlleurMedecin medecin = new ControlleurMedecin();
         string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
@@ -61,18 +62,25 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
         }
         protected void tbnsearch_Click(object sender, EventArgs e)
         {
-            if (DDtrier.Text.Equals("Prenom"))
+            if (tsearch.Text.Equals(""))
             {
-                AfficheP();
-
-            }
-            else if (DDtrier.Text.Equals("Nom"))
-            {
-                AfficherN();
+                Response.Redirect("ModifierPatient.aspx");
             }
             else
             {
-                AfficherM();
+                if (DDtrier.Text.Equals("Prenom"))
+                {
+                    AfficheP();
+
+                }
+                else if (DDtrier.Text.Equals("Nom"))
+                {
+                    AfficherN();
+                }
+                else
+                {
+                    AfficherM();
+                }
             }
         }
 
@@ -121,5 +129,9 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
             }
         }
 
+        protected void btnvalider_Click(object sender, EventArgs e)
+        {
+            rdv.CreerRDV(Label1.Text, Label3.Text, tdate.Text, theure.Text, tusername.Text, datecreated);
+        }
     }
 }

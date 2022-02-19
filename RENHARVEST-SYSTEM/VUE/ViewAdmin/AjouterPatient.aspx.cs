@@ -9,7 +9,7 @@ using RENHARVEST_SYSTEM.CONTROLLEUR;
 using RENHARVEST_SYSTEM.MODELE;
 using RENHARVEST_SYSTEM.VUE;
 
-namespace RENHARVEST_SYSTEM.VUE
+namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
 {
     public partial class AjouterPatient : System.Web.UI.Page
     {

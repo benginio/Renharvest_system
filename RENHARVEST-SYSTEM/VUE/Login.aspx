@@ -16,7 +16,6 @@
     </head>
     <body class="bg-primary">
     <form id="form1" runat="server">
-
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 

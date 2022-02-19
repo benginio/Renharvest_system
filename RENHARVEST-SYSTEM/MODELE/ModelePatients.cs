@@ -28,7 +28,7 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string g_s;
         private string p_Respon;
         private string lienARespon;
-        private string typeP;
+        private string typeP = "Patient";
         private string createdby;
         private string datecreated;
 
@@ -154,11 +154,15 @@ namespace RENHARVEST_SYSTEM.MODELE
        
         public void CreerPatient()
         {
+            string typeAction = "Insertion";
             string Req = string.Format("INSERT INTO tbpersonne VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, createdby, datecreated);
             string Req2 = string.Format("INSERT INTO tbpatient (codePatient,codepers,persResp,LienApersResp,createdby,datecreated) VALUES ('" + codePatient + "','" + codePatient+ "','"+p_Respon+"', '"+lienARespon+"', '" + createdby+"', '"+datecreated+"')");
+            string Req3 = string.Format("INSERT INTO tbhisPatient VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, typeAction, createdby, datecreated);
+
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
             SqlCommand cmd2 = null;
+            SqlCommand cmd3 = null;
 
             con.Open();
             cmd = new SqlCommand(Req, con);
@@ -166,6 +170,11 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             cmd2 = new SqlCommand(Req2, con);
             cmd2.ExecuteNonQuery();
+
+            cmd3 = new SqlCommand(Req3, con);
+            cmd3.ExecuteNonQuery();
+
+            
             con.Close();
         }
         
@@ -191,6 +200,22 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             codePatient = nomP.Substring(0, 2) + prenomP.Substring(0, 2) + nombrePatient;
             return codePatient;
+        }
+        public string Age(string dateNaiss, string codePatient)
+        {
+            string ages = "";
+            string R = string.Format("SELECT DATEDIFF(YEAR, datenaiss, GETDATE()) FROM tbpersonne WHERE codepers='{0}'", codePatient);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(R, con);
+
+            con.Open();
+            Int32 annee = Convert.ToInt32(cmd.ExecuteScalar());
+            if (annee > 0)
+            {
+                ages = Convert.ToString(annee.ToString());
+            }
+            con.Close();
+            return ages;
         }
 
         public bool RecherchePatient(string codePatient)
@@ -225,6 +250,7 @@ namespace RENHARVEST_SYSTEM.MODELE
                 lienARespon = reader[12].ToString();
                 typeP = reader[13].ToString();
                 createdby = reader[14].ToString();
+                datecreated = reader[15].ToString();
                 trouve = true;
             }
 
@@ -240,17 +266,22 @@ namespace RENHARVEST_SYSTEM.MODELE
         }
         public void ModifierPatient()
         {
+            string typeAction = "Modification";
             string Req = string.Format("UPDATE tbpersonne SET nomP='{1}', prenomP='{2}', sexe='{3}', dateNaiss='{4}', adresse='{5}',  telephone='{6}', email='{7}', matricule='{8}', job='{9}', gps='{10}' where codepers='{0}'", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s);
             string Req1 = string.Format("UPDATE tbpatient SET persResp='{1}', LienApersResp='{2}',createdby='{3}' WHERE codePatient='{0}' ",codePatient, p_Respon, lienARespon, createdby);
+            string Requ = string.Format("INSERT INTO tbhisPatient VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, typeAction, createdby, datecreated);
+
             SqlConnection con = new SqlConnection(chcon);
 
 
             con.Open();
             SqlCommand cmd = new SqlCommand(Req, con);
             SqlCommand cmd1 = new SqlCommand(Req1, con);
+            SqlCommand cmd2 = new SqlCommand(Requ, con);
 
             cmd.ExecuteNonQuery();
             cmd1.ExecuteNonQuery();
+            cmd2.ExecuteNonQuery();
             con.Close();
 
 
@@ -262,7 +293,7 @@ namespace RENHARVEST_SYSTEM.MODELE
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listePatient ");
+            string command = string.Format("SELECT * FROM V_listePatient ORDER BY datecreated DESC ");
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
@@ -270,6 +301,24 @@ namespace RENHARVEST_SYSTEM.MODELE
             data = new DataSet();
 
             adapter.Fill(data, "V_listePatient"); 
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerhisPatient()
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM tbhisPatient ORDER BY datecreated DESC ");
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "tbhisPatient");
             con.Close();
 
             return data;

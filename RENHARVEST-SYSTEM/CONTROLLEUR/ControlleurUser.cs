@@ -17,17 +17,28 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             user = new ModeleUser();
         }
 
-        public void CreerUser(string codeUser, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string g_s, string pseudo, string password, string typeP, string createdby, string datecreated, string status)
+        public void CreerUser(string codeUser, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string pseudo, string password, string typeP, string dateEmbauch, string createdby, string datecreated, string status)
         {
-            this.user = new ModeleUser(codeUser, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, g_s, pseudo, password, typeP, createdby, datecreated, status);
+            this.user = new ModeleUser(codeUser, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, pseudo, password, typeP, dateEmbauch, createdby, datecreated, status);
             user.CreerUser();
         }
 
-
+        public string CodeUSER(string nomP, string prenomP)
+        {
+            return user.CodeUSER(nomP, prenomP);
+        }
 
         public bool LoginUser(string pseudo, string password)
         {
             return (user.LoginUser(pseudo, password));
+        }
+        public DataSet GetListeUser()
+        {
+            return (user.ListerUser());
+        }
+        public bool RechercherUser(string codeUser)
+        {
+            return (user.RechercheUser(codeUser));
         }
 
 
@@ -94,6 +105,20 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             else
                 return null;
         }
+        public string getMatricule()
+        {
+            if (user != null)
+                return user.Matricule;
+            else
+                return null;
+        }
+        public string getJob()
+        {
+            if (user != null)
+                return user.Job;
+            else
+                return null;
+        }
 
         public string getG_S()
         {
@@ -123,6 +148,13 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             if (user != null)
                 return user.TypeP;
+            else
+                return null;
+        }
+        public string getDateEmbauch()
+        {
+            if (user != null)
+                return user.DateEmbauch;
             else
                 return null;
         }

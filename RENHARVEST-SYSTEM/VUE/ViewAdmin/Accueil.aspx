@@ -10,10 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR">
-<meta content="C#" name="CODE_LANGUAGE">
-<meta content="JavaScript" name="vs_defaultClientScript">
-<meta content="http://schemas.microsoft.com/intellisense/ie5" 
-  name="vs_targetSchema">
 
     <title>RenHarvest-System | TGL</title>
 
@@ -88,9 +84,9 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
-                      <li><a href="#">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
+                      <li><a href="ListerRDV">lister</a></li>
+                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
@@ -100,7 +96,7 @@
                       <li><a href="#">....</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-area-chart"></i> Rapport <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">....</a></li>
                       <li><a href="#">....</a></li>
@@ -144,8 +140,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="#"> Profile</a>
+                      <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
+
                     </div>
-                    <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
 
                   </li>
                   <li role="presentation" class="nav-item dropdown open">
@@ -171,8 +168,7 @@
                 <h5> Accueil |</h5>
               </div>
             </div>
-              <asp:Button runat="server" ID="btnSaveData" 
-     onClick="btnSaveData_Click" OnClientClick="ConfirmSave()" style="display:none;" />
+          
              
 
 
@@ -205,20 +201,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-
-    <script type="text/javascript">
-        function ConfirmSave() {
-            if (confirm('Record already exist.Do you want to proceed?')
-   {
-                jQuery("[ID$=btnSaveData]").click();
-            }
-
-        }
-        if (check == true) {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "script",
-                "ConfirmSave();", true);
-        }
-    </script>
 
     
 </body>

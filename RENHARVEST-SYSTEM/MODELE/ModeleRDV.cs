@@ -74,20 +74,42 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public void CreerRDV()
         {
+            string typeAction = "Insertion";
             string req = string.Format("INSERT INTO tbrendez_vous VALUES('{0}','{1}','{2}','{3}','{4}','{5}')",codePatient, codeMedecin, date, heure, createdby, datecreated);
+            string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, date, heure, typeAction, createdby, datecreated);
+
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
+            SqlCommand cmd1 = null;
 
             con.Open();
             cmd = new SqlCommand(req, con);
             cmd.ExecuteNonQuery();
-
+            cmd1 = new SqlCommand(req, con);
+            cmd1.ExecuteNonQuery();
             con.Close();
         }
 
         public void ModifierRDV()
         {
+            string typeAction = "Modification";
             string Req = string.Format("UPDATE tbrendez_vous SET codeMedecin'{1}',date='{2}', heure='{3}',createby='{4}' where codepers='{0}'",num, codeMedecin, date, heure, createdby);
+            string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, date, heure, typeAction, createdby, datecreated);
+
+            SqlConnection con = new SqlConnection(chcon);
+
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand(Req, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void AnnulerRDV(string codePatient, string codeMedecin, string createdby, string datecreated)
+        {
+            string typeAction = "Annulation";
+            string Req = string.Format("DELETE FROM tbrendez_vous where codepers='{0}' AND codeMedecin='{1}'", codePatient, codeMedecin);
+            string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, typeAction, createdby, datecreated);
+
             SqlConnection con = new SqlConnection(chcon);
 
 
