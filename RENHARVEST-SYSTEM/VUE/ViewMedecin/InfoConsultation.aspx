@@ -65,6 +65,9 @@
                       <li><a href="ListePatient.aspx">Lister</a></li>
                     </ul>
                   </li>
+                    <li><a href="DossierPatient.aspx"><i class="fa fa-list"></i> Dossier Patient </a>
+                    
+                  </li>
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
@@ -77,7 +80,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="#">Modifier</a></li>
-                      <li><a href="#">lister</a></li>
+                      <li><a href="ListeRDV.aspx">lister</a></li>
                       <li><a href="#">Annuler</a></li>
                       
                     </ul>
@@ -161,29 +164,32 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class=""><br/><br/>
-                <div class="x_panel">
+              <div class="pull-right">
+                  <asp:LinkButton ID="btnExportpdf" CssClass="btn btn-default" OnClick="btnExportpdf_Click" OnClientClick="window.print();" runat="server"><span><i class="fa fa-print"></i></span> Export pdf</asp:LinkButton>
+              </div>
+                <div class="x_panel" id="fieldPdf" runat="server">
              <div class="page-title">
                  <div class="title_left">
                   <div class="form-group row">
                     <div class="col-sm-1 col-md-1">
                      <div class="profile clearfix">
                     <div class="profile_pic">
-                    <img src="../build/images/userP.png" alt="..." class=" profile_img">
+                    
                     </div>
                     </div>
                 </div><!--end col-->
-                <div class="col-sm-11 col-md-11 py-2">
-                    <h6>
-                      <asp:Label ID="tnomP" runat="server" Text="Labeldhdhghfgdgdghdhgdh"></asp:Label>
-                      <asp:Label ID="tprenomP" runat="server" Text="Labeldhdhghfgdgdghdhg"></asp:Label>
-                    </h6>
+                <div class="col-sm-10 col-md-10 py-2 px-1">
+                    <h5>
+                     &nbsp; <asp:Label ID="tnomP" runat="server" Text=""></asp:Label>
+                      <asp:Label ID="tprenomP" runat="server" Text=""></asp:Label>
+                    </h5>
                 </div><!--end col-->
                  </div><!--end row-->
                  </div>
                  <div class="pull-right">
                      <div class="col-md-12 col-sm-12 py-2">
                      <label><b>D creation:</b></label>
-                      <asp:Label ID="tdatecreation" runat="server" Text="02/10/2020"></asp:Label>
+                      <asp:Label ID="tdatecreation" runat="server" Text=""></asp:Label>
                 </div><!--end col-->
                  </div>
               </div>
@@ -194,54 +200,63 @@
                 <div class="left">
                 </div>
                 <div class="right">
-                    <h3>Information personnelle</h3>
+                    <h3 class="bg-pam">Information personnelle</h3>
                     <div class="form-group row">
-                        <div class="col-md-2 col-sm-2">
+                        <div class="col-md-5 col-sm-2">
                               <label><b>Sexe:</b></label>
-                            <asp:Label ID="tsexe" runat="server" Text="Masculin"></asp:Label>
+                            <asp:Label ID="tsexe" runat="server" Text=""></asp:Label>
                         </div>
                          <div class="col-md-4 col-sm-4">
                             <label><b>Date Naiss:</b></label>
-                             <asp:Label ID="tdatenaiss" runat="server" Text="02/10/2020"></asp:Label>
+                             <asp:Label ID="tdatenaiss" runat="server" Text=""></asp:Label>
                         </div>
-                        <div class="col-md-5 col-sm-5">
-                            <label><b>Adresse:</b></label>
-                             <asp:Label ID="tadresse" runat="server" Text="Labeldhdhghfgdgdghdhgdhghgddgfdff"></asp:Label>
-                        </div>
-                         <div class="col-md-1 col-sm-1">
+                        
+                         <div class="col-md-3 col-sm-1">
                             <label><b>Age:</b></label>
-                             <asp:Label ID="tage" runat="server" Text="122"></asp:Label>
+                             <asp:Label ID="tage" runat="server" Text=""></asp:Label>
                         </div>
                         
                     </div><!--end row-->
                      <div class="form-group row">
-                         <div class="col-md-2 col-sm-2">
-                            <label><b>Tel:</b></label>
-                             <asp:Label ID="tphone" runat="server" Text="(509) 1234-1234"></asp:Label>
-                        </div>
-                         <div class="col-md-4 col-sm-4">
-                            <label><b>Profession:</b></label>
-                             <asp:Label ID="tjob" runat="server" Text="dhgdgdghdgdhgssgshghsgfsfs"></asp:Label>
-                        </div>
                          <div class="col-md-5 col-sm-5">
-                              <label><b>Email:</b></label>
-                            <asp:Label ID="temail" runat="server" Text="Labeldhdhghfgdgdghdhgdhghgddfjfhfhfgkjg"></asp:Label>
+                            <label><b>Adresse:</b></label>
+                             <asp:Label ID="tadresse" runat="server" Text=""></asp:Label>
                         </div>
-                         <div class="col-md-1 col-sm-1">
-                            <label><b>G S:</b></label>
-                             <asp:Label ID="tgs" runat="server" Text="O+"></asp:Label>
+                         <div class="col-md-4 col-sm-2">
+                            <label><b>Tel:</b></label>
+                             <asp:Label ID="tphone" runat="server" Text=""></asp:Label>
                         </div>
+                         <div class="col-md-3 col-sm-4">
+                            <label><b>Profession:</b></label>
+                             <asp:Label ID="tjob" runat="server" Text=""></asp:Label>
+                        </div>
+                        
                     </div><!--end row-->
                     <div class="form-group row">
-                         <div class="col-md-6 col-sm-6">
-                            <label><b>Pers responsable:</b></label>
-                             <asp:Label ID="tprespon" runat="server" Text="dhgdgdghdgdhgssgshghsgfsfs"></asp:Label>
+                         <div class="col-md-5 col-sm-5">
+                              <label><b>Email:</b></label>
+                            <asp:Label ID="temail" runat="server" Text=""></asp:Label>
                         </div>
-                         <div class="col-md-6 col-sm-6">
-                            <label><b>Lien P responsable:</b></label>
-                             <asp:Label ID="tlienrespon" runat="server" Text="dhgdgdghdgdhgssgshghsgfsfs"></asp:Label>
+                        <div class="col-md-4 col-sm-4">
+                            <label><b>Matricule:</b></label>
+                             <asp:Label ID="tmatricule" runat="server" Text=""></asp:Label>
                         </div>
+                         <div class="col-md-3 col-sm-3">
+                            <label><b>G S:</b></label>
+                             <asp:Label ID="tgs" runat="server" Text=""></asp:Label>
+                        </div>
+                        
                     </div><!--end row-->
+                    <div class="form-group row">
+                         <div class="col-md-5 col-sm-5">
+                            <label><b>Pers responsable:</b></label>
+                             <asp:Label ID="tprespon" runat="server" Text=""></asp:Label>
+                        </div>
+                         <div class="col-md-5 col-sm-5">
+                            <label><b>Lien P responsable:</b></label>
+                             <asp:Label ID="tlienrespon" runat="server" Text=""></asp:Label>
+                        </div>
+                    </div>
                 </div>
                 </div><!--end mail-list-->
 
@@ -250,8 +265,65 @@
                     <i class="fa fa-code-fork"></i>
                 </div>
                 <div class="right">
-                    <h3>Antecedent</h3>
-                    <p> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
+                    <h3 class="bg-pam">Antecedent</h3>
+                    <div class="form-group row">
+                    <div class="col-md-6 col-sm-6">
+                         <div class="table-responsive">
+                        <asp:GridView ID="Gridantfamille" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="descriptionAnt" EmptyDataText="" OnSelectedIndexChanged="Page_Load">
+                            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+
+                            <Columns>  
+                                <asp:BoundField DataField="descriptionAnt" HeaderText="familliaux" ReadOnly="True" SortExpression="nom" /> 
+                                <asp:BoundField DataField="datecreated" HeaderText="D_creation" ReadOnly="True" SortExpression="date" /> 
+                              </Columns> 
+
+                        </asp:GridView>
+                                </div>
+                    </div><!--end col-->
+                    <div class="col-md-6 col-sm-6">
+                         <div class="table-responsive">
+                        <asp:GridView ID="Gridantpers" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="descriptionAnt" EmptyDataText="" OnSelectedIndexChanged="Page_Load">
+                            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+
+                            <Columns>  
+                                <asp:BoundField DataField="descriptionAnt" HeaderText="Personnels" ReadOnly="True" SortExpression="nom" /> 
+                                <asp:BoundField DataField="datecreated" HeaderText="D_creation" ReadOnly="True" SortExpression="date" /> 
+                              </Columns> 
+
+                        </asp:GridView>
+                                </div>
+                    </div><!--end col-->
+                        </div><!--end row-->
+
+                         <div class="form-group row">
+                    <div class="col-md-6 col-sm-6">
+                         <div class="table-responsive">
+                        <asp:GridView ID="Gridoperation" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="descriptionAnt" EmptyDataText="" OnSelectedIndexChanged="Page_Load">
+                            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+
+                            <Columns>  
+                                <asp:BoundField DataField="descriptionAnt" HeaderText="Chirurgicaux" ReadOnly="True" SortExpression="nom" /> 
+                                <asp:BoundField DataField="dateOperation" HeaderText="Date operation" ReadOnly="True" SortExpression="date" /> 
+                               <asp:BoundField DataField="datecreated" HeaderText="D_creation" ReadOnly="True" SortExpression="date" /> 
+                              </Columns> 
+
+                        </asp:GridView>
+                                </div>
+                    </div><!--end col-->
+                         <div class="col-md-6 col-sm-6">
+                         <div class="table-responsive">
+                        <asp:GridView ID="Gridhabitude" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="descriptionAnt" EmptyDataText="" OnSelectedIndexChanged="Page_Load">
+                            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+
+                            <Columns>  
+                                <asp:BoundField DataField="descriptionAnt" HeaderText="Habitudes" ReadOnly="True" SortExpression="nom" /> 
+                                <asp:BoundField DataField="datecreated" HeaderText="D_creation" ReadOnly="True" SortExpression="date" /> 
+                              </Columns> 
+
+                        </asp:GridView>
+                                </div>
+                    </div><!--end col-->
+                      </div><!--end row-->
                 </div>
                 </div><!--end mail-list-->
 
@@ -260,8 +332,112 @@
                     <i class="fa fa-stethoscope"></i>
                 </div>
                 <div class="right">
-                    <h3>Consultation</h3>
-                    <p> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
+                    <h3 class="bg-pam">Consultation</h3>
+                    <div class="col-md-9 col-sm-9">
+                        <div class="row">
+                            <h5>Examen</h5>
+                        <div class="col-md-12 col-sm-12">
+                             <div class="table-responsive">
+                        <asp:GridView ID="gridexamen" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codePatient" EmptyDataText="" OnSelectedIndexChanged="Page_Load">
+                            <HeaderStyle  Font-Bold="True" ForeColor="black" />
+
+                            <Columns>  
+                            <asp:BoundField DataField="codePatient" HeaderText="code_patient" ReadOnly="True" SortExpression="codeM" />  
+                            <asp:BoundField DataField="descriptionE" HeaderText="Description" SortExpression="Description" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+                            <asp:BoundField DataField="resultatE" HeaderText="Resultat" SortExpression="Resultat" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
+                            <asp:BoundField DataField="datecreated" HeaderText="creation" SortExpression="form" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />  
+                            
+                                </Columns> 
+                        </asp:GridView>
+                                </div>
+                        </div><!--end col6-->
+                        </div><!--end row-->
+                        
+                    </div><!--end col8-->
+                    <div class="col-md-3 col-sm-3">
+                         <h5 >Signe vitaux</h5>
+                         <div class="row">
+                             <label><strong>Poids (Kg): </strong></label><br />
+                             <asp:Label ID="lblpoid" runat="server" Text=""></asp:Label>
+                        </div><!--end row-->
+                        <div class="row">
+                             <label><strong>Temperature (C°): </strong></label><br />
+                             <asp:Label ID="lbltemp" runat="server" Text=""></asp:Label>
+                        </div><!--end row-->
+                        <div class="row">
+                             <label><strong>Taille (m): </strong></label><br />
+                             <asp:Label ID="lbltaille" runat="server" Text=""></asp:Label>
+                        </div><!--end row-->
+                        <div class="row">
+                             <label><strong> TA (mm/Hg): </strong></label><br />
+                             <asp:Label ID="lblta" runat="server" Text=""></asp:Label>
+                        </div><!--end row-->
+                        <div class="row">
+                             <label><strong>Pouls: </strong></label><br />
+                             <asp:Label ID="lblpouls" runat="server" Text=""></asp:Label>
+                        </div><!--end row-->
+                    </div><!--end col4-->
+                    <div class="col-md-12 col-sm-12">
+                        <div class="x_panel">
+                            <h5 >Consultation</h5><br />
+                             <%--<div class="table-responsive">
+                            <asp:GridView ID="Gridconsultation" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codeMed" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                                <HeaderStyle BackColor="#F5F7FA" Font-Bold="True" ForeColor="black" />
+
+                                <Columns>
+                                    <asp:BoundField DataField="codePatient" HeaderText="code_Patient" ReadOnly="True" SortExpression="codeM" />
+                                    <asp:BoundField DataField="signe" HeaderText="signe" ReadOnly="True" SortExpression="signe" />
+                                    <asp:BoundField DataField="symptomes" HeaderText="symptomes" ReadOnly="True" SortExpression="symp" />
+                                    <asp:BoundField DataField="histoire" HeaderText="Histoire" SortExpression="hist" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+                                    <asp:BoundField DataField="detail" HeaderText="Diagnostique" SortExpression="diagn" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />
+                                    <asp:BoundField DataField="comment" HeaderText="note" SortExpression="note" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+                                    <asp:BoundField DataField="datecreated" HeaderText="creation" SortExpression="date" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+
+                                </Columns>
+
+                            </asp:GridView>
+                        </div>--%>
+                            <div class="form-group row">
+                            <div class="col-md-4">
+                                 <label><strong>Code Patient:</strong></label><br />
+                             <asp:Label ID="lblcodepatient" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                            <div class="col-md-4">
+                                 <label><strong>Age:</strong></label><br />
+                             <asp:Label ID="lblagep" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                             </div><!--end row-->
+                            <div class="form-group row">
+                            <div class="col-md-4">
+                                 <label><strong>Signe:</strong></label><br />
+                             <asp:Label ID="lblsigne" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                            <div class="col-md-4">
+                                 <label><strong>Symptomes:</strong></label><br />
+                             <asp:Label ID="lblsymp" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                            <div class="col-md-4">
+                                 <label><strong>Histoire:</strong></label><br />
+                             <asp:Label ID="lblhistoire" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                             </div><!--end row-->
+                            <div class="form-group row">
+                            <div class="col-md-4">
+                                 <label><strong>Diagnostique:</strong></label><br />
+                             <asp:Label ID="lbldiag" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                            <div class="col-md-4">
+                                 <label><strong>Notes:</strong></label><br />
+                             <asp:Label ID="lblcomment" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                            <div class="col-md-4">
+                                 <label><strong>Date creation:</strong></label><br />
+                             <asp:Label ID="lbldcreated" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                             </div>
+                            </div>
+                    </div><!--end col-->
+                    
                 </div>
                 </div><!--end mail-list-->
 
@@ -270,9 +446,58 @@
                     <i class="fa fa-list-alt"></i>
                 </div>
                 <div class="right">
-                    <h3>Ordonnace</h3>
-                    <p> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
+                    <h3 class="bg-pam">Traitment</h3>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-sm-6">
+                            <label><strong>Prevention: </strong></label>
+                            <asp:Label ID="lblprevention" runat="server" Text="Label"></asp:Label>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label><strong>Duree: </strong> </label>
+                            <asp:Label ID="lbldurer" runat="server" Text="Label"></asp:Label>
+                        </div>
+                    
+                    </div>
+                    <div class="form-group row">
+                        <h5>Ordonnance</h5>
+                        <div class="table-responsive">
+                            <asp:GridView ID="GridOrdonance" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codeMed" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                                <HeaderStyle BackColor="#F5F7FA" Font-Bold="True" ForeColor="black" />
+
+                                <Columns>
+                                    <asp:BoundField DataField="codeMed" HeaderText="codeMedicament" ReadOnly="True" SortExpression="codeM" />
+                                    <asp:BoundField DataField="nomM" HeaderText="Nom_Medicament" ReadOnly="True" SortExpression="codeM" />
+                                    <asp:BoundField DataField="dosage" HeaderText="Dosage" ReadOnly="True" SortExpression="codeM" />
+                                    <asp:BoundField DataField="nbrFois" HeaderText="Posologie" SortExpression="Nbrfois" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+                                    <asp:BoundField DataField="quant" HeaderText="Quantite" SortExpression="quant" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />
+                                    <asp:BoundField DataField="form" HeaderText="Form" SortExpression="form" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+                                     <asp:BoundField DataField="datecreated" HeaderText="creation" SortExpression="form" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+
+                                </Columns>
+
+                            </asp:GridView>
+                        </div>
+                        </div>
+                    </div>
+                </div><!--end mail-list-->
+                     <div class="mail_list">
+                <div class="left">
+                    <i class="fa fa-user-md"></i>
                 </div>
+                <div class="right">
+                    <div class="form-group row">
+                        <div class="col-md-8 col-sm-8 offset-4">
+                        <div class="col-md-4 col-sm-4">
+                            <label >Prestataire: </label>
+                            <asp:Label ID="lblnomcomplet" runat="server" Text="complet"></asp:Label>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Specialisation: </label>
+                            <asp:Label ID="lblspecial" runat="server" Text="complet"></asp:Label>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
                 </div><!--end mail-list-->
                         
             </div>
@@ -289,7 +514,7 @@
 
         <!-- footer content -->
         <footer>
-          <div class="pull-right">
+          <div class="pull-right no-print">
             <strong >Copyright &copy; 2021-2025 <a href="#">TGLcomputing</a>.</strong> tout droit reservé.
           </div>
           <div class="clearfix"></div>

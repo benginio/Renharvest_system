@@ -17,14 +17,14 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             sign = new ModeleSigneV();
         }
 
-        public void AjouterSigneV(string code, string codePatient, string poids, string temperature, string tensionA, string taille, string createdby, string datecreated)
+        public void AjouterSigneV(string code, string codePatient, string poids, string temperature, string tensionA, string taille, string pouls, string createdby, string datecreated)
         {
-            this.sign = new ModeleSigneV(code, codePatient, poids, temperature, tensionA, taille, createdby, datecreated);
+            this.sign = new ModeleSigneV(code, codePatient, poids, temperature, tensionA, taille, pouls, createdby, datecreated);
             sign.AjouterSigneV();
         }
-        public void ModifierSigneV(string code, string codePatient, string poids, string temperature, string tensionA, string taille, string createdby, string datecreated)
+        public void ModifierSigneV(string code, string codePatient, string poids, string temperature, string tensionA, string taille, string pouls, string createdby, string datecreated)
         {
-            this.sign = new ModeleSigneV(code, codePatient, poids, temperature, tensionA, taille, createdby, datecreated);
+            this.sign = new ModeleSigneV(code, codePatient, poids, temperature, tensionA, taille, pouls, createdby, datecreated);
             sign.ModifierSigneV();
         }
 
@@ -40,9 +40,9 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (sign.ListerSigneV());
         }
-        public bool RechercheSigneVpatient(string codePatient)
+        public bool RechercheSigneVpatient(string codePatient, string datecreated)
         {
-            return (sign.RechercheSigneVPatient(codePatient));
+            return (sign.RechercheSigneVPatient(codePatient, datecreated));
         }
         public bool RechercheSigneV(string code)
         {
@@ -96,6 +96,13 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             if (sign != null)
                 return sign.Taille;
+            else
+                return null;
+        }
+        public string getPouls()
+        {
+            if (sign != null)
+                return sign.Pouls;
             else
                 return null;
         }

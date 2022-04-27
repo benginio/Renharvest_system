@@ -17,8 +17,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
     {
         private ControlleurPrescription pres = new ControlleurPrescription();
         private ControlleurSigneV sign = new ControlleurSigneV();
+        private ControlleurTraitement traitement = new ControlleurTraitement();
         private ControlleurMedicament med = new ControlleurMedicament();
-        private ControlleurOrdonnance ord = new ControlleurOrdonnance();
         private ControlleurPatients patient = new ControlleurPatients();
         private ControlleurMedecin medecin = new ControlleurMedecin();
         public string chcon;
@@ -26,7 +26,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
         string my = "";
         string age = "";
-        string numOr = "";
+        string codetraitement = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -48,7 +48,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                     lblage1.Text = age;
                     Info();
                     Affichelastdate();
-                    AfficheDate();
+                    //AfficheDate();
                     AddDefaultFirstRecord();
                 }
                 else
@@ -58,11 +58,11 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
             }
         }
-        void AfficheDate()
-        {
-            magriddate.DataSource = pres.getListerPrescription1(tusername.Text, Session["codePatien"].ToString());
-            magriddate.DataBind();
-        }
+        //void AfficheDate()
+        //{
+        //    magriddate.DataSource = pres.getListerPrescription1(tusername.Text, Session["codePatien"].ToString());
+        //    magriddate.DataBind();
+        //}
         void Affichelastdate()
         {
            string date= pres.Lastdate(tusername.Text, Session["codePatien"].ToString());
@@ -111,7 +111,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
                 if (dtCurrentTable.Rows.Count > 0)
                 {
-                    numOr = ord.NumOrdo();
+                    codetraitement = traitement.CodeTraitement();
                     bool find = medecin.Recherchemedecin(Session["codeUser"].ToString());
                     for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                     {
@@ -124,7 +124,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                         drCurrentRow["nbrFois"] = tnbrfois.Text;
                         drCurrentRow["quant"] = tquant.Text;
                         drCurrentRow["form"] = tform.Text;
-                        drCurrentRow["numOrd"] = numOr;
+                        drCurrentRow["numOrd"] = codetraitement;
                         drCurrentRow["codePatient"] = Session["codePatien"].ToString();
                         drCurrentRow["createdby"] = Session["pseudo"].ToString();
                         drCurrentRow["datecreated"] = tdatenow.Text;
@@ -162,14 +162,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             objbulk.ColumnMappings.Add("nbrFois", "nbrFois");
             objbulk.ColumnMappings.Add("quant", "quant");
             objbulk.ColumnMappings.Add("form", "form");
-            objbulk.ColumnMappings.Add("numOrd", "numOrd");
-            objbulk.ColumnMappings.Add("codePatient", "codepers qq1");
+            objbulk.ColumnMappings.Add("codetraitement", "codetraitement");
             objbulk.ColumnMappings.Add("createdby", "createdby");
             objbulk.ColumnMappings.Add("datecreated", "datecreated");
             //inserting bulk Records into DataBase   
             objbulk.WriteToServer(dttbprescription);
-            numOr = ord.NumOrdo();
-            ord.AjourterOrdonnace(numOr, Session["pseudo"].ToString(), tdatenow.Text);
+            //codetraitement = traitement.CodeTraitement();
+            //ord.AjourterOrdonnace(numOr, Session["pseudo"].ToString(), tdatenow.Text);
         }
         protected void Addpress_Click(object sender, EventArgs e)
         {

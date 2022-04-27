@@ -164,6 +164,7 @@
                         <asp:BoundField DataField="Temperature" HeaderText="temp" SortExpression="Sexe" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />  
                         <asp:BoundField DataField="tensionA" HeaderText="TA" SortExpression="TA" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
                         <asp:BoundField DataField="taille" HeaderText="taille" SortExpression="taille" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                        <asp:BoundField DataField="motif" HeaderText="motif" SortExpression="motif" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
                         <asp:BoundField DataField="createdby" HeaderText="createdby" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
                         <asp:BoundField DataField="datecreated" HeaderText="datecreated" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" /> 
                         <asp:TemplateField HeaderText="-->">                       
@@ -218,6 +219,12 @@
                                 <div class="col-md-8 col-sm-8 offset-2">
                                     <label for="inputname">Taille*</label>
                                     <asp:TextBox ID="ttaille" runat="server" class="form-control" ></asp:TextBox>
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                                <div class="col-md-8 col-sm-8 offset-2">
+                                    <label for="inputname">Motif*</label>
+                                    <asp:TextBox ID="tmotif" TextMode="MultiLine" Rows="3" runat="server" class="form-control" ></asp:TextBox>
                                 </div>
                         </div>
                         <div class="form-group row">

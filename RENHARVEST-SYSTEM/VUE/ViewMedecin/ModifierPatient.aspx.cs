@@ -21,10 +21,10 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             if (!Page.IsPostBack)
             {
                 tdatenow.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
-                Afficher();
+                
                 if (Session["codeUser"] != null)
                 {
-
+                    Afficher();
                     my = Session["codeUser"].ToString();
                     bool find = medecin.Recherchemedecin(my);
                     tusername.Text = "Dr." + medecin.getPrenomP();
@@ -139,6 +139,14 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected void btnliste_Click(object sender, EventArgs e)
         {
             Response.Redirect("ModifierPatient.aspx");
+        }
+
+        protected void btnlogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.Redirect("../Login.aspx");
         }
     }
 }

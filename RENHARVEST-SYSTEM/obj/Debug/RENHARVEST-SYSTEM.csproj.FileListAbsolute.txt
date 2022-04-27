@@ -135,3 +135,5 @@ C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\zh-CHS\Micr
 C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\obj\Debug\RdlCompile.cache
 C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\obj\Debug\RdlCompile.compiled
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\itextsharp.dll
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\itextsharp.pdfa.dll

@@ -341,7 +341,24 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
+        public DataSet ListerPatientNS(string nomP, string sexe)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
 
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listePatient     where nomP='{0}' AND sexe='{1}'", nomP, sexe);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listePatient");
+            con.Close();
+
+            return data;
+        }
         public DataSet ListerPatientP(string prenomP)
         {
             SqlDataAdapter adapter;
@@ -360,7 +377,60 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
+        public DataSet ListerPatientPS(string prenomP, string sexe)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
 
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listePatient     where prenomP='{0}' AND sexe='{1}'", prenomP,sexe);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listePatient");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerPatientS(string sexe)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listePatient     where sexe='{0}'", sexe);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listePatient");
+            con.Close();
+
+            return data;
+        }
+        //public DataSet ListerPatientage(string age1, string age2)
+        //{
+        //    SqlDataAdapter adapter;
+        //    SqlConnection con;
+
+        //    con = new SqlConnection(chcon);
+        //    string command = string.Format("SELECT * FROM V_listePatient     where sexe='{0}'", sexe);
+
+        //    con.Open();
+        //    adapter = new SqlDataAdapter(command, con);
+        //    SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+        //    data = new DataSet();
+
+        //    adapter.Fill(data, "V_listePatient");
+        //    con.Close();
+
+        //    return data;
+        //}
         public DataSet ListerPatientM(string matricule)
         {
             SqlDataAdapter adapter;

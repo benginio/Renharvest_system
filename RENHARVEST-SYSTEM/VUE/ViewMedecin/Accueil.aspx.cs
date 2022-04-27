@@ -12,13 +12,14 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 {
     public partial class Accueil : System.Web.UI.Page
     {
+        private ControlleurRDV rdv = new ControlleurRDV();
         private ControlleurMedecin medecin = new ControlleurMedecin();
         private Login log = new Login();
-        string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
+        string dateN= DateTime.Now.ToString("yyyy/mm/dd");
         string my = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!Page.IsPostBack)
             {
 
@@ -27,10 +28,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                 {
 
 
-                     my = Session["codeUser"].ToString();
+                    my = Session["codeUser"].ToString();
                     bool find = medecin.Recherchemedecin(my);
                     tusername.Text = "Dr." + Session["pseudo"].ToString();
                     Username1.Text = "Dr." + Session["pseudo"].ToString();
+
+                    ListRDVnow();
+                    nbrRDV.Text = rdv.nbrRDVtoDay(my);
                 }
                 else
                 {
@@ -46,5 +50,11 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Session.Abandon();
             Response.Redirect("../Login.aspx");
         }
+        void ListRDVnow()
+        {
+            gridlistRDV.DataSource = rdv.GetListRDVnow(Session["codeUser"].ToString());
+            gridlistRDV.DataBind();
+        }
+
     }
 }

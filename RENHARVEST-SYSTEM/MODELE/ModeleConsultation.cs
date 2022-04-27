@@ -26,8 +26,9 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string comment;
         private string createdby;
         private string datecreated;
+        private string heurecreated;
 
-        public ModeleConsultation(string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated)
+        public ModeleConsultation(string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated, string heurecreated)
         {
             this.codepatient = codepatient;
             this.codemedecin = codemedecin;
@@ -40,9 +41,10 @@ namespace RENHARVEST_SYSTEM.MODELE
             this.comment = comment;
             this.createdby = createdby;
             this.datecreated = datecreated;
+            this.heurecreated = heurecreated;
         }
 
-        public ModeleConsultation(): this(null,  null, null, null, null, null, null, null, null, null) 
+        public ModeleConsultation(): this(null,  null, null, null, null, null, null, null, null, null, null) 
         { }
 
         public string Codepatient
@@ -103,10 +105,15 @@ namespace RENHARVEST_SYSTEM.MODELE
             get { return this.datecreated; }
             set { this.datecreated = value; }
         }
+        public string Heurecreated
+        {
+            get { return this.heurecreated; }
+            set { this.heurecreated = value; }
+        }
 
         public void AjouterConsultation()
         {
-            string Req = string.Format("INSERT INTO tbconsultation VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", codepatient, codemedecin, age, signe, symptomes, histoire, detail, comment, createdby, datecreated);
+            string Req = string.Format("INSERT INTO tbconsultation VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", codepatient, codemedecin, age, signe, symptomes, histoire, detail, comment, createdby, datecreated, heurecreated);
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd= null;
 
@@ -115,7 +122,24 @@ namespace RENHARVEST_SYSTEM.MODELE
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        public DataSet ListerConsultationPM(string codepatient, string codemedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
 
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_consultation WHERE codePatient='{0}' AND codemedecin='{1}' ", codepatient, codemedecin);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_consultation");
+            con.Close();
+
+            return data;
+        }
         public DataSet ListerConsultation(string codemedecin)
         {
             SqlDataAdapter adapter;
@@ -134,13 +158,13 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
-        public DataSet ListerConsultationPM(string codepatient, string codemedecin)
+        public DataSet ListerConsultationPM(string codepatient, string codemedecin, string datecreated)
         {
             SqlDataAdapter adapter;
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM tbconsultation WHERE codePatient='{0}' AND codemedecin='{1}'", codepatient, codemedecin);
+            string command = string.Format("SELECT * FROM tbconsultation WHERE codePatient='{0}' AND codemedecin='{1}' AND datecreated='{2}' ORDER BY datecreated DESC", codepatient, codemedecin, datecreated);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
@@ -171,41 +195,48 @@ namespace RENHARVEST_SYSTEM.MODELE
             return data;
         }
 
-        //public bool RechercheConsultation(string codePatient)
-        //{
-        //    string chReq = string.Format("SELECT * FROM V_consultation WHERE  codepers='{0}'", codePatient);
+        public bool RechercheConsultationD(string codepatient, string codemedecin, string datecreated)
+        {
+            string chReq = string.Format("SELECT * FROM tbconsultation WHERE  codePatient='{0}' AND codemedecin='{1}' AND datecreated='{2}'", codepatient, codemedecin, datecreated);
 
-        //    SqlConnection con = new SqlConnection(chcon);
-        //    SqlCommand cmd = null;
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = null;
 
-        //    bool trouve = false;
+            bool trouve = false;
 
-        //    try
-        //    {
-        //        con.Open();
-        //        cmd = new SqlCommand(chReq, con);
-        //        SqlDataReader reader = cmd.ExecuteReader();
+            //try
+            //{
+                con.Open();
+                cmd = new SqlCommand(chReq, con);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-        //        if (reader.Read())
-        //        {
-        //            codePatient = reader[0].ToString();
-        //            codemedecin = reader[1].ToString();
-        //            dateC = reader[2].ToString();
-        //            createdby = reader[3].ToString();
-        //            datecreated = reader[4].ToString();
-        //            trouve = true;
-        //        }
+                if (reader.Read())
+                {
+                    string id = reader[0].ToString();
+                    codepatient = reader[1].ToString();
+                    codemedecin = reader[2].ToString();
+                    age = reader[3].ToString();
+                    signe = reader[4].ToString();
+                    symptomes = reader[5].ToString();
+                    histoire = reader[6].ToString();
+                    detail = reader[7].ToString();
+                    comment = reader[8].ToString();
+                    createdby = reader[9].ToString();
+                    datecreated = reader[10].ToString();
+                     heurecreated = reader[11].ToString();
+                trouve = true;
+                }
 
-        //        reader.Close();
-        //        con.Close();
-        //        return trouve;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return trouve;
-        //    }
+                reader.Close();
+                con.Close();
+                return trouve;
+            //}
+            //catch (Exception)
+            //{
+            //    return trouve;
+            //}
 
-        //}
+        }
 
 
 

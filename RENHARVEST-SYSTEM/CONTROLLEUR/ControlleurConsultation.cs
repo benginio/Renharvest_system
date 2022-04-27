@@ -18,30 +18,34 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             cons = new ModeleConsultation();
         }
 
-        public void AjouterConsultation(string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated)
+        public void AjouterConsultation(string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated, string heurecreated)
         {
-            this.cons = new ModeleConsultation(codepatient, codemedecin, age, signe, symptomes, histoire,  detail, comment, createdby, datecreated);
+            this.cons = new ModeleConsultation(codepatient, codemedecin, age, signe, symptomes, histoire,  detail, comment, createdby, datecreated, heurecreated);
             cons.AjouterConsultation();
         }
 
-        public DataSet getListerConsPM(string codepatient, string codemedecin)
+        public DataSet getListerConsPM(string codepatient, string codemedecin, string datecreated)
         {
-            return (cons.ListerConsultationPM(codepatient, codemedecin));
+            return (cons.ListerConsultationPM(codepatient, codemedecin, datecreated));
         }
         public DataSet getListerCons()
         {
             return (cons.ListerConsultation());
         }
-
         public DataSet getListerCons(string codemedecin)
         {
             return (cons.ListerConsultation(codemedecin));
         }
+        public DataSet getListerConsPM(string codepatient, string codemedecin)
+        {
+            return (cons.ListerConsultationPM(codepatient,codemedecin));
+        }
 
-        //public bool RechercheCons(string codePatient)
-        //{
-        //    return (cons.RechercheConsultation(codePatient));
-        //}
+
+        public bool RechercheConsultationD(string codepatient, string codemedecin, string datecreated)
+        {
+            return (cons.RechercheConsultationD(codepatient, codemedecin, datecreated));
+        }
 
         public string getCodepatient()
         {
@@ -139,6 +143,15 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             if (cons != null)
             {
                 return cons.Datecreated;
+            }
+            else
+                return null;
+        }
+        public string getHeurecreated()
+        {
+            if (cons != null)
+            {
+                return cons.Heurecreated;
             }
             else
                 return null;

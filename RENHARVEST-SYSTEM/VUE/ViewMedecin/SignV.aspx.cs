@@ -18,7 +18,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         private ControlleurPrescription pres = new ControlleurPrescription();
         private ControlleurSigneV sign = new ControlleurSigneV();
         private ControlleurMedicament med = new ControlleurMedicament();
-        private ControlleurOrdonnance ord = new ControlleurOrdonnance();
         private ControlleurPatients patient = new ControlleurPatients();
         private ControlleurMedecin medecin = new ControlleurMedecin();
         public string chcon;
@@ -101,7 +100,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected void btnsavesign_Click(object sender, EventArgs e)
         {
             string code = sign.CodeSigneV();
-            sign.AjouterSigneV(code, Session["codePatien"].ToString(),tpoid.Text,ttemp.Text,tta.Text,ttaille.Text,tusername.Text,tdatenow.Text);
+            sign.AjouterSigneV(code, Session["codePatien"].ToString(),tpoid.Text,ttemp.Text,tta.Text,ttaille.Text,null,tusername.Text,tdatenow.Text);
             //Response.Redirect("SignV.aspx");
         }
     }

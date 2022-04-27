@@ -16,15 +16,15 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             exam = new ModeleExamen();
         }
-        public void AjouterExamen(string codePatient, string descriptionEx, string resultat, string createdby, string datecreated)
+        public void AjouterExamen(string codePatient, string codeMedecin, string descriptionEx, string resultat, string typeEx, string createdby, string datecreated)
         {
-            this.exam = new ModeleExamen(codePatient, descriptionEx, resultat, createdby, datecreated);
+            this.exam = new ModeleExamen(codePatient, codeMedecin, descriptionEx, resultat, typeEx, createdby, datecreated);
             exam.AjouterExamen();
         }
 
-        //public void ModifierExament(string codePatient, string descriptionEx, string resultat, string createdby, string datecreated)
+        //public void ModifierExament(string codePatient,string codeMedecin, string descriptionEx, string resultat, string createdby, string datecreated)
         //{
-        //    this.exam = new ModeleExamen(codePatient, descriptionEx, resultat, createdby, datecreated);
+        //    this.exam = new ModeleExamen(codePatient, codeMedecin, descriptionEx, resultat, createdby, datecreated);
         //    exam.AjouterExamen();
         //}
         //public DataSet GetListerMaladie()
@@ -39,10 +39,14 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         //{
         //    malad.DeleteM(codeMed);
         //}
-        //public DataSet GetListerMaladieN(string nomMalad)
-        //{
-        //    return (malad.ListerMaladieN(nomMalad));
-        //}
+        public DataSet GetListeexamen(string codePatient, string codeMedecin, string datecreated)
+        {
+            return (exam.Listerexamen(codePatient, codeMedecin,datecreated));
+       }
+        public DataSet GetListeexamenPM(string codePatient, string codeMedecin)
+        {
+            return (exam.ListerexamenPM(codePatient, codeMedecin));
+        }
         //public bool RechercheMaladie(string codeMalad)
         //{
         //    return (malad.RechercheMalad(codeMalad));
@@ -53,6 +57,15 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             if (exam != null)
             {
                 return exam.CodePatient;
+            }
+            else
+                return null;
+        }
+        public string getCodeMedecin()
+        {
+            if (exam != null)
+            {
+                return exam.CodeMedecin;
             }
             else
                 return null;
@@ -71,6 +84,15 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             if (exam != null)
             {
                 return exam.Resultat;
+            }
+            else
+                return null;
+        }
+        public string getTypeEx()
+        {
+            if (exam != null)
+            {
+                return exam.TypeEx;
             }
             else
                 return null;

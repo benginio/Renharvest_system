@@ -17,27 +17,37 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             rdv = new ModeleRDV();
         }
 
-        public void CreerRDV(string codePatient, string codeMedecin, string date, string heure, string createdby, string datecreated)
+        public void CreerRDV(string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
         {
-            this.rdv = new ModeleRDV(codePatient, codeMedecin, date, heure, createdby, datecreated);
+            this.rdv = new ModeleRDV(codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
             rdv.CreerRDV();
         }
 
-        public void Modifier(string codePatient, string codeMedecin, string date, string heure, string createdby, string datecreated)
+        public void Modifier(string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
         {
-            this.rdv = new ModeleRDV(codePatient, codeMedecin, date, heure, createdby, datecreated);
+            this.rdv = new ModeleRDV(codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
             rdv.ModifierRDV();
         }
-        public DataSet GetListerRDV()
+        //public DataSet GetListerRDV()
+        //{
+        //    return (rdv.ListerRDV());
+        //}
+        public string nbrRDVtoDay(string codeMedecin)
         {
-            return (rdv.ListerRDV());
+            return rdv.nbrRDVtoDay(codeMedecin);
         }
-
-        public DataSet GetListerMedecin1(string codePatient)
+        public DataSet GetListerRDV1(string codePatient, string codeMedecin)
         {
-            return (rdv.ListerRDV1(codePatient));
+            return (rdv.ListerRDV1(codePatient,codeMedecin));
         }
-
+        public DataSet GetListRDVnow(string codeMedecin)
+        {
+            return (rdv.ListerRDVnow(codeMedecin));
+        }
+        public DataSet GetListerRDV3( string codeMedecin)
+        {
+            return (rdv.ListerRDV3(codeMedecin));
+        }
 
         public string getCodePatient()
         {
@@ -54,6 +64,15 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             if (rdv != null)
             {
                 return rdv.CodeMedecin;
+            }
+            else
+                return null;
+        }
+        public string getMotifRDV()
+        {
+            if (rdv != null)
+            {
+                return rdv.MotifRDV;
             }
             else
                 return null;

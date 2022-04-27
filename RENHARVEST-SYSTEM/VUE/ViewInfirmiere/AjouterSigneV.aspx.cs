@@ -14,20 +14,20 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
     {
         private ControlleurSigneV sign = new ControlleurSigneV();
         private ControlleurPatients patient = new ControlleurPatients();
-        string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
+        string datecreated = DateTime.Now.ToString("MM/dd/yyyy");
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 tdatenow.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
-               
+
                 if (Session["pseudo"] != null)
                 {
                     tusername.Text = Session["pseudo"].ToString();
                     Username1.Text = Session["pseudo"].ToString();
 
                     Afficher();
-                    
+
                 }
                 else
                 {
@@ -121,7 +121,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
         protected void btnsavesign_Click(object sender, EventArgs e)
         {
             string code = sign.CodeSigneV();
-            sign.AjouterSigneV(code, Session["codePatien"].ToString(), tpoid.Text, ttemp.Text, tta.Text, ttaille.Text, tusername.Text, tdatenow.Text);
+            sign.AjouterSigneV(code, Session["codePatien"].ToString(), tpoid.Text, ttemp.Text, tta.Text, ttaille.Text, tmotif.Text, tusername.Text, datecreated);
             SigneV();
             Vider();
         }
@@ -148,7 +148,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
 
         protected void btnupdate_Click(object sender, EventArgs e)
         {
-            sign.ModifierSigneV(Session["codesigneV"].ToString(), Session["codePatien"].ToString(), tpoid.Text, ttemp.Text, tta.Text, ttaille.Text, tusername.Text, tdatenow.Text);
+            sign.ModifierSigneV(Session["codesigneV"].ToString(), Session["codePatien"].ToString(), tpoid.Text, ttemp.Text, tta.Text, ttaille.Text, tmotif.Text, tusername.Text, tdatenow.Text);
             SigneV();
             Vider();
         }

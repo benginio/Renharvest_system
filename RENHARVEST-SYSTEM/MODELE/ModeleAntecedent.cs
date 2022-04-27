@@ -109,9 +109,9 @@ namespace RENHARVEST_SYSTEM.MODELE
         //    Ant = "Ant" + nombre;
         //    return Ant;
         //}
-        public void deleteAntecedent(string id)
+        public void DeleteAntecedent(string descriptionAnt, string typeAntecedent)
         {
-            string Req = string.Format("DELETE FROM tbantecedent WHERE id='{0}'",id);
+            string Req = string.Format("DELETE FROM tbantecedent WHERE descriptionAnt='{0}' And typeAntecedent='{1}'",descriptionAnt,typeAntecedent);
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
 

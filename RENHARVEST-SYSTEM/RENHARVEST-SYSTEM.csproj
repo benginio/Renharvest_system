@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\Documents\App\Itextsharp\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\..\..\..\Documents\App\Itextsharp\itextsharp.pdfa.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -93,6 +99,7 @@
     <Content Include="VUE\build\css\bootstrap-4.min.css" />
     <Content Include="VUE\build\images\User2.png" />
     <Content Include="VUE\build\images\userP.png" />
+    <Content Include="VUE\build\js\myjs.js" />
     <Content Include="VUE\build\js\sweetalert2.min.js" />
     <Content Include="VUE\Rapport\WebForm1.aspx" />
     <Content Include="VUE\ViewAdminSys\AccessUser.aspx" />
@@ -401,9 +408,12 @@
     <Content Include="VUE\ViewMedecin\AjouterMedicament.aspx" />
     <Content Include="VUE\ViewMedecin\AjouterPatient.aspx" />
     <Content Include="VUE\ViewMedecin\AjouterRDV.aspx" />
+    <Content Include="VUE\ViewMedecin\DossierPatient.aspx" />
     <Content Include="VUE\ViewMedecin\InfoConsultation.aspx" />
     <Content Include="VUE\ViewMedecin\ListePatient.aspx" />
+    <Content Include="VUE\ViewMedecin\ListeRDV.aspx" />
     <Content Include="VUE\ViewMedecin\ModifierPatient.aspx" />
+    <Content Include="VUE\ViewMedecin\ModifierRDV.aspx" />
     <Content Include="VUE\ViewMedecin\SignV.aspx" />
     <Content Include="VUE\ViewMedecin\Prescription.aspx" />
     <Content Include="VUE\ViewSecretaire\Accueil.aspx" />
@@ -421,17 +431,22 @@
     <Compile Include="CONTROLLEUR\ControlleurMaladie.cs" />
     <Compile Include="CONTROLLEUR\ControlleurMedecin.cs" />
     <Compile Include="CONTROLLEUR\ControlleurMedicament.cs" />
-    <Compile Include="CONTROLLEUR\ControlleurOrdonnance.cs" />
     <Compile Include="CONTROLLEUR\ControlleurPaiement.cs" />
     <Compile Include="CONTROLLEUR\ControlleurPatients.cs" />
     <Compile Include="CONTROLLEUR\ControlleurPrescription.cs" />
     <Compile Include="CONTROLLEUR\ControlleurRDV.cs" />
     <Compile Include="CONTROLLEUR\ControlleurSigneV.cs" />
+    <Compile Include="CONTROLLEUR\ControlleurTraitement.cs" />
     <Compile Include="CONTROLLEUR\ControlleurUser.cs" />
     <Compile Include="DBHARVESTDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBHARVESTDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DBHARVESTDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBHARVESTDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="MODELE\ModeleAntecedent.cs" />
     <Compile Include="MODELE\ModeleAudit.cs" />
@@ -440,12 +455,12 @@
     <Compile Include="MODELE\ModeleMaladie.cs" />
     <Compile Include="MODELE\ModeleMedecin.cs" />
     <Compile Include="MODELE\ModeleMedicament.cs" />
-    <Compile Include="MODELE\ModeleOrdonnance.cs" />
     <Compile Include="MODELE\ModelePaiement.cs" />
     <Compile Include="MODELE\ModelePatients.cs" />
     <Compile Include="MODELE\ModelePrescription.cs" />
     <Compile Include="MODELE\ModeleRDV.cs" />
     <Compile Include="MODELE\ModeleSigneV.cs" />
+    <Compile Include="MODELE\ModeleTraitement.cs" />
     <Compile Include="MODELE\ModeleUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VUE\Rapport\WebForm1.aspx.cs">
@@ -665,6 +680,13 @@
     <Compile Include="VUE\ViewMedecin\AjouterRDV.aspx.designer.cs">
       <DependentUpon>AjouterRDV.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VUE\ViewMedecin\DossierPatient.aspx.cs">
+      <DependentUpon>DossierPatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\DossierPatient.aspx.designer.cs">
+      <DependentUpon>DossierPatient.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VUE\ViewMedecin\InfoConsultation.aspx.cs">
       <DependentUpon>InfoConsultation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -679,12 +701,26 @@
     <Compile Include="VUE\ViewMedecin\ListePatient.aspx.designer.cs">
       <DependentUpon>ListePatient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VUE\ViewMedecin\ListeRDV.aspx.cs">
+      <DependentUpon>ListeRDV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\ListeRDV.aspx.designer.cs">
+      <DependentUpon>ListeRDV.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VUE\ViewMedecin\ModifierPatient.aspx.cs">
       <DependentUpon>ModifierPatient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VUE\ViewMedecin\ModifierPatient.aspx.designer.cs">
       <DependentUpon>ModifierPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\ModifierRDV.aspx.cs">
+      <DependentUpon>ModifierRDV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\ModifierRDV.aspx.designer.cs">
+      <DependentUpon>ModifierRDV.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewMedecin\SignV.aspx.cs">
       <DependentUpon>SignV.aspx</DependentUpon>
@@ -748,6 +784,17 @@
     <Content Include="DBHARVESTDataSet.xss">
       <DependentUpon>DBHARVESTDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="DBHARVESTDataSet1.xsc">
+      <DependentUpon>DBHARVESTDataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DBHARVESTDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBHARVESTDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DBHARVESTDataSet1.xss">
+      <DependentUpon>DBHARVESTDataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="VUE\vendors\font-awesome\css\font-awesome.css.map" />
     <Content Include="VUE\vendors\font-awesome\fonts\fontawesome-webfont.eot" />
@@ -774,6 +821,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="VUE\Rapport\DHprescription.rdlc" />
     <EmbeddedResource Include="VUE\Rapport\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>

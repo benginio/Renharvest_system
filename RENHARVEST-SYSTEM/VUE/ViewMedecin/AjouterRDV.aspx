@@ -68,15 +68,17 @@
                   
                   <li><a><i class="fa fa-user"></i> Patients <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="AjouterPatient.aspx">Ajouter</a></li>
+                     <li><a href="AjouterPatient.aspx">Ajouter</a></li>
                       <li><a href="ModifierPatient.aspx">Modifier</a></li>
                       <li><a href="ListePatient.aspx">Lister</a></li>
                     </ul>
                   </li>
-                  
+                    <li><a href="DossierPatient.aspx"><i class="fa fa-list"></i> Dossier Patient </a>
+                    
+                  </li>
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
+                      <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                       <li><a href="#">Lister</a></li>
                       
                      
@@ -84,9 +86,9 @@
                   </li>
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
+                      <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="#">Modifier</a></li>
-                      <li><a href="#">lister</a></li>
+                      <li><a href="ListeRDV.aspx">lister</a></li>
                       <li><a href="#">Annuler</a></li>
                       
                     </ul>
@@ -101,6 +103,13 @@
                     <ul class="nav child_menu">
                       <li><a href="#">....</a></li>
                       <li><a href="#">....</a></li>
+                      
+                    </ul>
+                  </li>
+                    <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="AjouterMedicament.aspx">Medicament</a></li>
+                      <li><a href="AjouterMaladie.aspx">Maladie</a></li>
                       
                     </ul>
                   </li>
@@ -191,7 +200,12 @@
                   <div class="x_content">
                        <div class="form-horizontal">
                       
-
+                        <div class="form-group row">
+                                <div class="col-md-8 col-sm-8 offset-3">
+                                    <label for="inputname">Motif*</label>
+                                    <asp:TextBox ID="tmotif" TextMode="MultiLine" Rows="3" runat="server" class="form-control" ></asp:TextBox>
+                                </div>
+                        </div>
                       <div class="form-group row">
                         <div class="col-md-6 col-sm-6 offset-3">
                           <label>Date*</label>

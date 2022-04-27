@@ -17,31 +17,31 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             presc = new ModelePrescription();
         }
 
-        public void AjouterPrescription(string id, string numOrdo, string codeMedic, string nbrFois, string nbrFoisP, string quant, string form, string codePatient, string createdby, string datecreated)
+        public void AjouterPrescription( string numOrdo, string codeMedic, string nbrFois, string nbrFoisP, string quant, string form, string createdby, string datecreated)
         {
-            this.presc = new ModelePrescription(id, numOrdo, codeMedic, nbrFois, nbrFoisP, quant, form, codePatient, createdby, datecreated);
+            this.presc = new ModelePrescription( numOrdo, codeMedic, nbrFois, nbrFoisP, quant, form, createdby, datecreated);
             presc.AjouterPrescription();
 
         }
-        public void ModifierPrescription(string id, string numOrdo, string codeMedic, string nbrFois, string nbrFoisP, string quant, string codePatient, string form, string createdby, string datecreated)
+        public void ModifierPrescription( string numOrdo, string codeMedic, string nbrFois, string nbrFoisP, string quant, string form, string createdby, string datecreated)
         {
-            this.presc = new ModelePrescription(id, numOrdo, codeMedic, nbrFois, nbrFoisP, quant, form, codePatient, createdby, datecreated);
+            this.presc = new ModelePrescription( numOrdo, codeMedic, nbrFois, nbrFoisP, quant, form, createdby, datecreated);
             presc.ModifierPrescription();
 
+        }
+        public string numPrescription()
+        {
+            return presc.numPrescription();
         }
         public string Lastdate(string createdby, string codePatient)
         {
             return presc.lastdate(createdby, codePatient);
         }
-        public DataSet getListerPrescription(string createdby, string codePatient, string datecreated)
+        public DataSet getListerPrescription(string codeMedecin, string codePatient, string datecreated)
         {
-            return (presc.ListerPrescription(createdby, codePatient, datecreated));
+            return (presc.ListerPrescription(codeMedecin, codePatient, datecreated));
         }
-        public DataSet getListerPrescription1(string createdby, string codePatient)
-        {
-            return (presc.ListerPrescription1(createdby, codePatient));
-        }
-
+        
         public bool RechercherPrescription(string id)
         {
             return (presc.Rechercheprescription(id));
@@ -101,15 +101,7 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             else
                 return null;
         }
-        public string getCodePatient()
-        {
-            if (presc != null)
-            {
-                return presc.CodePatient;
-            }
-            else
-                return null;
-        }
+       
         public string getCreatedby()
         {
             if (presc != null)

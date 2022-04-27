@@ -65,6 +65,9 @@
                       <li><a href="ListePatient.aspx">Lister</a></li>
                     </ul>
                   </li>
+                    <li><a href="DossierPatient.aspx"><i class="fa fa-list"></i> Dossier Patient </a>
+                    
+                  </li>
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
@@ -77,7 +80,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="#">Modifier</a></li>
-                      <li><a href="#">lister</a></li>
+                      <li><a href="ListeRDV.aspx">lister</a></li>
                       <li><a href="#">Annuler</a></li>
                       
                     </ul>
@@ -168,6 +171,90 @@
               </div>
             </div>
           
+                <!-- Info boxes -->
+        <div class="row">
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-green elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Nombre Rendez-vous</span>
+                <span class="info-box-number">
+                    <asp:Label ID="nbrRDV" runat="server" Text=""></asp:Label>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-pam elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Patient present</span>
+                <span class="info-box-number">41,410</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Consultation effectuer</span>
+                <span class="info-box-number">2,000</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">New Members</span>
+                <span class="info-box-number">2,000</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="x_panel">
+            <div class="row">
+                <h5>Liste Rendez-vous D'aujourd'hui</h5>
+            </div>
+            <div class="table-responsive">
+                        <asp:GridView ID="gridlistRDV" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="nomP" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                            <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
+
+                            <Columns>  
+                                <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
+                                <asp:BoundField DataField="adresse" HeaderText="Adresse" SortExpression="Adresse" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
+                                <asp:BoundField DataField="sexe" HeaderText="Sexe" SortExpression="Sexe" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />  
+                                <asp:BoundField DataField="motifRDV" HeaderText="Motif" SortExpression="Motif" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="daterdv" HeaderText="date" SortExpression="date" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="heure" HeaderText="heure" SortExpression="heure" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                                <asp:BoundField DataField="datecreated" HeaderText="dateCreated" SortExpression="date" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                                        
+                             </Columns> 
+
+                        </asp:GridView>
+                        
+                        </div>
+        </div>
              
 
 

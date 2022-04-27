@@ -26,6 +26,10 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return ant.ListerAntecedent(codePatient, codeMedecin, typeAntecedent);
         }
+        public void DeleteAntecedent(string descriptionAnt, string typeAntecedent)
+        {
+            ant.DeleteAntecedent(descriptionAnt, typeAntecedent);
+        }
 
         public string getCodePatient()
         {

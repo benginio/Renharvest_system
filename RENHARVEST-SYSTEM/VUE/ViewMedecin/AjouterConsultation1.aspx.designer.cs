@@ -474,6 +474,69 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.GridView Gridpers;
 
         /// <summary>
+        /// ttypeoperation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ttypeoperation;
+
+        /// <summary>
+        /// tdateoperation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tdateoperation;
+
+        /// <summary>
+        /// btnantoperation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnantoperation;
+
+        /// <summary>
+        /// Gridantoperation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView Gridantoperation;
+
+        /// <summary>
+        /// ddhabitude control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddhabitude;
+
+        /// <summary>
+        /// btnhabitude control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnhabitude;
+
+        /// <summary>
+        /// Gridhabitude control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView Gridhabitude;
+
+        /// <summary>
         /// thistoire control.
         /// </summary>
         /// <remarks>
@@ -499,6 +562,33 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tsymp;
+
+        /// <summary>
+        /// btnAjouterSV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAjouterSV;
+
+        /// <summary>
+        /// magridSign control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView magridSign;
+
+        /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
 
         /// <summary>
         /// tpoid control.
@@ -535,6 +625,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ttaille;
+
+        /// <summary>
+        /// tpouls control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tpouls;
 
         /// <summary>
         /// tdesc control.
@@ -654,6 +753,24 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.Label lbldateP;
 
         /// <summary>
+        /// tprevention control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tprevention;
+
+        /// <summary>
+        /// tdurer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tdurer;
+
+        /// <summary>
         /// ddnomM control.
         /// </summary>
         /// <remarks>
@@ -708,12 +825,21 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.GridView magridPres;
 
         /// <summary>
-        /// btnsavePresc control.
+        /// btnsave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnsavePresc;
+        protected global::System.Web.UI.WebControls.LinkButton btnsave;
+
+        /// <summary>
+        /// btnanuler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnanuler;
     }
 }

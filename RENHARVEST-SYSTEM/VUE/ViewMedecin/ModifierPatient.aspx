@@ -69,15 +69,17 @@
                   
                   <li><a><i class="fa fa-user"></i> Patients <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="AjouterPatient.aspx">Ajouter</a></li>
+                     <li><a href="AjouterPatient.aspx">Ajouter</a></li>
                       <li><a href="ModifierPatient.aspx">Modifier</a></li>
                       <li><a href="ListePatient.aspx">Lister</a></li>
                     </ul>
                   </li>
-                  
+                    <li><a href="DossierPatient.aspx"><i class="fa fa-list"></i> Dossier Patient </a>
+                    
+                  </li>
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
+                      <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                       <li><a href="#">Lister</a></li>
                       
                      
@@ -85,9 +87,9 @@
                   </li>
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
+                      <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="#">Modifier</a></li>
-                      <li><a href="#">lister</a></li>
+                      <li><a href="ListeRDV.aspx">lister</a></li>
                       <li><a href="#">Annuler</a></li>
                       
                     </ul>
@@ -102,6 +104,13 @@
                     <ul class="nav child_menu">
                       <li><a href="#">....</a></li>
                       <li><a href="#">....</a></li>
+                      
+                    </ul>
+                  </li>
+                    <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="AjouterMedicament.aspx">Medicament</a></li>
+                      <li><a href="AjouterMaladie.aspx">Maladie</a></li>
                       
                     </ul>
                   </li>
@@ -140,7 +149,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="#"> Profile</a>
-                                        <a class="dropdown-item" href="../Login.aspx"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                         <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
                                     </div>
                                 </li>
 
@@ -358,7 +367,7 @@
                                              
                                 <asp:TemplateField HeaderText="-->">                       
                                 <ItemTemplate>                            
-                                    <asp:LinkButton ID="btnbul" runat="server" Height="30px" CssClass="btn btn-success menu " OnClick="btnbul_Click" OnClientClick="viewprof()" ><span class="me-2"><i class="fa fa-eye"></i></span>Edit</asp:LinkButton> 
+                                    <asp:LinkButton ID="btnbul" runat="server" Height="30px" CssClass="btn btn-success menu " OnClick="btnbul_Click" OnClientClick="viewprof()" ><span class="me-2"><i class="fa fa-check-square"></i></span>Edit</asp:LinkButton> 
                                 </ItemTemplate>                         
                              </asp:TemplateField>
                              </Columns> 

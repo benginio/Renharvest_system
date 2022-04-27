@@ -51,10 +51,22 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (patients.ListerPatientN(nomP));
         }
+        public DataSet GetListerPatientNS(string nomP, string sexe)
+        {
+            return (patients.ListerPatientNS(nomP, sexe));
+        }
 
         public DataSet GetListerPatientP(string prenomP)
         {
             return (patients.ListerPatientP(prenomP));
+        }
+        public DataSet GetListerPatientPS(string prenomP,string sexe)
+        {
+            return (patients.ListerPatientPS(prenomP, sexe));
+        }
+        public DataSet GetListerPatientS(string sexe)
+        {
+            return (patients.ListerPatientS(sexe));
         }
         public DataSet GetListerPatientM(string matricule)
         {

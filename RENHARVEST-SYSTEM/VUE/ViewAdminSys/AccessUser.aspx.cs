@@ -13,5 +13,10 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdminSys
         {
 
         }
+
+        protected void btnlogout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

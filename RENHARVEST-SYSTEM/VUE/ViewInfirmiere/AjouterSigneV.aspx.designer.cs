@@ -159,6 +159,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
         protected global::System.Web.UI.WebControls.TextBox ttaille;
 
         /// <summary>
+        /// tmotif control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tmotif;
+
+        /// <summary>
         /// btnsavesign control.
         /// </summary>
         /// <remarks>
