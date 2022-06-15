@@ -92,6 +92,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Listantecedent();
             ListSV();
             Listeexament();
+            Listconsultation();
             ListeRDV();
         }
         void InfoPatient()
@@ -140,6 +141,11 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         {
             gridexamen.DataSource = exam.GetListeexamenPM(Session["codPatien"].ToString(), Session["codeUser"].ToString());
             gridexamen.DataBind();
+        }
+        void Listconsultation()
+        {
+            Gridconsultation.DataSource = cons.getListerConsPaMe(Session["codPatien"].ToString(),Session["codeUser"].ToString());
+            Gridconsultation.DataBind();
         }
         void Listetraitement()
         {
@@ -197,5 +203,16 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Session["datecreated"] = datecreated;
             Response.Redirect("InfoConsultation.aspx");
         }
+
+        protected void btnconsultation_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = sender as LinkButton;
+            GridViewRow row = btn.NamingContainer as GridViewRow;
+            string datecreated = Gridconsultation.DataKeys[row.RowIndex].Values[0].ToString();
+            Session["datecreated"] = datecreated;
+            Response.Redirect("InfoConsultation.aspx");
+        }
+
+
     }
 }

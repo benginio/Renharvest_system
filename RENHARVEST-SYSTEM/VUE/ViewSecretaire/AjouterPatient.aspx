@@ -21,13 +21,14 @@
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
     <link href="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
-
+    <link href="../build/css/sweetalert2.min.css" rel="stylesheet" />
+      <script type="text/javascript" src="../build/js/sweetalert2.js"></script>
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">
   </head>
 
 <body class="nav-md">
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="needs-validation" novalidate>
         
         <div class="container body">
       <div class="main_container">
@@ -159,37 +160,48 @@
 
             <div class="row">
               
-                <div class="x_panel col-md-12">
+                <div class="x_panel col-md-12" style="background: url('../build/images/bgform3.png');">
                   <div class="x_title">
                     <div class="form-group row">
-                      <div class="col-md-5 col-sm-5">
-                          <asp:TextBox ID="tcodep" class="form-control" placeholder="Code Patient..."  runat="server" Enabled="False"></asp:TextBox>
+                      <div class="col-md-4 col-sm-4">
+                          <asp:Label ID="tcodep" runat="server" Text=""></asp:Label>
                         </div> 
                         </div>
                   </div>
                   <div class="x_content">
                     <div class="form-horizontal form-label-left">
                       <div class="form-group row">
-                        <div class="col-md-4 col-sm-4">
-                          <label>Nom</label>
-                            <asp:TextBox ID="tnomp" class="form-control" placeholder="" runat="server"></asp:TextBox>
-                          
-                          </div>
-                          <div class="col-md-4 col-sm-4">
-                            <label>Prenom</label>
-                              <asp:TextBox ID="tprenomp" class="form-control" runat="server"></asp:TextBox>
+                        <div class="col-sm-4 col-md-4">
+                        <label for="firstName" class="form-label">Nom</label>
+                        <asp:TextBox ID="tnomp" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
+                        <span id='nomCheck'></span>
+                        </div>
+                       
+                          <div class="col-sm-4 col-md-4">
+                            <label for="LastName" class="form-label">Prenom</label>
+                              <asp:TextBox ID="tprenomp" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
+                              <div class="invalid-feedback">
+                            Verifier cette champs
                             </div>
-                            <div class="col-md-4 col-sm-4">
-                              <label>Sexe</label>
+                            </div>
+
+                           <div class="col-md-4 col-sm-4">
+                              <label for="Sexe" class="form-label">Sexe</label>
                                 <asp:DropDownList ID="ddsexe" class="form-control" runat="server" style="width: 100%;">
+                                    <asp:ListItem>--Choisir--</asp:ListItem>
                                     <asp:ListItem>Masculin</asp:ListItem>
                                     <asp:ListItem>Feminin</asp:ListItem>
                                     <asp:ListItem>Autre</asp:ListItem>
                                 </asp:DropDownList>
+                                <div class="invalid-feedback">
+                                    Verifier cette champs
+                            </div>
                               </div>
+                            
                       </div>
 
                       <div class="form-group row">
+                         
                         <div class="col-md-4 col-sm-4">
                           <label>Date Naissance</label>
                             <asp:TextBox ID="tdatenaiss" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required"  onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" runat="server"></asp:TextBox>
@@ -203,28 +215,28 @@
                           </div>
                           <div class="col-md-4 col-sm-4">
                             <label>Adresse</label>
-                              <asp:TextBox ID="tadresse" TextMode="MultiLine" class="form-control" placeholder="" Rows="1" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="tadresse" TextMode="MultiLine" class="form-control" placeholder="" Rows="1" runat="server" required="required"></asp:TextBox>
                             </div>
                             <div class="col-md-4 col-sm-4">
                               <label>Telephone</label>
-                                <asp:TextBox ID="tphone" TextMode="Phone" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tphone" TextMode="Phone" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                               </div>
                       </div>
 
                       <div class="form-group row">
                         <div class="col-md-4 col-sm-4">
                           <label>Email</label>
-                            <asp:TextBox ID="temail" TextMode="Email" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="temail" TextMode="Email" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                           </div>
 
                            <div class="col-md-4 col-sm-4">
                               <label>Matricule</label>
-                                <asp:TextBox ID="tmatricule" TextMode="Number" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tmatricule"  class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                               </div>
 
                           <div class="col-md-4 col-sm-4">
                             <label>Profession</label>
-                              <asp:TextBox ID="tjob" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="tjob" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                             </div>
                            
                       </div>
@@ -232,7 +244,7 @@
                       <div class="form-group row">
                             <div class="col-md-4 col-sm-4">
                               <label>Groupe Sanguin</label>
-                                <asp:DropDownList ID="ddg_s" class="form-control" placeholder="" runat="server">
+                                <asp:DropDownList ID="ddg_s" class="form-control" placeholder="" runat="server" required="required">
                                     <asp:ListItem>O+</asp:ListItem>
                                     <asp:ListItem>O-</asp:ListItem>
                                     <asp:ListItem>AB</asp:ListItem>
@@ -244,11 +256,11 @@
 
                         <div class="col-md-4 col-sm-4">
                           <label>Personne Responsable</label>
-                            <asp:TextBox ID="tp_respon" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tp_respon" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                           </div>
                           <div class="col-md-4 col-sm-4">
                             <label>Lien A P. Responsable</label>
-                              <asp:DropDownList ID="ddlienp" class="form-control"  runat="server" style="width: 100%;">
+                              <asp:DropDownList ID="ddlienp" class="form-control"  runat="server" required="required" style="width: 100%;">
                                   <asp:ListItem>Mere</asp:ListItem>
                                     <asp:ListItem>Pere</asp:ListItem>
                                     <asp:ListItem>Frere</asp:ListItem>
@@ -267,9 +279,8 @@
 
                       <div class="form-group row">
                         <div class="col-md-9 col-sm-9  offset-md-4">
-                            <asp:Button ID="btnvalider" class="btn btn-success" runat="server" Text="Enregistrer.." OnClick="btnvalider_Click" />
-                            <asp:Button ID="btnannuler" class="btn btn-pam" runat="server" Text="Annuler" />
-
+                            <asp:Button ID="btnvalider" class="btn btn-success" runat="server" Text="Enregistrer" OnClick="btnvalider_Click" />
+                            <asp:Button ID="btnannuler" class="btn btn-default" BorderColor="#29458D" runat="server" Text="Annuler" />
                         </div>
                       </div>
   
@@ -308,6 +319,7 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script src="../build/js/validation.js"></script>
   </body>
 </html>
 

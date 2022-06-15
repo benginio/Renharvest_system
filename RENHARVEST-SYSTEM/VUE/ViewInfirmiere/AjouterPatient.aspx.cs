@@ -25,19 +25,19 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
             if (!Page.IsPostBack)
             {
                 tdatenow.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
-                if (Session["codeUser"] != null)
-                {
+                //if (Session["codeUser"] != null)
+                //{
 
 
-                    my = Session["codeUser"].ToString();
-                    bool find = us.RechercherUser(my);
-                    tusername.Text = us.getPseudo();
-                    Username1.Text = us.getPseudo();
-                }
-                else
-                {
-                    Response.Redirect("../Login.aspx");
-                }
+                //    my = Session["codeUser"].ToString();
+                //    bool find = us.RechercherUser(my);
+                //    tusername.Text = us.getPseudo();
+                //    Username1.Text = us.getPseudo();
+                //}
+                //else
+                //{
+                //    Response.Redirect("../Login.aspx");
+                //}
             }
         }
 
@@ -72,7 +72,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
         protected void btnvalider_Click(object sender, EventArgs e)
         {
             CreerPatient();
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "swalDefaultSuccess();", true);
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "pop();", true);
+            //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "pop()", true);
             Vider();
         }
 

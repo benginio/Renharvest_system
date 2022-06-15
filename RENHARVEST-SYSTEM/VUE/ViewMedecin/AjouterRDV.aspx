@@ -16,6 +16,8 @@
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../build/css/sweetalert2.min.css" rel="stylesheet" />
+      <script type="text/javascript" src="../build/js/sweetalert2.js"></script>
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
@@ -60,7 +62,7 @@
                         </div>
                         <!-- /menu profile quick info -->
 
-                         <!-- sidebar menu -->
+                        <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -79,7 +81,8 @@
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
+                         <li><a href="suividossier.aspx">Suivi</a></li>
+                      <li><a href="listecons.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -87,24 +90,14 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                      
-                    </ul>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                    
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -116,9 +109,9 @@
                 </ul>
               </div><!--menu-section-->
              
+
             </div>
             <!-- /sidebar menu -->
-
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer hidden-small">
 
@@ -148,7 +141,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="#"> Profile</a>
-                                        <a class="dropdown-item" href="../Login.aspx"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                       <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
                                     </div>
                                 </li>
 
@@ -185,7 +178,7 @@
 
             <div class="row">
               
-                <div class="x_panel col-md-12">
+                <div class="x_panel col-md-12" style="background: url('../build/images/bgform3.png');">
                   <div class="x_title">
                     <div class="form-group row">
                       <div class="col-md-5 col-sm-5">
@@ -230,14 +223,14 @@
                           <div class="form-group row">
                             <div class="col-md-6 col-sm-6 offset-3">
                               <label>Specialiste*</label>
-                                <asp:TextBox ID="tspecial" class="form-control" placeholder="" runat="server" ></asp:TextBox>
+                                <asp:TextBox ID="tspecial" class="form-control" placeholder="" runat="server" Enabled="False"></asp:TextBox>
                               </div>
                             </div>
 
                       <div class="form-group row">
                         <div class="col-md-9 col-sm-9  offset-md-4">
-                            <asp:Button ID="btnvalider" class="btn btn-success" runat="server" Text="Valider" OnClick="btnvalider_Click" />
-                            <asp:Button ID="btnannuler" class="btn btn-pam" runat="server" Text="Annuler" />
+                            <asp:Button ID="btnvalider" class="btn btn-pam" runat="server" Text="Valider" OnClick="btnvalider_Click" />
+                            <asp:Button ID="btnannuler" class="btn btn-default" BorderColor="#29458D" OnClick="btnannuler_Click" runat="server" Text="Annuler" />
 
                         </div>
                       </div>
@@ -252,7 +245,11 @@
 
                 
           </div>
-             </ContentTemplate></asp:UpdatePanel>
+             </ContentTemplate>
+                  <Triggers>
+                             <asp:AsyncPostBackTrigger ControlID="btnvalider" EventName="click" />
+                         </Triggers>
+             </asp:UpdatePanel>
         </div>
         <!-- /page content -->
 
@@ -296,6 +293,11 @@
                             <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
 
                             <Columns>  
+                                <asp:TemplateField HeaderText="-->">                       
+                                           <ItemTemplate>                            
+                                               <asp:LinkButton ID="btnbul" runat="server" Height="30px" CssClass="btn btn-pam menu " OnClick="btnbul_Click" OnClientClick="viewprof()" ><span class="me-2"><i class="fa fa-check-square-o"></i></span></asp:LinkButton> 
+                                           </ItemTemplate> 
+                                                  </asp:TemplateField>
                                             <asp:BoundField DataField="codepers" HeaderText="code" ReadOnly="True" SortExpression="codePatient" />  
                                             <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                             <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
@@ -306,11 +308,8 @@
                                             <asp:BoundField DataField="email" HeaderText="Email" SortExpression="Email" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                             <asp:BoundField DataField="matricule" HeaderText="matricule" SortExpression="matricule" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
                                              
-                                            <asp:TemplateField HeaderText="-->">                       
-                                           <ItemTemplate>                            
-                                               <asp:LinkButton ID="btnbul" runat="server" Height="30px" CssClass="btn btn-success menu " OnClick="btnbul_Click" OnClientClick="viewprof()" ><span class="me-2"><i class="fa fa-eye"></i></span>Edit</asp:LinkButton> 
-                                           </ItemTemplate>                         
-                   </asp:TemplateField>
+                                            
+                 
                              </Columns> 
 
                         </asp:GridView>
@@ -320,7 +319,11 @@
                 </div>
 
                     </div>
-                    </ContentTemplate></asp:UpdatePanel>
+                    </ContentTemplate>
+                          <Triggers>
+                             <asp:AsyncPostBackTrigger ControlID="btnvalider" EventName="click" />
+                         </Triggers>
+                     </asp:UpdatePanel>
                 </div>
                 <!-- /page content -->
 
@@ -377,7 +380,9 @@
 
          }
          function viewprof1() {
-             
+             document.getElementById('liste').style.display = 'block';
+
+             document.getElementById('edit').style.display = 'none';
              
 
          }

@@ -42,9 +42,18 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
         public void CreerPatient()
         {
-            codepatient = patient.Codepatient(tnomp.Text, tprenomp.Text);
-            patient.CreerPatient(codepatient, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, tp_respon.Text, ddlienp.Text, ttypeP, tusername.Text, datecreated);
-        }
+            DateTime d = Convert.ToDateTime(tdatenaiss.Text);
+            if (d.Date > DateTime.Now.Date)
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Oopss!','La date de naissance est superieure a aujourd'hui!','warning')", true);
+                tdatenaiss.Text = "";
+
+            }
+            else { 
+                codepatient = patient.Codepatient(tnomp.Text, tprenomp.Text);
+                patient.CreerPatient(codepatient, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, tp_respon.Text, ddlienp.Text, ttypeP, tusername.Text, datecreated);
+                }
+            }
         void Vider()
         {
             codepatient = "";
@@ -66,13 +75,19 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected void btnvalider_Click(object sender, EventArgs e)
         {
             CreerPatient();
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "swalDefaultSuccess();", true);
+            ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Sucess!','Enregistrement reusir!','success')", true);
             Vider();
+
         }
 
         protected void btnliste_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListePatient.aspx");
+        }
+
+        protected void btnannuler_Click(object sender, EventArgs e)
+        {
+            Vider();
         }
     }
 }

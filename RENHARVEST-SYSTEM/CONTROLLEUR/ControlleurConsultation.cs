@@ -18,12 +18,19 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             cons = new ModeleConsultation();
         }
 
-        public void AjouterConsultation(string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated, string heurecreated)
+        public void AjouterConsultation(string codecons, string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated, string heurecreated)
         {
-            this.cons = new ModeleConsultation(codepatient, codemedecin, age, signe, symptomes, histoire,  detail, comment, createdby, datecreated, heurecreated);
+            this.cons = new ModeleConsultation(codecons, codepatient, codemedecin, age, signe, symptomes, histoire,  detail, comment, createdby, datecreated, heurecreated);
             cons.AjouterConsultation();
         }
-
+        public string codecons()
+        {
+            return cons.Codeconsu();
+        }
+        public string nbrConsToday(string codemedecin)
+        {
+            return cons.nbrConstoDay(codemedecin);
+        }
         public DataSet getListerConsPM(string codepatient, string codemedecin, string datecreated)
         {
             return (cons.ListerConsultationPM(codepatient, codemedecin, datecreated));
@@ -32,13 +39,18 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (cons.ListerConsultation());
         }
+        
+         public DataSet getcompConsult()
+        {
+            return (cons.compConsult());
+        }
         public DataSet getListerCons(string codemedecin)
         {
             return (cons.ListerConsultation(codemedecin));
         }
-        public DataSet getListerConsPM(string codepatient, string codemedecin)
+        public DataSet getListerConsPaMe(string codepatient, string codemedecin)
         {
-            return (cons.ListerConsultationPM(codepatient,codemedecin));
+            return (cons.ListerConsultationPaMe(codepatient,codemedecin));
         }
 
 
@@ -46,7 +58,15 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (cons.RechercheConsultationD(codepatient, codemedecin, datecreated));
         }
-
+        public string getCodecons()
+        {
+            if (cons != null)
+            {
+                return cons.Codecons;
+            }
+            else
+                return null;
+        }
         public string getCodepatient()
         {
             if (cons != null)

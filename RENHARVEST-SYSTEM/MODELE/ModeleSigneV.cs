@@ -281,6 +281,42 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
+        public DataSet ListerSVnow(string codePatient, string datecreated)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
 
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM tbsigneV WHERE codePatient='{0}' AND datecreated='{1}' order by datecreated desc", codePatient, datecreated);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "tbsigneV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerSVnow1(string codePatient)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM tbsigneV WHERE codePatient='{0}' AND datecreated=CONVERT(DATE, GETDATE()) order by datecreated desc", codePatient);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "tbsigneV");
+            con.Close();
+
+            return data;
+        }
+        
     }
 }

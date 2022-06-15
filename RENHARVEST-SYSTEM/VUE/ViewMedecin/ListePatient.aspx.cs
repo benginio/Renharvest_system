@@ -25,7 +25,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //if (!Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
                 tdatenow.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
                 Afficher();
@@ -100,7 +100,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
         protected void btnsearchage_Click(object sender, EventArgs e)
         {
+            if(tagebebut.Text.Equals("") && tagefin.Text.Equals(""))
+            {
 
+            }
+            else
+            {
+                magride.DataSource = patient.GetListerPatientage(tagebebut.Text,tagefin.Text);
+                magride.DataBind();
+            }
         }
 
         protected void btnsearch_Click(object sender, EventArgs e)

@@ -39,6 +39,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
         {
              codepatient = patient.Codepatient(tnomp.Text, tprenomp.Text);
              patient.CreerPatient(codepatient, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, tp_respon.Text, ddlienp.Text, ttypeP, tusername.Text, datecreated);
+           
+
         }
         void Vider()
         {
@@ -59,6 +61,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
         protected void btnvalider_Click(object sender, EventArgs e)
         {
             CreerPatient();
+            ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Success!','Enregistrement reusir!','success')", true);
             tcodep.Text = codepatient;
             Vider();
         }

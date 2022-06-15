@@ -138,8 +138,26 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
-       
+        public DataSet ListerAntecedentinfo(string codePatient, string codeMedecin, string typeAntecedent, string datec)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
 
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM tbantecedent where codePatient='{0}' AND codeMedecin='{1}' AND typeAntecedent='{2}' AND datecreated='{3}' ORDER BY datecreated DESC", codePatient, codeMedecin, typeAntecedent, datec);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "tbantecedent");
+            con.Close();
+
+            return data;
+        }
+
+        
 
 
     }

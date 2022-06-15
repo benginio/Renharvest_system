@@ -76,7 +76,8 @@
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
+                         <li><a href="suividossier.aspx">Suivi</a></li>
+                      <li><a href="listecons.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -84,24 +85,14 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                      
-                    </ul>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                    
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -495,9 +486,32 @@
                         </a>
                         <div id="collapsefive1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfive">
                           <div class="panel-body">
-                            <p><strong>Collapsible Item 3 data</strong>
-                            </p>
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+                              <div class="x_panel">
+                               <div class="row">
+                                   <h5>Liste des Consultation</h5>
+                               </div>
+                                   <div class="table-responsive">
+                                <asp:GridView ID="Gridconsultation" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="datecreated" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                                    <HeaderStyle BackColor="#F5F7FA" Font-Bold="True" ForeColor="black" />
+
+                                    <Columns>
+                                        <asp:BoundField DataField="signe" HeaderText="signe" ReadOnly="True" SortExpression="signe" />
+                                        <asp:BoundField DataField="symptomes" HeaderText="symptomes" ReadOnly="True" SortExpression="symp" />
+                                        <asp:BoundField DataField="histoire" HeaderText="Histoire" SortExpression="hist" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+                                        <asp:BoundField DataField="detail" HeaderText="Diagnostique" SortExpression="diagn" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />
+                                        <asp:BoundField DataField="comment" HeaderText="note" SortExpression="note" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+                                        <asp:BoundField DataField="datecreated" HeaderText="Date" SortExpression="date" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+                                        <asp:BoundField DataField="heurecreated" HeaderText="heure" SortExpression="date" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+                                    <asp:TemplateField HeaderText="-->">                       
+                                <ItemTemplate>                            
+                                    <asp:LinkButton ID="btnconsultation" runat="server" Height="30px" CssClass="btn btn-pam menu " OnClick="btnconsultation_Click" ><span class="me-2"><i class="fa fa-file-text-o"></i></span></asp:LinkButton> 
+                                </ItemTemplate>                         
+                             </asp:TemplateField>
+                                        </Columns>
+
+                                </asp:GridView>
+                            </div>
+                                </div>
                           </div>
                         </div>
                       </div>

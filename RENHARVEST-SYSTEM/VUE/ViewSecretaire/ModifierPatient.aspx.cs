@@ -83,6 +83,10 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
             string type="";
             string date="";
             patient.ModifierPatient(code, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, tp_respon.Text, ddlienp.Text, type, tusername.Text, date);
+            string msg = "Swal.fire('Sucess!','Modification reusir!','success')";
+            ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
+
+            Response.Redirect("ModifierPatient.aspx");
         }
 
         protected void tbnsearch_Click(object sender, EventArgs e)

@@ -21,13 +21,16 @@
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
     <link href="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+      <!-- FullCalendar -->
+    <link href="../vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="../vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
 
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.css" rel="stylesheet">
+     <!-- Custom Theme Style -->
+     <link href="../build/css/custom.css" rel="stylesheet">
+    
 </head>
 <body class="nav-md">
     <form id="form1" runat="server">
-
         <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -74,13 +77,9 @@
                       <li><a href="#">Annuler</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                    </ul>
+                  <li><a href="plannigMedecin.aspx"><i class="fa fa-table"></i> Agenda Medecin</a>
                   </li>
-                    <li><a><i class="fa fa-table"></i> Parametre <span class="fa fa-cogs"></span></a>
+                    <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">....</a></li>
                       <li><a href="#">....</a></li>
@@ -152,11 +151,83 @@
                 <h5> Accueil |</h5>
               </div>
             </div>
-          
-             
+            <!-- Info boxes -->
+        <div class="row">
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-green elevation-1"><i class="fa fa-users"></i></span>
 
-
+              <div class="info-box-content">
+                <span class="info-box-text">Nbr Rendez-vous</span>
+                <span class="info-box-number">
+                    <asp:Label ID="nbrRDV" runat="server" Text=""></asp:Label>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
           </div>
+          <!-- /.col -->
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-pam elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Nombres Utilisateur</span>
+                <span class="info-box-number">41,410</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Utilisateur Actif</span>
+                <span class="info-box-number">2,000</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Utilisateur Inactif</span>
+                <span class="info-box-number">2,000</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+          
+                  <div class="x_content">
+                     <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_content">
+
+                    <div id='calendar'></div>
+
+                  </div><!-- end content -->
+                </div>
+              </div>
+            </div>
+             
+            </div><!-- end content -->
+          </div>
+        
         </div>
         <!-- /page content -->
 
@@ -168,8 +239,61 @@
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
+      
+    </div>
+      </div>
+       <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel2"></h4>
+          </div>
+          <div class="modal-body">
+
+            <div id="testmodal2" style="padding: 5px 20px;">
+              <form id="antoform2" class="form-horizontal calender" role="form">
+                <div class="form-group row">
+                  <label class="col-sm-3 control-label">Title</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="title2" name="title2">
+                  </div>
+                </div>
+                  <div class="form-group row">
+                  <label class="col-sm-3 control-label">patient</label>
+                       <div class="col-sm-9">
+                    <input type="text" class="form-control" id="patient" name="title2">
+                  </div>
+                   </div>
+                   <div class="form-group row">
+                  <label class="col-sm-3 control-label">Medecin</label>
+                       <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tmedecin" name="title2">
+                  </div>
+                   </div>
+                  
+                <div class="form-group row">
+                  <label class="col-sm-3 control-label">Description</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Fermer</button>
+<%--            <button type="button" class="btn btn-primary antosubmit2">Save changes</button>--%>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+    <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+    <!-- /calendar modal -->
 
         </form>
     <!-- jQuery -->
@@ -183,8 +307,147 @@
     <!-- jQuery custom content scroller -->
     <script src="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 
+    <script type="text/javascript">
+        function init_calendar() {
+
+            if (typeof ($.fn.fullCalendar) === 'undefined') { return; }
+            console.log('init_calendar');
+
+            var date = new Date(),
+                d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear(),
+                started,
+                categoryClass;
+            debugger;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "Accueil.aspx/GetCalendarData",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    var calendar = $('#calendar').fullCalendar({
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,agendaWeek,agendaDay,listMonth'
+                        },
+                        selectable: true,
+                        selectHelper: true,
+                        select: function (start, end, allDay) {
+                            $('#fc_create').click();
+
+                            started = start;
+                            ended = end;
+
+                            $(".antosubmit").on("click", function () {
+                                var title = $("#title").val();
+                                if (end) {
+                                    ended = end;
+                                }
+
+                                categoryClass = $("#event_type").val();
+
+                                if (title) {
+                                    calendar.fullCalendar('renderEvent', {
+                                        title: title,
+                                        start: started,
+                                        end: end,
+                                        description: $("#descr2").val(),
+                                        allDay: allDay
+                                    },
+                                        true // make the event "stick"
+                                    );
+                                }
+
+                                $('#title').val('');
+
+                                calendar.fullCalendar('unselect');
+
+                                $('.antoclose').click();
+
+                                return false;
+                            });
+                        },
+                        eventClick: function (calEvent, jsEvent, view) {
+                            $('#fc_edit').click();
+                            $('#title2').val(calEvent.title);
+                            $("#descr2").val(calEvent.description);
+                            $("#patient").val(calEvent.patient);
+                            $("#tmedecin").val(calEvent.medecins);
+
+
+                            categoryClass = $("#event_type").val();
+
+                            $(".antosubmit2").on("click", function () {
+                                calEvent.title = $("#title2").val();
+                                calEvent.description = $("#descr2").val();
+                                calEvent.patient = $("#patient").val();
+                                calEvent.medecins = $("#tmedecin").val();
+
+                                calendar.fullCalendar('updateEvent', calEvent);
+                                $('.antoclose2').click();
+                            });
+
+                            calendar.fullCalendar('unselect');
+                        },
+                        editable: true,
+                        firstDay: 1,
+                        overflow: 'auto',
+                        events: $.map(data.d, function (item, i) {
+
+                            //-- here is the event details to show in calendar view.. the data is retrieved via ajax call will be accessed here
+                            var eventStartDate = new Date(parseInt(item.slotStartTime.substr(6)));
+                            var eventEndDate = new Date(parseInt(item.slotEndTime.substr(6)));
+                            var eventDescription = item.slotDescription;
+                            var eventPatient = item.slotPatient;
+                            var eventMedecin = item.slotMedecin;
+
+                            var event = new Object();
+                            event.id = item.slotID;
+                            //event.start = new Date(eventStartDate.getFullYear(), eventStartDate.getMonth(), eventStartDate.getDate(), eventStartDate.getHours(), 0, 0, 0);
+                            //event.end = new Date(eventEndDate.getFullYear(), eventEndDate.getMonth(), eventEndDate.getDate(), eventEndDate.getHours() + 1, 0, 0, 0);
+                            event.start = eventStartDate;
+                            //  event.end = eventEndDate;
+                            event.patient = eventPatient;
+                            event.medecins = eventMedecin;
+                            event.description = eventDescription;
+                            event.title = formatAMPM(eventStartDate) + "-" + formatAMPM(eventEndDate);
+                            //event.allDay = item.AllDayEvent;
+                            event.backgroundColor = item.color;
+                            event.allDay = true;
+                            return event;
+                        })
+
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //-- log error
+                }
+            });
+
+
+        };
+        function formatAMPM(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+        $(document).ready(function () {
+            init_calendar();
+        });
+    </script>
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="../build/js/custom.js"></script>
+    <!-- FullCalendar -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/fullcalendar/dist/fullcalendar.min.js"></script>
 
     
 </body>

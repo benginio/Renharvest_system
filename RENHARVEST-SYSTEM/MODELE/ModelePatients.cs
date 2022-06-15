@@ -154,15 +154,15 @@ namespace RENHARVEST_SYSTEM.MODELE
        
         public void CreerPatient()
         {
-            string typeAction = "Insertion";
+            //string typeAction = "Insertion";
             string Req = string.Format("INSERT INTO tbpersonne VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, createdby, datecreated);
             string Req2 = string.Format("INSERT INTO tbpatient (codePatient,codepers,persResp,LienApersResp,createdby,datecreated) VALUES ('" + codePatient + "','" + codePatient+ "','"+p_Respon+"', '"+lienARespon+"', '" + createdby+"', '"+datecreated+"')");
-            string Req3 = string.Format("INSERT INTO tbhisPatient VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, typeAction, createdby, datecreated);
+            //string Req3 = string.Format("INSERT INTO tbhisPatient VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, typeAction, createdby, datecreated);
 
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
             SqlCommand cmd2 = null;
-            SqlCommand cmd3 = null;
+            //SqlCommand cmd3 = null;
 
             con.Open();
             cmd = new SqlCommand(Req, con);
@@ -171,8 +171,8 @@ namespace RENHARVEST_SYSTEM.MODELE
             cmd2 = new SqlCommand(Req2, con);
             cmd2.ExecuteNonQuery();
 
-            cmd3 = new SqlCommand(Req3, con);
-            cmd3.ExecuteNonQuery();
+            //cmd3 = new SqlCommand(Req3, con);
+            //cmd3.ExecuteNonQuery();
 
             
             con.Close();
@@ -277,11 +277,11 @@ namespace RENHARVEST_SYSTEM.MODELE
             con.Open();
             SqlCommand cmd = new SqlCommand(Req, con);
             SqlCommand cmd1 = new SqlCommand(Req1, con);
-            SqlCommand cmd2 = new SqlCommand(Requ, con);
+            //SqlCommand cmd2 = new SqlCommand(Requ, con);
 
             cmd.ExecuteNonQuery();
             cmd1.ExecuteNonQuery();
-            cmd2.ExecuteNonQuery();
+            //cmd2.ExecuteNonQuery();
             con.Close();
 
 
@@ -413,24 +413,24 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
-        //public DataSet ListerPatientage(string age1, string age2)
-        //{
-        //    SqlDataAdapter adapter;
-        //    SqlConnection con;
+        public DataSet ListerPatientage(string age1, string age2)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
 
-        //    con = new SqlConnection(chcon);
-        //    string command = string.Format("SELECT * FROM V_listePatient     where sexe='{0}'", sexe);
+            con = new SqlConnection(chcon);
+            string command = string.Format("select * from V_listePatient WHERE DATEDIFF(YEAR, datenaiss, GETDATE()) BETWEEN '{0}' and '{1}'", age1,age2);
 
-        //    con.Open();
-        //    adapter = new SqlDataAdapter(command, con);
-        //    SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
-        //    data = new DataSet();
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
 
-        //    adapter.Fill(data, "V_listePatient");
-        //    con.Close();
+            adapter.Fill(data, "V_listePatient");
+            con.Close();
 
-        //    return data;
-        //}
+            return data;
+        }
         public DataSet ListerPatientM(string matricule)
         {
             SqlDataAdapter adapter;
@@ -448,6 +448,26 @@ namespace RENHARVEST_SYSTEM.MODELE
             con.Close();
 
             return data;
+        }
+        public string nbrePersonne()
+        {
+            string nbr = "";
+            string R = string.Format("SELECT count(*) FROM tbpersonne ");
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(R, con);
+
+            con.Open();
+            Int32 annee = Convert.ToInt32(cmd.ExecuteScalar());
+            if (annee > 0)
+            {
+                nbr = Convert.ToString(annee.ToString());
+            }
+            else
+            {
+                nbr = "0";
+            }
+            con.Close();
+            return nbr;
         }
 
 

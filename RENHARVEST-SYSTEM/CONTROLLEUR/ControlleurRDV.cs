@@ -17,24 +17,40 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             rdv = new ModeleRDV();
         }
 
-        public void CreerRDV(string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
+        public void CreerRDV(string num, string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
         {
-            this.rdv = new ModeleRDV(codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
+            this.rdv = new ModeleRDV(num,codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
             rdv.CreerRDV();
         }
 
-        public void Modifier(string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
+        public void Modifierrdv(string num, string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
         {
-            this.rdv = new ModeleRDV(codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
+            this.rdv = new ModeleRDV(num,codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
             rdv.ModifierRDV();
+        }
+        public string Coderdv()
+        {
+            return rdv.numrdv();
+        }
+        public string verifierrdv(string codeMedecin, string date, string heure)
+        {
+            return rdv.verifierrdv(codeMedecin,date,heure);
         }
         //public DataSet GetListerRDV()
         //{
         //    return (rdv.ListerRDV());
         //}
+        public bool Rechercherdv(string num)
+        {
+            return (rdv.Rechercherrdv(num));
+        }
         public string nbrRDVtoDay(string codeMedecin)
         {
             return rdv.nbrRDVtoDay(codeMedecin);
+        }
+        public string nbrRDVtoDay1()
+        {
+            return rdv.nbrRDVtoDay1();
         }
         public DataSet GetListerRDV1(string codePatient, string codeMedecin)
         {
@@ -47,6 +63,22 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         public DataSet GetListerRDV3( string codeMedecin)
         {
             return (rdv.ListerRDV3(codeMedecin));
+        }
+        public DataSet GetListerRDVI(string id, string codeMedecin)
+        {
+            return (rdv.ListerRDVI(id, codeMedecin));
+        }
+        public DataSet GetListerRDVN(string nom, string codeMedecin)
+        {
+            return (rdv.ListerRDVN(nom, codeMedecin));
+        }
+        public DataSet GetListerRDVP(string prenom, string codeMedecin)
+        {
+            return (rdv.ListerRDVN(prenom, codeMedecin));
+        }
+        public DataSet GetListerRDVD(string date, string codeMedecin)
+        {
+            return (rdv.ListerRDVN(date, codeMedecin));
         }
 
         public string getCodePatient()

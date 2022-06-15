@@ -68,7 +68,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         {
             if (tsearch.Text.Equals(""))
             {
-                Response.Redirect("ModifierPatient.aspx");
+                Response.Redirect("AjouterConsultation.aspx");
             }
             else
             {

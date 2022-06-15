@@ -33,7 +33,9 @@ namespace RENHARVEST_SYSTEM.VUE
             string codeUser = us.getCodeUser();
             if (!find)
             {
-                // errormsg.Text = "mot de pass ou pass est incorrect!!";
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "Swal()", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Erreur!','Veillez verifier le mot de passe ou le nom utilisateur!','warning')", true);
+                
             }
             else
             {

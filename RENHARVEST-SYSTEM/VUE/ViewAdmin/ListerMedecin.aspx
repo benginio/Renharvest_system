@@ -186,7 +186,6 @@
                                             <asp:BoundField DataField="specialisation" HeaderText="specialisation" SortExpression="specialisation" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
                                             <asp:BoundField DataField="job" HeaderText="Profession" SortExpression="Profession" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
                                             <asp:BoundField DataField="gps" HeaderText="Groupe_S" SortExpression="Groupe_S." HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="dateEmbauch" HeaderText="date_Embauche" SortExpression="date_Embauche" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />
                                             <asp:BoundField DataField="createdby" HeaderText="Createdby" SortExpression="Createdby" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                             <asp:BoundField DataField="datecreated" HeaderText="datecreated" SortExpression="datecreated" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                             

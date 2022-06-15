@@ -51,6 +51,9 @@
     <Reference Include="itextsharp.pdfa">
       <HintPath>..\..\..\..\Documents\App\Itextsharp\itextsharp.pdfa.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -72,6 +75,23 @@
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=39.108.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.39.108.0\lib\net461\Stripe.net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -97,13 +117,333 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="VUE\build\css\bootstrap-4.min.css" />
+    <Content Include="VUE\build\css\custom.css" />
+    <Content Include="VUE\build\css\sweetalert2.min.css" />
+    <Content Include="VUE\build\images\design1.PNG" />
+    <Content Include="VUE\build\images\bgform.JPG" />
+    <Content Include="VUE\build\images\bgform2.png" />
+    <Content Include="VUE\build\images\bgform3.png" />
     <Content Include="VUE\build\images\User2.png" />
     <Content Include="VUE\build\images\userP.png" />
     <Content Include="VUE\build\js\myjs.js" />
-    <Content Include="VUE\build\js\sweetalert2.min.js" />
+    <Content Include="VUE\build\js\sweetalert2.all.js" />
+    <Content Include="VUE\build\js\sweetalert2.js" />
+    <Content Include="VUE\build\js\validation.js" />
     <Content Include="VUE\Rapport\WebForm1.aspx" />
+    <Content Include="VUE\vendors\moment\locale\af.js" />
+    <Content Include="VUE\vendors\moment\locale\ar-ma.js" />
+    <Content Include="VUE\vendors\moment\locale\ar-sa.js" />
+    <Content Include="VUE\vendors\moment\locale\ar-tn.js" />
+    <Content Include="VUE\vendors\moment\locale\ar.js" />
+    <Content Include="VUE\vendors\moment\locale\az.js" />
+    <Content Include="VUE\vendors\moment\locale\be.js" />
+    <Content Include="VUE\vendors\moment\locale\bg.js" />
+    <Content Include="VUE\vendors\moment\locale\bn.js" />
+    <Content Include="VUE\vendors\moment\locale\bo.js" />
+    <Content Include="VUE\vendors\moment\locale\br.js" />
+    <Content Include="VUE\vendors\moment\locale\bs.js" />
+    <Content Include="VUE\vendors\moment\locale\ca.js" />
+    <Content Include="VUE\vendors\moment\locale\cs.js" />
+    <Content Include="VUE\vendors\moment\locale\cv.js" />
+    <Content Include="VUE\vendors\moment\locale\cy.js" />
+    <Content Include="VUE\vendors\moment\locale\da.js" />
+    <Content Include="VUE\vendors\moment\locale\de-at.js" />
+    <Content Include="VUE\vendors\moment\locale\de.js" />
+    <Content Include="VUE\vendors\moment\locale\dv.js" />
+    <Content Include="VUE\vendors\moment\locale\el.js" />
+    <Content Include="VUE\vendors\moment\locale\en-au.js" />
+    <Content Include="VUE\vendors\moment\locale\en-ca.js" />
+    <Content Include="VUE\vendors\moment\locale\en-gb.js" />
+    <Content Include="VUE\vendors\moment\locale\en-ie.js" />
+    <Content Include="VUE\vendors\moment\locale\en-nz.js" />
+    <Content Include="VUE\vendors\moment\locale\eo.js" />
+    <Content Include="VUE\vendors\moment\locale\es.js" />
+    <Content Include="VUE\vendors\moment\locale\et.js" />
+    <Content Include="VUE\vendors\moment\locale\eu.js" />
+    <Content Include="VUE\vendors\moment\locale\fa.js" />
+    <Content Include="VUE\vendors\moment\locale\fi.js" />
+    <Content Include="VUE\vendors\moment\locale\fo.js" />
+    <Content Include="VUE\vendors\moment\locale\fr-ca.js" />
+    <Content Include="VUE\vendors\moment\locale\fr-ch.js" />
+    <Content Include="VUE\vendors\moment\locale\fr.js" />
+    <Content Include="VUE\vendors\moment\locale\fy.js" />
+    <Content Include="VUE\vendors\moment\locale\gd.js" />
+    <Content Include="VUE\vendors\moment\locale\gl.js" />
+    <Content Include="VUE\vendors\moment\locale\he.js" />
+    <Content Include="VUE\vendors\moment\locale\hi.js" />
+    <Content Include="VUE\vendors\moment\locale\hr.js" />
+    <Content Include="VUE\vendors\moment\locale\hu.js" />
+    <Content Include="VUE\vendors\moment\locale\hy-am.js" />
+    <Content Include="VUE\vendors\moment\locale\id.js" />
+    <Content Include="VUE\vendors\moment\locale\is.js" />
+    <Content Include="VUE\vendors\moment\locale\it.js" />
+    <Content Include="VUE\vendors\moment\locale\ja.js" />
+    <Content Include="VUE\vendors\moment\locale\jv.js" />
+    <Content Include="VUE\vendors\moment\locale\ka.js" />
+    <Content Include="VUE\vendors\moment\locale\kk.js" />
+    <Content Include="VUE\vendors\moment\locale\km.js" />
+    <Content Include="VUE\vendors\moment\locale\ko.js" />
+    <Content Include="VUE\vendors\moment\locale\ky.js" />
+    <Content Include="VUE\vendors\moment\locale\lb.js" />
+    <Content Include="VUE\vendors\moment\locale\lo.js" />
+    <Content Include="VUE\vendors\moment\locale\lt.js" />
+    <Content Include="VUE\vendors\moment\locale\lv.js" />
+    <Content Include="VUE\vendors\moment\locale\me.js" />
+    <Content Include="VUE\vendors\moment\locale\mk.js" />
+    <Content Include="VUE\vendors\moment\locale\ml.js" />
+    <Content Include="VUE\vendors\moment\locale\mr.js" />
+    <Content Include="VUE\vendors\moment\locale\ms-my.js" />
+    <Content Include="VUE\vendors\moment\locale\ms.js" />
+    <Content Include="VUE\vendors\moment\locale\my.js" />
+    <Content Include="VUE\vendors\moment\locale\nb.js" />
+    <Content Include="VUE\vendors\moment\locale\ne.js" />
+    <Content Include="VUE\vendors\moment\locale\nl.js" />
+    <Content Include="VUE\vendors\moment\locale\nn.js" />
+    <Content Include="VUE\vendors\moment\locale\pa-in.js" />
+    <Content Include="VUE\vendors\moment\locale\pl.js" />
+    <Content Include="VUE\vendors\moment\locale\pt-br.js" />
+    <Content Include="VUE\vendors\moment\locale\pt.js" />
+    <Content Include="VUE\vendors\moment\locale\ro.js" />
+    <Content Include="VUE\vendors\moment\locale\ru.js" />
+    <Content Include="VUE\vendors\moment\locale\se.js" />
+    <Content Include="VUE\vendors\moment\locale\si.js" />
+    <Content Include="VUE\vendors\moment\locale\sk.js" />
+    <Content Include="VUE\vendors\moment\locale\sl.js" />
+    <Content Include="VUE\vendors\moment\locale\sq.js" />
+    <Content Include="VUE\vendors\moment\locale\sr-cyrl.js" />
+    <Content Include="VUE\vendors\moment\locale\sr.js" />
+    <Content Include="VUE\vendors\moment\locale\ss.js" />
+    <Content Include="VUE\vendors\moment\locale\sv.js" />
+    <Content Include="VUE\vendors\moment\locale\sw.js" />
+    <Content Include="VUE\vendors\moment\locale\ta.js" />
+    <Content Include="VUE\vendors\moment\locale\te.js" />
+    <Content Include="VUE\vendors\moment\locale\th.js" />
+    <Content Include="VUE\vendors\moment\locale\tl-ph.js" />
+    <Content Include="VUE\vendors\moment\locale\tlh.js" />
+    <Content Include="VUE\vendors\moment\locale\tr.js" />
+    <Content Include="VUE\vendors\moment\locale\tzl.js" />
+    <Content Include="VUE\vendors\moment\locale\tzm-latn.js" />
+    <Content Include="VUE\vendors\moment\locale\tzm.js" />
+    <Content Include="VUE\vendors\moment\locale\uk.js" />
+    <Content Include="VUE\vendors\moment\locale\uz.js" />
+    <Content Include="VUE\vendors\moment\locale\vi.js" />
+    <Content Include="VUE\vendors\moment\locale\x-pseudo.js" />
+    <Content Include="VUE\vendors\moment\locale\zh-cn.js" />
+    <Content Include="VUE\vendors\moment\locale\zh-tw.js" />
+    <Content Include="VUE\vendors\moment\min\locales.js" />
+    <Content Include="VUE\vendors\moment\min\locales.min.js" />
+    <Content Include="VUE\vendors\moment\min\moment-with-locales.js" />
+    <Content Include="VUE\vendors\moment\min\moment-with-locales.min.js" />
+    <Content Include="VUE\vendors\moment\min\moment.min.js" />
+    <Content Include="VUE\vendors\moment\min\tests.js" />
+    <Content Include="VUE\vendors\moment\moment.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\check-overflow.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\date-from-array.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\from-anything.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\from-array.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\from-object.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\from-string-and-array.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\from-string-and-format.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\from-string.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\local.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\parsing-flags.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\utc.js" />
+    <Content Include="VUE\vendors\moment\src\lib\create\valid.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\abs.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\add-subtract.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\as.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\bubble.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\constructor.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\create.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\duration.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\get.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\humanize.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\iso-string.js" />
+    <Content Include="VUE\vendors\moment\src\lib\duration\prototype.js" />
+    <Content Include="VUE\vendors\moment\src\lib\format\format.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\calendar.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\constructor.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\en.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\formats.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\invalid.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\lists.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\locale.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\locales.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\ordinal.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\pre-post-format.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\prototype.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\relative.js" />
+    <Content Include="VUE\vendors\moment\src\lib\locale\set.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\add-subtract.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\calendar.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\clone.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\compare.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\constructor.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\creation-data.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\diff.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\format.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\from.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\get-set.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\locale.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\min-max.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\moment.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\now.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\prototype.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\start-end-of.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\to-type.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\to.js" />
+    <Content Include="VUE\vendors\moment\src\lib\moment\valid.js" />
+    <Content Include="VUE\vendors\moment\src\lib\parse\regex.js" />
+    <Content Include="VUE\vendors\moment\src\lib\parse\token.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\aliases.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\constants.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\day-of-month.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\day-of-week.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\day-of-year.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\hour.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\millisecond.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\minute.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\month.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\offset.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\quarter.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\second.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\timestamp.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\timezone.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\units.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\week-calendar-utils.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\week-year.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\week.js" />
+    <Content Include="VUE\vendors\moment\src\lib\units\year.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\abs-ceil.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\abs-floor.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\abs-round.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\compare-arrays.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\defaults.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\deprecate.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\extend.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\has-own-prop.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\hooks.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\index-of.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\is-array.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\is-date.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\is-function.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\is-object.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\is-undefined.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\keys.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\map.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\some.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\to-int.js" />
+    <Content Include="VUE\vendors\moment\src\lib\utils\zero-fill.js" />
+    <Content Include="VUE\vendors\moment\src\locale\af.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ar-ma.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ar-sa.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ar-tn.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ar.js" />
+    <Content Include="VUE\vendors\moment\src\locale\az.js" />
+    <Content Include="VUE\vendors\moment\src\locale\be.js" />
+    <Content Include="VUE\vendors\moment\src\locale\bg.js" />
+    <Content Include="VUE\vendors\moment\src\locale\bn.js" />
+    <Content Include="VUE\vendors\moment\src\locale\bo.js" />
+    <Content Include="VUE\vendors\moment\src\locale\br.js" />
+    <Content Include="VUE\vendors\moment\src\locale\bs.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ca.js" />
+    <Content Include="VUE\vendors\moment\src\locale\cs.js" />
+    <Content Include="VUE\vendors\moment\src\locale\cv.js" />
+    <Content Include="VUE\vendors\moment\src\locale\cy.js" />
+    <Content Include="VUE\vendors\moment\src\locale\da.js" />
+    <Content Include="VUE\vendors\moment\src\locale\de-at.js" />
+    <Content Include="VUE\vendors\moment\src\locale\de.js" />
+    <Content Include="VUE\vendors\moment\src\locale\dv.js" />
+    <Content Include="VUE\vendors\moment\src\locale\el.js" />
+    <Content Include="VUE\vendors\moment\src\locale\en-au.js" />
+    <Content Include="VUE\vendors\moment\src\locale\en-ca.js" />
+    <Content Include="VUE\vendors\moment\src\locale\en-gb.js" />
+    <Content Include="VUE\vendors\moment\src\locale\en-ie.js" />
+    <Content Include="VUE\vendors\moment\src\locale\en-nz.js" />
+    <Content Include="VUE\vendors\moment\src\locale\eo.js" />
+    <Content Include="VUE\vendors\moment\src\locale\es.js" />
+    <Content Include="VUE\vendors\moment\src\locale\et.js" />
+    <Content Include="VUE\vendors\moment\src\locale\eu.js" />
+    <Content Include="VUE\vendors\moment\src\locale\fa.js" />
+    <Content Include="VUE\vendors\moment\src\locale\fi.js" />
+    <Content Include="VUE\vendors\moment\src\locale\fo.js" />
+    <Content Include="VUE\vendors\moment\src\locale\fr-ca.js" />
+    <Content Include="VUE\vendors\moment\src\locale\fr-ch.js" />
+    <Content Include="VUE\vendors\moment\src\locale\fr.js" />
+    <Content Include="VUE\vendors\moment\src\locale\fy.js" />
+    <Content Include="VUE\vendors\moment\src\locale\gd.js" />
+    <Content Include="VUE\vendors\moment\src\locale\gl.js" />
+    <Content Include="VUE\vendors\moment\src\locale\he.js" />
+    <Content Include="VUE\vendors\moment\src\locale\hi.js" />
+    <Content Include="VUE\vendors\moment\src\locale\hr.js" />
+    <Content Include="VUE\vendors\moment\src\locale\hu.js" />
+    <Content Include="VUE\vendors\moment\src\locale\hy-am.js" />
+    <Content Include="VUE\vendors\moment\src\locale\id.js" />
+    <Content Include="VUE\vendors\moment\src\locale\is.js" />
+    <Content Include="VUE\vendors\moment\src\locale\it.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ja.js" />
+    <Content Include="VUE\vendors\moment\src\locale\jv.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ka.js" />
+    <Content Include="VUE\vendors\moment\src\locale\kk.js" />
+    <Content Include="VUE\vendors\moment\src\locale\km.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ko.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ky.js" />
+    <Content Include="VUE\vendors\moment\src\locale\lb.js" />
+    <Content Include="VUE\vendors\moment\src\locale\lo.js" />
+    <Content Include="VUE\vendors\moment\src\locale\lt.js" />
+    <Content Include="VUE\vendors\moment\src\locale\lv.js" />
+    <Content Include="VUE\vendors\moment\src\locale\me.js" />
+    <Content Include="VUE\vendors\moment\src\locale\mk.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ml.js" />
+    <Content Include="VUE\vendors\moment\src\locale\mr.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ms-my.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ms.js" />
+    <Content Include="VUE\vendors\moment\src\locale\my.js" />
+    <Content Include="VUE\vendors\moment\src\locale\nb.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ne.js" />
+    <Content Include="VUE\vendors\moment\src\locale\nl.js" />
+    <Content Include="VUE\vendors\moment\src\locale\nn.js" />
+    <Content Include="VUE\vendors\moment\src\locale\pa-in.js" />
+    <Content Include="VUE\vendors\moment\src\locale\pl.js" />
+    <Content Include="VUE\vendors\moment\src\locale\pt-br.js" />
+    <Content Include="VUE\vendors\moment\src\locale\pt.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ro.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ru.js" />
+    <Content Include="VUE\vendors\moment\src\locale\se.js" />
+    <Content Include="VUE\vendors\moment\src\locale\si.js" />
+    <Content Include="VUE\vendors\moment\src\locale\sk.js" />
+    <Content Include="VUE\vendors\moment\src\locale\sl.js" />
+    <Content Include="VUE\vendors\moment\src\locale\sq.js" />
+    <Content Include="VUE\vendors\moment\src\locale\sr-cyrl.js" />
+    <Content Include="VUE\vendors\moment\src\locale\sr.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ss.js" />
+    <Content Include="VUE\vendors\moment\src\locale\sv.js" />
+    <Content Include="VUE\vendors\moment\src\locale\sw.js" />
+    <Content Include="VUE\vendors\moment\src\locale\ta.js" />
+    <Content Include="VUE\vendors\moment\src\locale\te.js" />
+    <Content Include="VUE\vendors\moment\src\locale\th.js" />
+    <Content Include="VUE\vendors\moment\src\locale\tl-ph.js" />
+    <Content Include="VUE\vendors\moment\src\locale\tlh.js" />
+    <Content Include="VUE\vendors\moment\src\locale\tr.js" />
+    <Content Include="VUE\vendors\moment\src\locale\tzl.js" />
+    <Content Include="VUE\vendors\moment\src\locale\tzm-latn.js" />
+    <Content Include="VUE\vendors\moment\src\locale\tzm.js" />
+    <Content Include="VUE\vendors\moment\src\locale\uk.js" />
+    <Content Include="VUE\vendors\moment\src\locale\uz.js" />
+    <Content Include="VUE\vendors\moment\src\locale\vi.js" />
+    <Content Include="VUE\vendors\moment\src\locale\x-pseudo.js" />
+    <Content Include="VUE\vendors\moment\src\locale\zh-cn.js" />
+    <Content Include="VUE\vendors\moment\src\locale\zh-tw.js" />
+    <Content Include="VUE\vendors\moment\src\moment.js" />
+    <Content Include="VUE\vendors\moment\templates\amd-named.js" />
+    <Content Include="VUE\vendors\moment\templates\amd.js" />
+    <Content Include="VUE\vendors\moment\templates\default.js" />
+    <Content Include="VUE\vendors\moment\templates\globals.js" />
+    <Content Include="VUE\vendors\moment\templates\locale-header.js" />
+    <Content Include="VUE\vendors\moment\templates\test-header.js" />
     <Content Include="VUE\ViewAdminSys\AccessUser.aspx" />
     <Content Include="VUE\ViewAdminSys\Accueil.aspx" />
+    <Content Include="VUE\ViewAdminSys\addservice.aspx" />
     <Content Include="VUE\ViewAdminSys\AjouterUser.aspx" />
     <Content Include="VUE\ViewAdminSys\Listehismedecin.aspx" />
     <Content Include="VUE\ViewAdminSys\Listehismedicament.aspx" />
@@ -112,7 +452,6 @@
     <Content Include="VUE\ViewAdmin\Accueil.aspx" />
     <Content Include="VUE\ViewAdmin\AjouterMedecin.aspx" />
     <Content Include="VUE\ViewAdmin\AjouterPatient.aspx" />
-    <Content Include="VUE\build\css\custom.css" />
     <Content Include="VUE\build\css\custom.min.css" />
     <Content Include="VUE\build\css\login.css" />
     <Content Include="VUE\build\images\back_disabled.png" />
@@ -248,37 +587,6 @@
     <Content Include="VUE\vendors\Chart.js\karma.conf.ci.js" />
     <Content Include="VUE\vendors\Chart.js\karma.conf.js" />
     <Content Include="VUE\vendors\Chart.js\karma.coverage.conf.js" />
-    <Content Include="VUE\vendors\datatables.net-bs\css\dataTables.bootstrap.css" />
-    <Content Include="VUE\vendors\datatables.net-bs\css\dataTables.bootstrap.min.css" />
-    <Content Include="VUE\vendors\datatables.net-bs\js\dataTables.bootstrap.js" />
-    <Content Include="VUE\vendors\datatables.net-bs\js\dataTables.bootstrap.min.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons-bs\css\buttons.bootstrap.css" />
-    <Content Include="VUE\vendors\datatables.net-buttons-bs\css\buttons.bootstrap.min.css" />
-    <Content Include="VUE\vendors\datatables.net-buttons-bs\js\buttons.bootstrap.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons-bs\js\buttons.bootstrap.min.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\buttons.colVis.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\buttons.colVis.min.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\buttons.flash.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\buttons.flash.min.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\buttons.html5.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\buttons.html5.min.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\buttons.print.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\buttons.print.min.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\dataTables.buttons.js" />
-    <Content Include="VUE\vendors\datatables.net-buttons\js\dataTables.buttons.min.js" />
-    <Content Include="VUE\vendors\datatables.net-keytable\js\dataTables.keyTable.js" />
-    <Content Include="VUE\vendors\datatables.net-keytable\js\dataTables.keyTable.min.js" />
-    <Content Include="VUE\vendors\datatables.net-responsive-bs\css\responsive.bootstrap.css" />
-    <Content Include="VUE\vendors\datatables.net-responsive-bs\css\responsive.bootstrap.min.css" />
-    <Content Include="VUE\vendors\datatables.net-responsive-bs\js\responsive.bootstrap.js" />
-    <Content Include="VUE\vendors\datatables.net-responsive\js\dataTables.responsive.js" />
-    <Content Include="VUE\vendors\datatables.net-responsive\js\dataTables.responsive.min.js" />
-    <Content Include="VUE\vendors\datatables.net-scroller-bs\css\scroller.bootstrap.css" />
-    <Content Include="VUE\vendors\datatables.net-scroller-bs\css\scroller.bootstrap.min.css" />
-    <Content Include="VUE\vendors\datatables.net-scroller\js\dataTables.scroller.js" />
-    <Content Include="VUE\vendors\datatables.net-scroller\js\dataTables.scroller.min.js" />
-    <Content Include="VUE\vendors\datatables.net\js\jquery.dataTables.js" />
-    <Content Include="VUE\vendors\datatables.net\js\jquery.dataTables.min.js" />
     <Content Include="VUE\vendors\dropzone\dist\basic.css" />
     <Content Include="VUE\vendors\dropzone\dist\dropzone-amd-module.js" />
     <Content Include="VUE\vendors\dropzone\dist\dropzone.css" />
@@ -394,7 +702,9 @@
     <Content Include="VUE\ViewAdmin\ListePatient.aspx" />
     <Content Include="VUE\ViewAdmin\ModiferMedecin.aspx" />
     <Content Include="VUE\ViewAdmin\ModifierPatient.aspx" />
+    <Content Include="VUE\ViewAdmin\rapport.aspx" />
     <Content Include="VUE\ViewCaissier\Accueil.aspx" />
+    <Content Include="VUE\ViewCaissier\ajouterPaiement.aspx" />
     <Content Include="VUE\ViewCaissier\ListePatient.aspx" />
     <Content Include="VUE\ViewInfirmiere\Accueil.aspx" />
     <Content Include="VUE\ViewInfirmiere\AjouterPatient.aspx" />
@@ -408,19 +718,26 @@
     <Content Include="VUE\ViewMedecin\AjouterMedicament.aspx" />
     <Content Include="VUE\ViewMedecin\AjouterPatient.aspx" />
     <Content Include="VUE\ViewMedecin\AjouterRDV.aspx" />
+    <Content Include="VUE\ViewMedecin\AnnulerRDV.aspx" />
     <Content Include="VUE\ViewMedecin\DossierPatient.aspx" />
     <Content Include="VUE\ViewMedecin\InfoConsultation.aspx" />
     <Content Include="VUE\ViewMedecin\ListePatient.aspx" />
     <Content Include="VUE\ViewMedecin\ListeRDV.aspx" />
     <Content Include="VUE\ViewMedecin\ModifierPatient.aspx" />
     <Content Include="VUE\ViewMedecin\ModifierRDV.aspx" />
-    <Content Include="VUE\ViewMedecin\SignV.aspx" />
-    <Content Include="VUE\ViewMedecin\Prescription.aspx" />
+    <Content Include="VUE\ViewMedecin\printpresc.aspx" />
+    <Content Include="VUE\ViewMedecin\rendezVous.aspx" />
+    <Content Include="VUE\ViewMedecin\Suividossier.aspx" />
+    <Content Include="VUE\ViewMedecin\suividossier1.aspx" />
+    <Content Include="VUE\ViewPatient\ajouterrdv.aspx" />
+    <Content Include="VUE\ViewPatient\verificationrdv.aspx" />
     <Content Include="VUE\ViewSecretaire\Accueil.aspx" />
     <Content Include="VUE\ViewSecretaire\AjouterPatient.aspx" />
     <Content Include="VUE\ViewSecretaire\AjouterRDV.aspx" />
     <Content Include="VUE\ViewSecretaire\ListePatient.aspx" />
     <Content Include="VUE\ViewSecretaire\ModifierPatient.aspx" />
+    <Content Include="VUE\ViewSecretaire\plannigMedecin.aspx" />
+    <Content Include="VUE\ViewSecretaire\planningMedecin1.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -435,7 +752,9 @@
     <Compile Include="CONTROLLEUR\ControlleurPatients.cs" />
     <Compile Include="CONTROLLEUR\ControlleurPrescription.cs" />
     <Compile Include="CONTROLLEUR\ControlleurRDV.cs" />
+    <Compile Include="CONTROLLEUR\ControlleurService.cs" />
     <Compile Include="CONTROLLEUR\ControlleurSigneV.cs" />
+    <Compile Include="CONTROLLEUR\ControlleurSpecialisation.cs" />
     <Compile Include="CONTROLLEUR\ControlleurTraitement.cs" />
     <Compile Include="CONTROLLEUR\ControlleurUser.cs" />
     <Compile Include="DBHARVESTDataSet.Designer.cs">
@@ -459,7 +778,9 @@
     <Compile Include="MODELE\ModelePatients.cs" />
     <Compile Include="MODELE\ModelePrescription.cs" />
     <Compile Include="MODELE\ModeleRDV.cs" />
+    <Compile Include="MODELE\ModeleService.cs" />
     <Compile Include="MODELE\ModeleSigneV.cs" />
+    <Compile Include="MODELE\ModeleSpecialisation.cs" />
     <Compile Include="MODELE\ModeleTraitement.cs" />
     <Compile Include="MODELE\ModeleUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -483,6 +804,13 @@
     </Compile>
     <Compile Include="VUE\ViewAdminSys\Accueil.aspx.designer.cs">
       <DependentUpon>Accueil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewAdminSys\addservice.aspx.cs">
+      <DependentUpon>addservice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewAdminSys\addservice.aspx.designer.cs">
+      <DependentUpon>addservice.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewAdminSys\AjouterUser.aspx.cs">
       <DependentUpon>AjouterUser.aspx</DependentUpon>
@@ -582,12 +910,26 @@
     <Compile Include="VUE\ViewAdmin\ModifierPatient.aspx.designer.cs">
       <DependentUpon>ModifierPatient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VUE\ViewAdmin\rapport.aspx.cs">
+      <DependentUpon>rapport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\rapport.aspx.designer.cs">
+      <DependentUpon>rapport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VUE\ViewCaissier\Accueil.aspx.cs">
       <DependentUpon>Accueil.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VUE\ViewCaissier\Accueil.aspx.designer.cs">
       <DependentUpon>Accueil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewCaissier\ajouterPaiement.aspx.cs">
+      <DependentUpon>ajouterPaiement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewCaissier\ajouterPaiement.aspx.designer.cs">
+      <DependentUpon>ajouterPaiement.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewCaissier\ListePatient.aspx.cs">
       <DependentUpon>ListePatient.aspx</DependentUpon>
@@ -680,6 +1022,13 @@
     <Compile Include="VUE\ViewMedecin\AjouterRDV.aspx.designer.cs">
       <DependentUpon>AjouterRDV.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VUE\ViewMedecin\AnnulerRDV.aspx.cs">
+      <DependentUpon>AnnulerRDV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\AnnulerRDV.aspx.designer.cs">
+      <DependentUpon>AnnulerRDV.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VUE\ViewMedecin\DossierPatient.aspx.cs">
       <DependentUpon>DossierPatient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -722,19 +1071,47 @@
     <Compile Include="VUE\ViewMedecin\ModifierRDV.aspx.designer.cs">
       <DependentUpon>ModifierRDV.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VUE\ViewMedecin\SignV.aspx.cs">
-      <DependentUpon>SignV.aspx</DependentUpon>
+    <Compile Include="VUE\ViewMedecin\printpresc.aspx.cs">
+      <DependentUpon>printpresc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VUE\ViewMedecin\SignV.aspx.designer.cs">
-      <DependentUpon>SignV.aspx</DependentUpon>
+    <Compile Include="VUE\ViewMedecin\printpresc.aspx.designer.cs">
+      <DependentUpon>printpresc.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VUE\ViewMedecin\Prescription.aspx.cs">
-      <DependentUpon>Prescription.aspx</DependentUpon>
+    <Compile Include="VUE\ViewMedecin\rendezVous.aspx.cs">
+      <DependentUpon>rendezVous.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VUE\ViewMedecin\Prescription.aspx.designer.cs">
-      <DependentUpon>Prescription.aspx</DependentUpon>
+    <Compile Include="VUE\ViewMedecin\rendezVous.aspx.designer.cs">
+      <DependentUpon>rendezVous.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\Suividossier.aspx.cs">
+      <DependentUpon>Suividossier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\Suividossier.aspx.designer.cs">
+      <DependentUpon>Suividossier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\suividossier1.aspx.cs">
+      <DependentUpon>suividossier1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\suividossier1.aspx.designer.cs">
+      <DependentUpon>suividossier1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewPatient\ajouterrdv.aspx.cs">
+      <DependentUpon>ajouterrdv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewPatient\ajouterrdv.aspx.designer.cs">
+      <DependentUpon>ajouterrdv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewPatient\verificationrdv.aspx.cs">
+      <DependentUpon>verificationrdv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewPatient\verificationrdv.aspx.designer.cs">
+      <DependentUpon>verificationrdv.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewSecretaire\Accueil.aspx.cs">
       <DependentUpon>Accueil.aspx</DependentUpon>
@@ -770,6 +1147,20 @@
     </Compile>
     <Compile Include="VUE\ViewSecretaire\ModifierPatient.aspx.designer.cs">
       <DependentUpon>ModifierPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\plannigMedecin.aspx.cs">
+      <DependentUpon>plannigMedecin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\plannigMedecin.aspx.designer.cs">
+      <DependentUpon>plannigMedecin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\planningMedecin1.aspx.cs">
+      <DependentUpon>planningMedecin1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\planningMedecin1.aspx.designer.cs">
+      <DependentUpon>planningMedecin1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -808,7 +1199,8 @@
     <Content Include="VUE\vendors\fontawesome\fonts\fontawesome-webfont.woff" />
     <Content Include="VUE\vendors\fontawesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="VUE\vendors\fontawesome\fonts\FontAwesome.otf" />
-    <Content Include="VUE\vendors\jquery\dist\jquery.min.map" />
+    <Content Include="VUE\vendors\moment\.bower.json" />
+    <Content Include="VUE\vendors\moment\bower.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

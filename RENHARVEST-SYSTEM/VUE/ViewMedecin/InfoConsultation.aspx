@@ -25,7 +25,7 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.css" rel="stylesheet">
 </head>
-<body class="nav-md">
+<body class="nav-md" id="printttdiv" runat="server">
     <form id="form1" runat="server">
 
         <div class="container body">
@@ -52,7 +52,7 @@
             </div>
             <!-- /menu profile quick info -->
            
-             <!-- sidebar menu -->
+            <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -71,7 +71,8 @@
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
+                         <li><a href="suividossier.aspx">Suivi</a></li>
+                      <li><a href="listecons.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -79,24 +80,14 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                      
-                    </ul>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                    
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -129,7 +120,7 @@
         </div>
 
         <!-- top navigation -->
-        <div class="top_nav navbar-fixed-top">
+        <div class="top_nav navbar-fixed-top hidden-print">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -164,8 +155,8 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class=""><br/><br/>
-              <div class="pull-right">
-                  <asp:LinkButton ID="btnExportpdf" CssClass="btn btn-default" OnClick="btnExportpdf_Click" OnClientClick="window.print();" runat="server"><span><i class="fa fa-print"></i></span> Export pdf</asp:LinkButton>
+              <div class="pull-right hidden-print" >
+                  <asp:LinkButton ID="btnExportpdf" CssClass="btn btn-default" OnClick="btnExportpdf_Click" OnClientClick="Printt()" runat="server"><span><i class="fa fa-print"></i></span> Export pdf</asp:LinkButton>
               </div>
                 <div class="x_panel" id="fieldPdf" runat="server">
              <div class="page-title">
@@ -180,6 +171,7 @@
                 </div><!--end col-->
                 <div class="col-sm-10 col-md-10 py-2 px-1">
                     <h5>
+                        <strong>Nom et Prenom:</strong>
                      &nbsp; <asp:Label ID="tnomP" runat="server" Text=""></asp:Label>
                       <asp:Label ID="tprenomP" runat="server" Text=""></asp:Label>
                     </h5>
@@ -187,9 +179,13 @@
                  </div><!--end row-->
                  </div>
                  <div class="pull-right">
-                     <div class="col-md-12 col-sm-12 py-2">
+                     <div class="col-md-6 col-sm-6 py-2">
                      <label><b>D creation:</b></label>
                       <asp:Label ID="tdatecreation" runat="server" Text=""></asp:Label>
+                </div><!--end col-->
+                     <div class="col-md-6 col-sm-6 py-2">
+                     <label><b>Heure:</b></label>
+                      <asp:Label ID="lblheure" runat="server" Text=""></asp:Label>
                 </div><!--end col-->
                  </div>
               </div>
@@ -380,30 +376,14 @@
                     <div class="col-md-12 col-sm-12">
                         <div class="x_panel">
                             <h5 >Consultation</h5><br />
-                             <%--<div class="table-responsive">
-                            <asp:GridView ID="Gridconsultation" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codeMed" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
-                                <HeaderStyle BackColor="#F5F7FA" Font-Bold="True" ForeColor="black" />
-
-                                <Columns>
-                                    <asp:BoundField DataField="codePatient" HeaderText="code_Patient" ReadOnly="True" SortExpression="codeM" />
-                                    <asp:BoundField DataField="signe" HeaderText="signe" ReadOnly="True" SortExpression="signe" />
-                                    <asp:BoundField DataField="symptomes" HeaderText="symptomes" ReadOnly="True" SortExpression="symp" />
-                                    <asp:BoundField DataField="histoire" HeaderText="Histoire" SortExpression="hist" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
-                                    <asp:BoundField DataField="detail" HeaderText="Diagnostique" SortExpression="diagn" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />
-                                    <asp:BoundField DataField="comment" HeaderText="note" SortExpression="note" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
-                                    <asp:BoundField DataField="datecreated" HeaderText="creation" SortExpression="date" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
-
-                                </Columns>
-
-                            </asp:GridView>
-                        </div>--%>
+                            
                             <div class="form-group row">
                             <div class="col-md-4">
-                                 <label><strong>Code Patient:</strong></label><br />
+                                 <label><strong>Code Patient:</strong></label>
                              <asp:Label ID="lblcodepatient" runat="server" Text=""></asp:Label>
                             </div><!--end col-4-->
                             <div class="col-md-4">
-                                 <label><strong>Age:</strong></label><br />
+                                 <label><strong>Age:</strong></label>
                              <asp:Label ID="lblagep" runat="server" Text=""></asp:Label>
                             </div><!--end col-4-->
                              </div><!--end row-->
@@ -537,7 +517,18 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script type="text/javascript">
 
+        function Printt() {
+            var divcontents = document.getElementById('printttdiv').innerHTML;
+            var rada = document.getElementById('fieldPdf').innerHTML;
+
+            document.getElementById('printttdiv').innerHTML = rada;
+            window.print();
+            document.getElementById('printttdiv').innerHTML = divcontents;
+                    
+        }
+    </script>
     
 </body>
 </html>

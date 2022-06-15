@@ -92,13 +92,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         }
         void Listantecedent()
         {
-            Gridantfamille.DataSource = ant.getListeAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), "Familliaux");
+            Gridantfamille.DataSource = ant.getListeAntecedentinfo(Session["codePatien"].ToString(), Session["codeUser"].ToString(), "Familliaux", Session["datecreated"].ToString());
             Gridantfamille.DataBind();
-            Gridantpers.DataSource = ant.getListeAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), "Personnels");
+            Gridantpers.DataSource = ant.getListeAntecedentinfo(Session["codePatien"].ToString(), Session["codeUser"].ToString(), "Personnels", Session["datecreated"].ToString());
             Gridantpers.DataBind();
-            Gridhabitude.DataSource = ant.getListeAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), "Habitudes");
+            Gridhabitude.DataSource = ant.getListeAntecedentinfo(Session["codePatien"].ToString(), Session["codeUser"].ToString(), "Habitudes", Session["datecreated"].ToString());
             Gridhabitude.DataBind();
-            Gridoperation.DataSource = ant.getListeAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), "Chirurgicaux");
+            Gridoperation.DataSource = ant.getListeAntecedentinfo(Session["codePatien"].ToString(), Session["codeUser"].ToString(), "Chirurgicaux", Session["datecreated"].ToString());
             Gridoperation.DataBind();
 
         }
@@ -119,6 +119,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             lblhistoire.Text = cons.getHistoire();
             lbldiag.Text = cons.getDetail();
             lblcomment.Text = cons.getComment();
+            lblheure.Text = cons.getHeurecreated();
             lbldcreated.Text = Session["datecreated"].ToString();
         }
         void Listetraitement()

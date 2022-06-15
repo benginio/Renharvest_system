@@ -26,8 +26,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         private ControlleurTraitement traitement = new ControlleurTraitement();
         public string chcon;
         public SqlConnection con;
-        public string datecreated = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss");
-        string heure= DateTime.Now.ToString("hh:mm:ss");
+
+        public string datecreate = DateTime.Now.ToString("MM/dd/yyyy");
         string my = "";
         string age = "";
         string numT;
@@ -36,6 +36,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             if (!Page.IsPostBack)
             {
                 tdatenow.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
+                Session["heure"] = DateTime.Now.ToString("hh:mm:ss");
+                Session["dateC"] = DateTime.Now.ToString("MM/dd/yyyy");     
                 if (Session["codeUser"] != null)
                 {
                     
@@ -60,6 +62,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                     Listantfamille();
                     Listantpers();
                     ListOperation();
+                    ListSV();
                 }
                 else
                 {
@@ -103,8 +106,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             lblemail.Text = patient.getEmail();
             lbllienR.Text = patient.getLienARespon();
             lblpersR.Text = patient.getP_Respon();
-            lbldatecreated.Text = datecreated;
-            lbldateP.Text = datecreated;
+            lbldatecreated.Text = datecreate;
+            lbldateP.Text = datecreate;
             lblgps.Text = patient.getG_S();
             lblpatien.Text = Session["codePatien"].ToString();
 
@@ -182,7 +185,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                     // numOr = ord.NumOrdo();
                     numT = traitement.CodeTraitement();
                     Session["numT"] = numT;
-                    Session["dateC"] = datecreated;
+                    
                     //bool find = medecin.Recherchemedecin(Session["codeUser"].ToString());
                     for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                     {
@@ -196,7 +199,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                         drCurrentRow["quant"] = tquant.Text;
                         drCurrentRow["form"] = tform.Text;
                         drCurrentRow["createdby"] = Session["pseudo"].ToString();
-                        drCurrentRow["datecreated"] = datecreated;
+                        drCurrentRow["datecreated"] = Session["dateC"].ToString();
 
 
 
@@ -292,7 +295,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         }
         void SigneV()
         {
-            bool find = sign.RechercheSigneVpatient(Session["codePatien"].ToString(),datecreated);
+            bool find = sign.RechercheSigneVpatient(Session["codePatien"].ToString(),datecreate);
             tpoid.Text = sign.getPoids();
             ttemp.Text = sign.getTemperature();
             ttaille.Text = sign.getTaille();
@@ -426,12 +429,12 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             string typeAntecedent = "Familliaux";
             if (tallergie.Text.Equals(""))
             {
-                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, ddAntmalad.Text, null, Session["pseudo"].ToString(), datecreated);
+                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, ddAntmalad.Text, null, Session["pseudo"].ToString(), datecreate);
                 Listantfamille();
             }
             else
             {
-                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(),typeAntecedent,tallergie.Text,null, Session["pseudo"].ToString(), datecreated);
+                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(),typeAntecedent,tallergie.Text,null, Session["pseudo"].ToString(), datecreate);
                 Listantfamille();
                 tallergie.Text = "";
             }
@@ -467,21 +470,21 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             string typeAntecedent = "Personnels";
             if (!string.IsNullOrEmpty(tallergie1.Text))
             {
-                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, tallergie1.Text, null, Session["pseudo"].ToString(), datecreated);
+                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, tallergie1.Text, null, Session["pseudo"].ToString(), datecreate);
                 Listantpers();
                 tallergie1.Text = "";
                 tist.Text = "";
             }
             else if (!string.IsNullOrEmpty(tist.Text))
             {
-                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, tist.Text, null, Session["pseudo"].ToString(), datecreated);
+                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, tist.Text, null, Session["pseudo"].ToString(), datecreate);
                 Listantpers();
                 tallergie1.Text = "";
                 tist.Text = "";
             }
             else
             {
-                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, ddantpers.Text, null, Session["pseudo"].ToString(), datecreated);
+                ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, ddantpers.Text, null, Session["pseudo"].ToString(), datecreate);
                 Listantpers();
             }
         }
@@ -518,7 +521,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected void btnantoperation_Click(object sender, EventArgs e)
         {
             string typeAntecedent = "Chirurgicaux";
-            ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, ttypeoperation.Text, tdateoperation.Text, Session["pseudo"].ToString(), datecreated);
+            ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, ttypeoperation.Text, tdateoperation.Text, Session["pseudo"].ToString(), datecreate);
             ListOperation();
             ttypeoperation.Text = "";
             tdateoperation.Text = "";
@@ -540,7 +543,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected void btnhabitude_Click(object sender, EventArgs e)
         {
             string typeAntecedent = "Habitudes";
-            ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, ddhabitude.Text, null, Session["pseudo"].ToString(), datecreated);
+            ant.AjouterAntecedent(Session["codePatien"].ToString(), Session["codeUser"].ToString(), typeAntecedent, ddhabitude.Text, null, Session["pseudo"].ToString(), datecreate);
             ListHabitudes();
         }
 
@@ -566,10 +569,10 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             {
                 BulkInsertToDataBaseex();
             }
-
+            string codecons = cons.codecons();
             my = Session["codeUser"].ToString();
             bool find = medecin.Recherchemedecin(my);
-            cons.AjouterConsultation(Session["codePatien"].ToString(), Session["codeUser"].ToString(), lage.Text, thistoire.Text, tsigne.Text, tsymp.Text, ddiag.Text, tcomment.Text, Session["pseudo"].ToString(), Session["dateC"].ToString(), heure);
+            cons.AjouterConsultation(codecons,Session["codePatien"].ToString(), Session["codeUser"].ToString(), lage.Text, thistoire.Text, tsigne.Text, tsymp.Text, ddiag.Text, tcomment.Text, Session["pseudo"].ToString(), Session["dateC"].ToString(), Session["heure"].ToString());
             if (!string.IsNullOrEmpty(tdurer.Text) || !string.IsNullOrEmpty(tprevention.Text))
             {
                 numT = Session["numT"].ToString();
@@ -579,7 +582,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             
             
             Session["datecreated"] = Session["dateC"].ToString();
-            Response.Redirect("InfoConsultation.aspx");
+            Response.Redirect("printpresc.aspx");
         }
 
         protected void btnanuler_Click(object sender, EventArgs e)
@@ -587,6 +590,25 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Response.Redirect("AjouterConsultation.aspx");
         }
 
-        
+        protected void btnajouterSV_Click(object sender, EventArgs e)
+        {
+            string code = sign.CodeSigneV();
+            sign.AjouterSigneV(code, Session["codePatien"].ToString(), tpoid.Text, ttemp.Text, tta.Text, ttaille.Text, tpouls.Text, tusername.Text, datecreate); ;
+            ListSV();
+        }
+
+        void ListSV()
+        {
+            magridSign.DataSource = sign.getListSVnow1(Session["codePatien"].ToString());
+            magridSign.DataBind();
+        }
+        protected void btnannulerSV_Click(object sender, EventArgs e)
+        {
+            tpoid.Text = "";
+            ttemp.Text = "";
+            tta.Text = "";
+            ttaille.Text = "";
+            tpouls.Text = "";
+        }
     }
 }

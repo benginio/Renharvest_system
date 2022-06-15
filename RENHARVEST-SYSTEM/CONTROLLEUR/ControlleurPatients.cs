@@ -33,6 +33,10 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return patients.Codepatient(nomP, prenomP);
         }
+        public string nombrePers()
+        {
+            return patients.nbrePersonne();
+        }
         public string Age(string dateNaiss, string codePatient)
         {
             return patients.Age(codePatient, dateNaiss);
@@ -68,6 +72,11 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (patients.ListerPatientS(sexe));
         }
+        public DataSet GetListerPatientage(string age1, string age2)
+        {
+            return (patients.ListerPatientage(age1,age2));
+        }
+        
         public DataSet GetListerPatientM(string matricule)
         {
             return (patients.ListerPatientM(matricule));

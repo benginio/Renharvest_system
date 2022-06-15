@@ -16,17 +16,18 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         private ControlleurPatients patient = new ControlleurPatients();
         private ControlleurMedecin medecin = new ControlleurMedecin();
         string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
+        string dateSys = DateTime.Now.ToString("MM/dd/yyyy");
         string my = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 tdatenow.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
-                Afficher();
+                
                 if (Session["codeUser"] != null)
                 {
 
-
+                    Afficher();
                     my = Session["codeUser"].ToString();
                     bool find = medecin.Recherchemedecin(my);
                     tusername.Text = "Dr." + medecin.getPrenomP();
@@ -100,15 +101,60 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                 }
             }
         }
-
+        void Vider()
+        {
+            tmotif.Text="";
+            tdate.Text = "";
+            theure.Text = "";
+        }
         protected void btnvalider_Click(object sender, EventArgs e)
         {
-            rdv.CreerRDV(Label1.Text, Label3.Text, tmotif.Text, tdate.Text, theure.Text, tusername.Text, datecreated);
+            DateTime d = Convert.ToDateTime(tdate.Text);
+            string check = rdv.verifierrdv(Label3.Text,tdate.Text, theure.Text);
+            if (check.Equals("0"))
+            {
+
+                if (d.Date < DateTime.Now.Date)
+                {
+                    string msg1 = "Swal.fire('Oopss!','vous avez choisir une date passer!','warning')";
+                    ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg1, true);
+                }
+                else
+                {
+                    string num = rdv.Coderdv();
+                    rdv.CreerRDV(num, Label1.Text, Label3.Text, tmotif.Text, tdate.Text, theure.Text, tusername.Text, datecreated);
+                    string msg = "Swal.fire('Sucess!','Enregistrement  reusir!','success')";
+                    ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
+                    Afficher();
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "viewprof1()", true);
+                    Vider();
+                }
+            }
+            else
+            {
+                string msg2 = "Swal.fire('Oopss!','Vous avez deja une RDV a cette Date!','warning')";
+                ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg2, true);
+            }
         }
 
         protected void btnliste_Click(object sender, EventArgs e)
         {
             Response.Redirect("AjouterRDV.aspx");
+        }
+
+        protected void btnannuler_Click(object sender, EventArgs e)
+        {
+            tmotif.Text = "";
+            tdate.Text = "";
+            Response.Redirect("AjouterRDV.aspx");
+        }
+
+        protected void btnlogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Response.Redirect("../Login.aspx");
         }
     }
 }

@@ -137,3 +137,14 @@ C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\obj\Debug\RdlCo
 C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\obj\Debug\RdlCompile.compiled
 C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\itextsharp.dll
 C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\itextsharp.pdfa.dll
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\Newtonsoft.Json.dll
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\Stripe.net.dll
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\Newtonsoft.Json.xml
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\Stripe.net.pdb
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\Stripe.net.xml
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\DHaiti\source\repos\RENHARVEST-SYSTEM\RENHARVEST-SYSTEM\bin\System.Threading.Tasks.Extensions.xml

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
+using System.Linq;
+using System.Web;
 using RENHARVEST_SYSTEM.CONTROLLEUR;
 using RENHARVEST_SYSTEM.MODELE;
 using RENHARVEST_SYSTEM.VUE;
@@ -15,6 +15,7 @@ namespace RENHARVEST_SYSTEM.MODELE
     {
         string chcon = ConfigurationManager.ConnectionStrings["DBCONNECT"].ConnectionString;
         private DataSet data;
+        private string codecons;
         private string codepatient;
         private string codemedecin;
         //private string motif;
@@ -28,8 +29,9 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string datecreated;
         private string heurecreated;
 
-        public ModeleConsultation(string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated, string heurecreated)
+        public ModeleConsultation(string codecons, string codepatient, string codemedecin, string age, string signe, string symptomes, string histoire, string detail, string comment, string createdby, string datecreated, string heurecreated)
         {
+            this.codecons = codecons;
             this.codepatient = codepatient;
             this.codemedecin = codemedecin;
             //this.motif = motif;
@@ -44,9 +46,14 @@ namespace RENHARVEST_SYSTEM.MODELE
             this.heurecreated = heurecreated;
         }
 
-        public ModeleConsultation(): this(null,  null, null, null, null, null, null, null, null, null, null) 
+        public ModeleConsultation() : this(null,null, null, null, null, null, null, null, null, null, null, null)
         { }
 
+        public string Codecons
+        {
+            get { return this.codecons; }
+            set { this.codecons = value; }
+        }
         public string Codepatient
         {
             get { return this.codepatient; }
@@ -85,7 +92,7 @@ namespace RENHARVEST_SYSTEM.MODELE
         }
 
         public string Detail
-        { 
+        {
             get { return this.detail; }
             set { this.detail = value; }
         }
@@ -113,29 +120,51 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public void AjouterConsultation()
         {
-            string Req = string.Format("INSERT INTO tbconsultation VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", codepatient, codemedecin, age, signe, symptomes, histoire, detail, comment, createdby, datecreated, heurecreated);
+            string Req = string.Format("INSERT INTO tbconsultation VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')",codecons, codepatient, codemedecin, age, signe, symptomes, histoire, detail, comment, createdby, datecreated, heurecreated);
             SqlConnection con = new SqlConnection(chcon);
-            SqlCommand cmd= null;
+            SqlCommand cmd = null;
 
             con.Open();
             cmd = new SqlCommand(Req, con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public DataSet ListerConsultationPM(string codepatient, string codemedecin)
+        public string Codeconsu()
+        {
+            string nombrecons;
+            string codecons;
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbconsultation", con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombrecons = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombrecons = "0";
+            }
+            con.Close();
+
+            codecons = "00"+ nombrecons;
+            return codecons;
+        }
+        public DataSet ListerConsultationPaMe(string codepatient, string codemedecin)
         {
             SqlDataAdapter adapter;
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_consultation WHERE codePatient='{0}' AND codemedecin='{1}' ", codepatient, codemedecin);
+            string command = string.Format("SELECT * FROM tbconsultation WHERE codePatient='{0}' AND codemedecin='{1}' ", codepatient, codemedecin);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
             SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
             data = new DataSet();
 
-            adapter.Fill(data, "V_consultation");
+            adapter.Fill(data, "tbconsultation");
             con.Close();
 
             return data;
@@ -146,14 +175,14 @@ namespace RENHARVEST_SYSTEM.MODELE
             SqlConnection con;
 
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_consultation WHERE codemedecin='{0}' ", codemedecin);
+            string command = string.Format("SELECT * FROM tbconsultation WHERE codemedecin='{0}' ORDER BY datecreated DESC ", codemedecin);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
             SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
             data = new DataSet();
 
-            adapter.Fill(data, "V_consultation");
+            adapter.Fill(data, "tbconsultation");
             con.Close();
 
             return data;
@@ -194,6 +223,24 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
+        public DataSet compConsult()
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT codeMalad, nomMalad, COUNT(*) 'nbr fois' FROM tbconsultation,tbmaladie where tbmaladie.codeMalad = tbconsultation.detail GROUP BY codeMalad, nomMalad");
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "tbconsultation, tbtbmaladie");
+            con.Close();
+
+            return data;
+        }
 
         public bool RechercheConsultationD(string codepatient, string codemedecin, string datecreated)
         {
@@ -206,30 +253,30 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             //try
             //{
-                con.Open();
-                cmd = new SqlCommand(chReq, con);
-                SqlDataReader reader = cmd.ExecuteReader();
+            con.Open();
+            cmd = new SqlCommand(chReq, con);
+            SqlDataReader reader = cmd.ExecuteReader();
 
-                if (reader.Read())
-                {
-                    string id = reader[0].ToString();
-                    codepatient = reader[1].ToString();
-                    codemedecin = reader[2].ToString();
-                    age = reader[3].ToString();
-                    signe = reader[4].ToString();
-                    symptomes = reader[5].ToString();
-                    histoire = reader[6].ToString();
-                    detail = reader[7].ToString();
-                    comment = reader[8].ToString();
-                    createdby = reader[9].ToString();
-                    datecreated = reader[10].ToString();
-                     heurecreated = reader[11].ToString();
+            if (reader.Read())
+            {
+                codecons = reader[0].ToString();
+                codepatient = reader[1].ToString();
+                codemedecin = reader[2].ToString();
+                age = reader[3].ToString();
+                signe = reader[4].ToString();
+                symptomes = reader[5].ToString();
+                histoire = reader[6].ToString();
+                detail = reader[7].ToString();
+                comment = reader[8].ToString();
+                createdby = reader[9].ToString();
+                datecreated = reader[10].ToString();
+                heurecreated = reader[11].ToString();
                 trouve = true;
-                }
+            }
 
-                reader.Close();
-                con.Close();
-                return trouve;
+            reader.Close();
+            con.Close();
+            return trouve;
             //}
             //catch (Exception)
             //{
@@ -237,10 +284,29 @@ namespace RENHARVEST_SYSTEM.MODELE
             //}
 
         }
+        public string nbrConstoDay(string codemedecin)
+        {
+            string nombreCon;
+            string nbrtoday;
+            string Req = string.Format("SELECT COUNT(*) FROM tbconsultation WHERE  codemedecin='{0}' AND datecreated=CONVERT(DATE,GETDATE())", codemedecin);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
 
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreCon = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreCon = "0";
+            }
+            con.Close();
 
-
-
+            nbrtoday = nombreCon;
+            return nbrtoday;
+        }
 
 
     }

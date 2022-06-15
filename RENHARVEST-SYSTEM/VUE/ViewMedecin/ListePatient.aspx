@@ -59,7 +59,7 @@
             </div>
             <!-- /menu profile quick info -->
            
-             <!-- sidebar menu -->
+            <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -78,7 +78,8 @@
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
+                         <li><a href="suividossier.aspx">Suivi</a></li>
+                      <li><a href="listecons.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -86,24 +87,14 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                      
-                    </ul>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                    
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -115,9 +106,9 @@
                 </ul>
               </div><!--menu-section-->
              
+
             </div>
             <!-- /sidebar menu -->
-
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
@@ -252,15 +243,18 @@
                               </div>
                   </div>
                 </div>
+                  </div>
               <div class="row" id="export" runat="server">
                 <div class="x_panel col-lg-12">
+                        <div class="x_title">
+                    
+                        </div>
                     <div class="x_content">
-                        <div class="table-responsive" >
-                            <asp:UpdatePanel runat="server"><ContentTemplate>
-                        <asp:GridView ID="magride" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codepers" EmptyDataText="Pas info a afficher." >
-                            <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White"/>
+                        <div class="table-responsive">
+                        <asp:GridView ID="magride" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codepers" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                            <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
 
-                            <Columns>  
+                            <Columns> 
                                 <asp:BoundField DataField="codepers" HeaderText="codePatient" ReadOnly="True" SortExpression="codePatient" />  
                                 <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                 <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
@@ -279,14 +273,16 @@
                              </Columns> 
 
                         </asp:GridView>
-                        </ContentTemplate></asp:UpdatePanel>
-                        </div>
+                        
+                        
                     </div>
+                    
                 </div>
              </div>
-
+                 <%-- </ContentTemplate></asp:UpdatePanel>--%>
           </div>
-        </div>
+        </div> <!-- clSS -->
+            </div>
         <!-- /page content -->
 
         <!-- footer content -->

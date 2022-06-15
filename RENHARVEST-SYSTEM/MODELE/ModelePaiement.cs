@@ -15,7 +15,9 @@ namespace RENHARVEST_SYSTEM.MODELE
     {
         string chcon = ConfigurationManager.ConnectionStrings["DBCONNECT"].ConnectionString;
         private DataSet data;
+        private string codePaiement;
         private string codepatient;
+        private string codeService;
         private string montantA;
         private string montantP;
         private string balance;
@@ -23,9 +25,11 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string createdby;
         private string datecreated;
 
-        public ModelePaiement(string codepatient, string montantA, string montantP, string balance, string modeP, string createdby, string datecreated)
+        public ModelePaiement(string codePaiement, string codepatient, string codeService, string montantA, string montantP, string balance, string modeP, string createdby, string datecreated)
         {
+            this.codePaiement = codePaiement;
             this.codepatient = codepatient;
+            this.codeService = codeService;
             this.montantA = montantA;
             this.montantP = montantP;
             this.balance = balance;
@@ -34,13 +38,22 @@ namespace RENHARVEST_SYSTEM.MODELE
             this.datecreated = datecreated;
         }
 
-        public ModelePaiement() :this(null,null,null, null, null, null, null)
+        public ModelePaiement() :this(null, null, null, null,null, null, null, null, null)
         { }
-
+        public string CodePaiement
+        {
+            get { return this.codePaiement; }
+            set { this.codePaiement = value; }
+        }
         public string Codepatient
         {
             get { return this.codepatient; }
             set { this.codepatient = value; }
+        }
+        public string CodeService
+        {
+            get { return this.codeService; }
+            set { this.codeService = value; }
         }
         public string MontantA
         {
@@ -77,22 +90,43 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public void AjouterPaiement()
         {
-            string typeAction = "Insertion";
-            string req = string.Format("INSERT INTO tbpaiement VALUES ('{0}','{1)','{2}','{3}','{4}','{5}','{6}')", codepatient, montantA, montantP, balance, modeP, createdby, datecreated);
-            string req1 = string.Format("INSERT INTO tbhisPaiement VALUES ('{0}','{1)','{2}','{3}','{4}','{5}','{6}','{7}')", codepatient, montantA, montantP, balance, modeP, typeAction, createdby, datecreated);
+            //string typeAction = "Insertion";
+            string req = string.Format("INSERT INTO tbpaiement VALUES ('{0}','{1)','{2}','{3}','{4}','{5}','{6}','{7}','{8}')",codePaiement, codepatient, codeService, montantA, montantP, balance, modeP, createdby, datecreated);
+            //string req1 = string.Format("INSERT INTO tbhisPaiement VALUES ('{0}','{1)','{2}','{3}','{4}','{5}','{6}','{7}')", codepatient, montantA, montantP, balance, modeP, typeAction, createdby, datecreated);
 
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = null;
-            SqlCommand cmd1 = null;
+            //SqlCommand cmd1 = null;
 
             con.Open();
             cmd = new SqlCommand(req, con);
             cmd.ExecuteNonQuery();
-            cmd1 = new SqlCommand(req, con);
-            cmd1.ExecuteNonQuery();
+            //cmd1 = new SqlCommand(req, con);
+            //cmd1.ExecuteNonQuery();
             con.Close();
         }
+        public string NumPaiement()
+        {
+            string nombrePaiement;
+            string codePaie;
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbpaiement", con);
 
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombrePaiement = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombrePaiement = "0";
+            }
+            con.Close();
+
+            codePaie = "P" + nombrePaiement;
+            return codePaie;
+        }
         public bool RecherchePaiement(string id)
         {
             string chReq = string.Format("SELECT * FROM tbpaiement WHERE  codesigneV='{0}'", id);

@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Accueil.aspx.cs" Inherits="RENHARVEST_SYSTEM.VUE.ViewCaissier.Accueil" %>
 
 <!DOCTYPE html>
-
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -59,7 +59,7 @@
                   
                   <li><a><i class="fa fa-money"></i> Paiement <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                     <li><a href="AjouterPaiement.aspx">Ajouter</a></li>
+                     <li><a href="ajouterPaiement.aspx">Ajouter</a></li>
                       <li><a href="ModifierPaiement.aspx">Modifier</a></li>
                       <li><a href="ListePaiement.aspx">Lister</a></li>
                     </ul>
@@ -143,6 +143,53 @@
                 <h5> Accueil |</h5>
               </div>
             </div>
+                <!-- Info boxes -->
+        <div class="row">
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-green elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Nombre Rendez-vous</span>
+                <span class="info-box-number">
+                    <asp:Label ID="nbrRDV" runat="server" Text=""></asp:Label>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-pam elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Patient present</span>
+                <span class="info-box-number">5</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          
+          <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Consultation effectuer</span>
+                <span class="info-box-number">2</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+        </div>
+        <!-- /.row -->
           
              
 

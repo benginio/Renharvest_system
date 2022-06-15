@@ -294,7 +294,11 @@
 
                 
           </div>
-             </ContentTemplate></asp:UpdatePanel>
+             </ContentTemplate>
+                           <Triggers>
+                             <asp:AsyncPostBackTrigger ControlID="btnvalider" EventName="click" />
+                         </Triggers>
+             </asp:UpdatePanel>
         </div>
         <!-- /page content -->
 
@@ -362,7 +366,11 @@
                 </div>
 
                     </div>
-                    </ContentTemplate></asp:UpdatePanel>
+                    </ContentTemplate>
+                         <Triggers>
+                             <asp:AsyncPostBackTrigger ControlID="btnvalider" EventName="click" />
+                         </Triggers>
+                     </asp:UpdatePanel>
                 </div>
                 <!-- /page content -->
 

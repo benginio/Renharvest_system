@@ -33,7 +33,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="Default.html" class="site_title"><i class="fa fa-stethoscope"></i> <span>RenHarvest</span></a>
+              <a href="Default.aspx" class="site_title"><i class="fa fa-stethoscope"></i> <span>RenHarvest</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -71,7 +71,8 @@
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
+                         <li><a href="suividossier.aspx">Suivi</a></li>
+                      <li><a href="listecons.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -79,24 +80,14 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                      
-                    </ul>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                    
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -194,7 +185,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Patient present</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-number">10</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -208,7 +199,9 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Consultation effectuer</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-number">
+                    <asp:Label ID="tConstoday" runat="server" Text=""></asp:Label>
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -216,19 +209,7 @@
           </div>
           <!-- /.col -->
 
-          <div class=" col-sm-3 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
-                <span class="info-box-number">2,000</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
+          
         </div>
         <!-- /.row -->
         <div class="x_panel">
@@ -236,7 +217,7 @@
                 <h5>Liste Rendez-vous D'aujourd'hui</h5>
             </div>
             <div class="table-responsive">
-                        <asp:GridView ID="gridlistRDV" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="nomP" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                        <asp:GridView ID="gridlistRDV" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="nomP" EmptyDataText="Pas de rendez-vous aujourd'huit!." OnSelectedIndexChanged="Page_Load">
                             <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
 
                             <Columns>  

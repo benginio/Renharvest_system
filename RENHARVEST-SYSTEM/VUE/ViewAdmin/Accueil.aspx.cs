@@ -4,12 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using RENHARVEST_SYSTEM.CONTROLLEUR;
+using RENHARVEST_SYSTEM.MODELE;
+using RENHARVEST_SYSTEM.VUE;
 
 namespace RENHARVEST_SYSTEM.VUE
 {
     public partial class Accueil : System.Web.UI.Page
     {
         private Login log = new Login();
+        private  ControlleurPatients patient = new ControlleurPatients();
+
         string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +25,8 @@ namespace RENHARVEST_SYSTEM.VUE
                 {
                     tusername.Text = Session["pseudo"].ToString();
                     Username1.Text = Session["pseudo"].ToString();
+
+                    nbrPers.Text = patient.nombrePers();
                 }
                 else
                 {

@@ -13,6 +13,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
     public partial class Accueil : System.Web.UI.Page
     {
         private ControlleurRDV rdv = new ControlleurRDV();
+        private ControlleurConsultation cons = new ControlleurConsultation();
         private ControlleurMedecin medecin = new ControlleurMedecin();
         private Login log = new Login();
         string dateN= DateTime.Now.ToString("yyyy/mm/dd");
@@ -35,6 +36,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
                     ListRDVnow();
                     nbrRDV.Text = rdv.nbrRDVtoDay(my);
+                    tConstoday.Text = cons.nbrConsToday(my);
                 }
                 else
                 {

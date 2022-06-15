@@ -24,8 +24,9 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string createdby;
         private string datecreated;
 
-        public ModeleRDV(string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
+        public ModeleRDV(string num, string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
         {
+            this.num = num;
             this.codePatient = codePatient;
             this.codeMedecin = codeMedecin;
             this.motifRDV = motifRDV;
@@ -35,9 +36,14 @@ namespace RENHARVEST_SYSTEM.MODELE
             this.datecreated = datecreated;
         }
 
-        public ModeleRDV():this(null,null, null, null, null, null, null) 
+        public ModeleRDV():this(null,null,null, null, null, null, null, null) 
         { }
 
+        public string Num
+        {
+            get { return this.num; }
+            set { this.num = value; }
+        }
         public string CodePatient
         {
             get { return this.codePatient; }
@@ -46,8 +52,8 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public string CodeMedecin
         {
-            get { return this.CodeMedecin; }
-            set { this.CodeMedecin = value; }
+            get { return this.codeMedecin; }
+            set { this.codeMedecin = value; }
         }
         public string MotifRDV
         {
@@ -78,11 +84,32 @@ namespace RENHARVEST_SYSTEM.MODELE
             get { return this.datecreated; }
             set { this.datecreated = value; }
         }
+        public string numrdv()
+        {
+            string nombrePatient;
+            string codePatient;
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbrendez_vous", con);
 
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombrePatient = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombrePatient = "0";
+            }
+            con.Close();
+
+            codePatient = "00" + nombrePatient;
+            return codePatient;
+        }
         public void CreerRDV()
         {
            // string typeAction = "Insertion";
-            string req = string.Format("INSERT INTO tbrendez_vous VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
+            string req = string.Format("INSERT INTO tbrendez_vous VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", num, codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
            // string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, date, heure, typeAction, createdby, datecreated);
 
             SqlConnection con = new SqlConnection(chcon);
@@ -99,9 +126,9 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public void ModifierRDV()
         {
-            string typeAction = "Modification";
-            string Req = string.Format("UPDATE tbrendez_vous SET codeMedecin='{1}', motifRDV='{2}',date='{3}', heure='{4}',createby='{5}' where codepers='{0}'",num, codeMedecin, motifRDV, date, heure, createdby);
-            string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, date, heure, typeAction, createdby, datecreated);
+            //string typeAction = "Modification";
+            string Req = string.Format("UPDATE tbrendez_vous SET codeMedecin='{1}', motifRDV='{2}',daterdv='{3}', heure='{4}' where id='{0}'",num, codeMedecin, motifRDV, date, heure);
+            //string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, date, heure, typeAction, createdby, datecreated);
 
             SqlConnection con = new SqlConnection(chcon);
 
@@ -110,6 +137,67 @@ namespace RENHARVEST_SYSTEM.MODELE
             SqlCommand cmd = new SqlCommand(Req, con);
             cmd.ExecuteNonQuery();
             con.Close();
+        }
+        public string verifierrdv(string codeMedecin, string date, string heure)
+        {
+            string nombrePatient;
+            string codePatient;
+            string Req = string.Format("SELECT COUNT(*) FROM tbrendez_vous WHERE codeMedecin='{0}' AND daterdv='{1}' AND heure='{2}'",codeMedecin,date,heure);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombrePatient = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombrePatient = "0";
+            }
+            con.Close();
+
+            codePatient =nombrePatient;
+            return codePatient;
+        }
+        public bool Rechercherrdv(string num)
+        {
+            string chReq = string.Format("SELECT * FROM tbrendez_vous WHERE  id='{0}'", num);
+
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = null;
+
+            bool trouve = false;
+
+            //try
+            //{
+            con.Open();
+            cmd = new SqlCommand(chReq, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                num = reader[0].ToString();
+                codePatient= reader[1].ToString();
+                codeMedecin = reader[2].ToString();
+                motifRDV = reader[3].ToString();
+                date = reader[4].ToString();
+                heure = reader[5].ToString();
+                createdby = reader[6].ToString();
+                datecreated = reader[7].ToString();
+                trouve = true;
+            }
+
+            reader.Close();
+            con.Close();
+            return trouve;
+            //  }
+            // catch (Exception)
+            // {
+            //     return trouve;
+            //}
+
         }
         public void AnnulerRDV(string codePatient, string codeMedecin, string createdby, string datecreated)
         {
@@ -167,6 +255,29 @@ namespace RENHARVEST_SYSTEM.MODELE
             nbrtoday =  nombreRDV;
             return nbrtoday;
         }
+        public string nbrRDVtoDay1()
+        {
+            string nombreRDV;
+            string nbrtoday;
+            string Req = string.Format("SELECT COUNT(*) FROM V_listeRDV WHERE daterdv=CONVERT(DATE, GETDATE())");
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreRDV = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreRDV = "0";
+            }
+            con.Close();
+
+            nbrtoday = nombreRDV;
+            return nbrtoday;
+        }
         public DataSet ListerRDV1(string codePatient, string codeMedecin)
         {
             SqlDataAdapter adapter;
@@ -210,6 +321,78 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             con = new SqlConnection(chcon);
             string command = string.Format("SELECT * FROM V_listeRDV where codeMedecin='{0}' ", codeMedecin);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVN(string nom, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where nomP='{0}' AND codeMedecin='{1}'", nom, codeMedecin);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVP(string prenom, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where prenomP='{0}' AND codeMedecin='{1}'", prenom, codeMedecin);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVD(string date, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where daterdv='{0}' AND codeMedecin='{1}'", date, codeMedecin);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVI(string id, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where id='{0}' AND codemedecin='{1}'", id, codeMedecin);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);

@@ -15,6 +15,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
     {
 
         /// <summary>
+        /// printttdiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl printttdiv;
+
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label tdatecreation;
+
+        /// <summary>
+        /// lblheure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblheure;
 
         /// <summary>
         /// tsexe control.

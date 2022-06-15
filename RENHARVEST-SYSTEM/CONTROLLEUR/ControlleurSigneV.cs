@@ -40,6 +40,7 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (sign.ListerSigneV());
         }
+
         public bool RechercheSigneVpatient(string codePatient, string datecreated)
         {
             return (sign.RechercheSigneVPatient(codePatient, datecreated));
@@ -47,6 +48,14 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         public bool RechercheSigneV(string code)
         {
             return (sign.RechercheSigneV(code));
+        }
+        public DataSet getListSVnow(string code, string datecreated)
+        {
+            return (sign.ListerSVnow(code, datecreated));
+        }
+        public DataSet getListSVnow1(string code)
+        {
+            return (sign.ListerSVnow1(code));
         }
         public DataSet GetListerSigne(string codePatient)
         {

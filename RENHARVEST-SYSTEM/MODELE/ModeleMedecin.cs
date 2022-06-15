@@ -390,6 +390,24 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
+        public DataSet ListerMedecinS(string special)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeMedecin where specialisation='{0}'", special);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeMedecin");
+            con.Close();
+
+            return data;
+        }
 
         public DataSet ListerMedecinM(string matricule)
         {

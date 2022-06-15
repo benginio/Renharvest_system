@@ -19,6 +19,9 @@
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="../build/css/sweetalert2.min.css" rel="stylesheet" />
+      <script type="text/javascript" src="../build/js/sweetalert2.js"></script>
+    
     <!-- jQuery custom content scroller -->
     <link href="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
     <!--pop for validation-->
@@ -28,8 +31,8 @@
   </head>
 
 <body class="nav-md">
-    <form id="form1" runat="server">
-        
+    <form id="form1" runat="server" class="needs-validation" novalidate>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -75,7 +78,8 @@
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
+                         <li><a href="suividossier.aspx">Suivi</a></li>
+                      <li><a href="listecons.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -83,24 +87,14 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                      
-                    </ul>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                    
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -178,72 +172,85 @@
 
             <div class="row">
               
-                <div class="x_panel col-md-12">
+                <div class="x_panel col-md-12" style="background: url('../build/images/bgform3.png');">
                   <div class="x_title">
                     <div class="form-group row">
-                      <div class="col-md-5 col-sm-5">
-                          <asp:TextBox ID="tcodep" class="form-control" placeholder="Code Patient..."  runat="server" Enabled="False"></asp:TextBox>
+                      <div class="col-md-4 col-sm-4">
+                          <asp:Label ID="tcodep" runat="server" Text=""></asp:Label>
                         </div> 
                         </div>
                   </div>
                   <div class="x_content">
                     <div class="form-horizontal form-label-left">
                       <div class="form-group row">
-                        <div class="col-md-4 col-sm-4">
-                          <label>Nom</label>
-                            <asp:TextBox ID="tnomp" class="form-control" placeholder="" runat="server"></asp:TextBox>
-                          
-                          </div>
-                          <div class="col-md-4 col-sm-4">
-                            <label>Prenom</label>
-                              <asp:TextBox ID="tprenomp" class="form-control" runat="server"></asp:TextBox>
+                        <div class="col-sm-4 col-md-4">
+                        <label for="firstName" class="form-label">Nom</label>
+                        <asp:TextBox ID="tnomp" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
+                        <div class="invalid-feedback">
+                            Verifier cette champs
                             </div>
-                            <div class="col-md-4 col-sm-4">
-                              <label>Sexe</label>
+                        </div>
+                       
+                          <div class="col-sm-4 col-md-4">
+                            <label for="LastName" class="form-label">Prenom</label>
+                              <asp:TextBox ID="tprenomp" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
+                              <div class="invalid-feedback">
+                            Verifier cette champs
+                            </div>
+                            </div>
+
+                           <div class="col-md-4 col-sm-4">
+                              <label for="Sexe" class="form-label">Sexe</label>
                                 <asp:DropDownList ID="ddsexe" class="form-control" runat="server" style="width: 100%;">
+                                    <asp:ListItem Selected="False">--Choisir--</asp:ListItem>
                                     <asp:ListItem>Masculin</asp:ListItem>
                                     <asp:ListItem>Feminin</asp:ListItem>
                                     <asp:ListItem>Autre</asp:ListItem>
                                 </asp:DropDownList>
+                                <div class="invalid-feedback">
+                                    Verifier cette champs
+                            </div>
                               </div>
+                            
                       </div>
 
                       <div class="form-group row">
+                         
                         <div class="col-md-4 col-sm-4">
                           <label>Date Naissance</label>
                             <asp:TextBox ID="tdatenaiss" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required"  onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" runat="server"></asp:TextBox>
 												<script>
-													function timeFunctionLong(TextBox ) {
-														setTimeout(function(input) {
-															input.type = 'text';
-														}, 60000);
-													}
+                                                    function timeFunctionLong(TextBox) {
+                                                        setTimeout(function (input) {
+                                                            input.type = 'text';
+                                                        }, 60000);
+                                                    }
                                                 </script>
                           </div>
                           <div class="col-md-4 col-sm-4">
                             <label>Adresse</label>
-                              <asp:TextBox ID="tadresse" TextMode="MultiLine" class="form-control" placeholder="" Rows="1" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="tadresse" TextMode="MultiLine" class="form-control" placeholder="" Rows="1" runat="server" required="required"></asp:TextBox>
                             </div>
                             <div class="col-md-4 col-sm-4">
                               <label>Telephone</label>
-                                <asp:TextBox ID="tphone" TextMode="Phone" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tphone" TextMode="Phone" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                               </div>
                       </div>
 
                       <div class="form-group row">
                         <div class="col-md-4 col-sm-4">
                           <label>Email</label>
-                            <asp:TextBox ID="temail" TextMode="Email" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="temail" TextMode="Email" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                           </div>
 
                            <div class="col-md-4 col-sm-4">
                               <label>Matricule</label>
-                                <asp:TextBox ID="tmatricule" TextMode="Number" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tmatricule"  class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                               </div>
 
                           <div class="col-md-4 col-sm-4">
                             <label>Profession</label>
-                              <asp:TextBox ID="tjob" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                              <asp:TextBox ID="tjob" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                             </div>
                            
                       </div>
@@ -251,7 +258,8 @@
                       <div class="form-group row">
                             <div class="col-md-4 col-sm-4">
                               <label>Groupe Sanguin</label>
-                                <asp:DropDownList ID="ddg_s" class="form-control" placeholder="" runat="server">
+                                <asp:DropDownList ID="ddg_s" class="form-control" placeholder="" runat="server" required="required">
+                                    <asp:ListItem Selected="False"></asp:ListItem>
                                     <asp:ListItem>O+</asp:ListItem>
                                     <asp:ListItem>O-</asp:ListItem>
                                     <asp:ListItem>AB</asp:ListItem>
@@ -263,11 +271,12 @@
 
                         <div class="col-md-4 col-sm-4">
                           <label>Personne Responsable</label>
-                            <asp:TextBox ID="tp_respon" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tp_respon" class="form-control" placeholder="" runat="server" required="required"></asp:TextBox>
                           </div>
                           <div class="col-md-4 col-sm-4">
                             <label>Lien A P. Responsable</label>
-                              <asp:DropDownList ID="ddlienp" class="form-control"  runat="server" style="width: 100%;">
+                              <asp:DropDownList ID="ddlienp" class="form-control"  runat="server" required="required" style="width: 100%;">
+                                  <asp:ListItem></asp:ListItem>
                                   <asp:ListItem>Mere</asp:ListItem>
                                     <asp:ListItem>Pere</asp:ListItem>
                                     <asp:ListItem>Frere</asp:ListItem>
@@ -281,14 +290,14 @@
                                     <asp:ListItem>Amis</asp:ListItem>
                               </asp:DropDownList>
                             </div>
+
                           
                       </div>
 
                       <div class="form-group row">
                         <div class="col-md-9 col-sm-9  offset-md-4">
-                            <asp:Button ID="btnvalider" class="btn btn-success " runat="server" Text="Enregistrer.." OnClick="btnvalider_Click" />
-                            <asp:Button ID="btnannuler" class="btn btn-pam" runat="server" Text="Annuler" />
-
+                            <asp:Button ID="btnvalider" class="btn btn-success" type="submit" runat="server" Text="Enregistrer" OnClick="btnvalider_Click" />
+                            <asp:Button ID="btnannuler" class="btn btn-default" BorderColor="#29458D" OnClick="btnannuler_Click" runat="server" Text="Annuler" />
                         </div>
                       </div>
   
@@ -322,53 +331,12 @@
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
-    sweetalert2.min.js
     <!-- jQuery custom content scroller -->
     <script src="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-    <script src="../build/js/sweetalert2.min.js"></script>
-    <script>
-        $(function () {
-            var Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            $(function swalDefaultSuccess() {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Enregistrement reussi!!! '
-                })
-            });
-            $('.swalDefaultInfo').click(function () {
-                Toast.fire({
-                    icon: 'info',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-                })
-            });
-            $('.swalDefaultError').click(function () {
-                Toast.fire({
-                    icon: 'error',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-                })
-            });
-            $('.swalDefaultWarning').click(function () {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-                })
-            });
-            $('.swalDefaultQuestion').click(function () {
-                Toast.fire({
-                    icon: 'question',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-                })
-            });
-        });
-    </script>
+    <script src="../build/js/validation.js"></script>
+    
   </body>
 </html>

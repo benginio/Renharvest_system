@@ -64,11 +64,11 @@
             </div>
             <!-- /menu profile quick info -->
            
-             <!-- sidebar menu -->
+            <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
-               <ul class="nav side-menu">
+                <ul class="nav side-menu">
                   
                   <li><a><i class="fa fa-user"></i> Patients <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -83,7 +83,8 @@
                   <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
+                         <li><a href="suividossier.aspx">Suivi</a></li>
+                      <li><a href="listecons.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -91,24 +92,14 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
-                      
-                    </ul>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                    
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -667,14 +658,14 @@
                             <HeaderStyle BackColor="#F5F7FA" Font-Bold="True" ForeColor="black" />
 
                             <Columns>  
-                                            <asp:BoundField DataField="codesigneV" HeaderText="code" ReadOnly="True" SortExpression="code" />  
-                                            <asp:BoundField DataField="poids" HeaderText="Pds(Kg)" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
-                                            <asp:BoundField DataField="Temperature" HeaderText="temp(C°)" SortExpression="Sexe" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />  
-                                            <asp:BoundField DataField="tensionA" HeaderText="TA(mm/Hg)" SortExpression="TA" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="taille" HeaderText="Taille(m)" SortExpression="taille" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-                                            <asp:BoundField DataField="pouls" HeaderText="Pouls" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-                                            <asp:BoundField DataField="createdby" HeaderText="createdby" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-                                            <asp:BoundField DataField="datecreated" HeaderText="datecreated" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" /> 
+                                <asp:BoundField DataField="codesigneV" HeaderText="code" ReadOnly="True" SortExpression="code" />  
+                                <asp:BoundField DataField="poids" HeaderText="Pds(Kg)" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
+                                <asp:BoundField DataField="Temperature" HeaderText="temp(C°)" SortExpression="Sexe" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />  
+                                <asp:BoundField DataField="tensionA" HeaderText="TA(mm/Hg)" SortExpression="TA" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="taille" HeaderText="Taille(m)" SortExpression="taille" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                                <asp:BoundField DataField="pouls" HeaderText="Pouls" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                                <asp:BoundField DataField="createdby" HeaderText="createdby" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                                <asp:BoundField DataField="datecreated" HeaderText="datecreated" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" /> 
                                            
                              </Columns> 
 
@@ -682,13 +673,13 @@
                                    </div>
                                   </div>
                                        <div class="form-group row">
-                        <div class="col-md-4 col-sm-4 offset-8">
+                        <div class="col-md-4 col-sm-4 offset-10">
                             <a class="btn btn-pam"  onclick="menu3()" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false" ><span><i class="fa fa-arrow-circle-o-right"></i></span> Suivant<a>
                           </div>
                           </div><!--end row-->
                              
                                   </ContentTemplate></asp:UpdatePanel>
-                                </div><!--end col10-->
+                                </div><!--end col12-->
 
                                   <div class="col-sm-12 col-md-12 pag" id="SVadd">
                                       <asp:UpdatePanel runat="server"><ContentTemplate>
@@ -725,6 +716,14 @@
                                                     <asp:TextBox ID="tpouls" runat="server" class="form-control" ></asp:TextBox>
                                                 </div>
                                         </div>
+                                          <div class="form-group row">
+                                             <div class="col-md-4 col-sm-4 offset-4">
+                                         <asp:LinkButton ID="btnaddSV" CssClass="btn btn-pam" runat="server" OnClientClick="menu2()" OnClick="btnajouterSV_Click">Enregistrer</asp:LinkButton>
+                                          </div> 
+                                              <div class="form-group row">
+                                              <asp:LinkButton ID="btnannulerSV" CssClass="btn btn-default" runat="server" OnClick="btnannulerSV_Click" BorderColor="#29458D">Annuler</asp:LinkButton>
+                                              </div>
+                                          </div>
                                           </ContentTemplate></asp:UpdatePanel>
                                       </div><!--end col10-->
 
@@ -771,10 +770,6 @@
                                             </asp:GridView>
                                                  </div>
                                             </div><!--end row-->
-                                 <div class="row">
-                                     <h5>Examen Physique</h5>
-
-                                 </div><!--end row-->
                                  <div class="form-group row">
                                   <div class="col-md-4 col-sm-4 offset-6">
                             
@@ -793,7 +788,6 @@
                                         <div class="col-md-8 col-sm-7 offset-1">
                                             <label for="inputname">Diagnostique*</label>
                                             <asp:DropDownList ID="ddiag" runat="server" class="form-control" >
-                                                
                                             </asp:DropDownList>
 
                                         </div>
@@ -840,7 +834,7 @@
                                 </div>
                                     <div class="form-group row ">
                                         <div class="col-md-3 col-sm-3" >
-                                       <b> <label>Prevention</label></b>
+                                       <b> <label>Precaution</label></b>
 <%--                                        <asp:TextBox ID="t" class="form-control" placeholder="" runat="server" Enabled="false"></asp:TextBox>--%>
                                         <asp:TextBox ID="tprevention" class="form-control" placeholder="" runat="server"></asp:TextBox>
                           
@@ -890,14 +884,14 @@
                                                 <ItemTemplate>                            
                                                     <asp:LinkButton ID="btnremove" runat="server" Height="30px" CssClass="btn btn-danger menu " OnClick="btnremove_Click"><span class="me-2"><i class="fa fa-trash"></i></span></asp:LinkButton> 
                                                 </ItemTemplate>                         
-                                       </asp:TemplateField>
+                                                </asp:TemplateField>
                                                  </Columns> 
 
                                             </asp:GridView>
                                                  </div>
                                             </div><!--end row-->
-<%--                                           <asp:LinkButton ID="btnsavePresc" runat="server" CssClass="btn btn-pam" OnClick="btnsavePresc_Click" >Enregistrer</asp:LinkButton>--%>
-                        <%--                                               <!-- Large modal -->
+                                      <asp:LinkButton ID="btnsavePresc" runat="server" CssClass="btn btn-pam" data-toggle="modal" data-target=".bs-example-modal-lg" >Imprimer</asp:LinkButton>
+                                                                    <!-- Large modal -->
                   <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
@@ -907,26 +901,71 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                            <rsweb:ReportViewer ID="ReportViewer1" runat="server" ClientIDMode="AutoID" Width="900px">
-                              <LocalReport ReportPath="VUE\Rapport\DHprescription.rdlc">
-                                  <DataSources>
-                                    <rsweb:ReportDataSource DataSourceId="SqlDataSource1" Name="DataSetPresc" />
-                                </DataSources>
-                                </LocalReport>
-                          </rsweb:ReportViewer>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DBHARVESTConnectionString %>" SelectCommand="SELECT * FROM [V_listePrescription] WHERE ([numT] = @numT)">
-                        <SelectParameters>
-                            <asp:ControlParameter ControlID="t" Name="numT" PropertyName="Text" Type="String" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>
+                            <div class=" col-md-12 col-sm-12">
+              <div class="x_content ">
+              <div class="row">
+                <div class="col-sm-6 col-md-6 offset-2">
+                  <h3>&nbsp;&nbsp; Hopital Double Harvest</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 col-md-4 ">
+                  <strong>
+                  10, Rue Accul<br/>
+                  Roche Blanche<br/>
+                  Croix-des-Bouquets
+                </strong>
+                </div>
+                <div class="col-sm-4 col-md-4">
+
+                </div>
+                <div class="col-sm-4 col-md-4">
+                  <strong>Tel:</strong> 509 2227-9892<br/>
+                  <strong>Email:</strong>doubleharvesthaiti@yahoo.fr
+
+                </div>
+              </div>
+              <div class="x_title"></div>
+              <div class="row">
+                <div class="col-sm-8 col-md-8">
+                  <label><strong>Patient:</strong></label>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                  <label><strong>Date:</strong></label>
+                </div>
+              </div>
+              <div class="x_title"></div>
+              <div class="row">
+               <div class="col-md-6 col-sm-6 offset-1">
+                <label><strong>Prevention: </strong> </label>
+               </div>
+               <div class="col-md-4 col-sm-4">
+                <label><strong>Durer: </strong> </label>
+               </div>
+              </div>
+
+              <div class="x_title"></div>
+              <div class="row">
+                <div class="col-md-6 col-sm-6 offset-1">
+                 <label><strong>Prestataire: </strong> </label>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                 <label><strong>Specialite: </strong> </label>
+                </div>
+               </div>
+
+
+        </div>
+      </div>
                          </div>
                           <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                           <button type="button" class="btn btn-secondary" onclick="window.print();">Imprimer</button>
                         </div>
 
                       </div>
                     </div>
-                  </div>--%>
+                  </div>
                  
                                </div><!--end form-horizontal-->
                             </ContentTemplate></asp:UpdatePanel>

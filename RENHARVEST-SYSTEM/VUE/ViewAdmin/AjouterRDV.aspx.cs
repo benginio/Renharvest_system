@@ -131,7 +131,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
 
         protected void btnvalider_Click(object sender, EventArgs e)
         {
-            rdv.CreerRDV(Label1.Text, Label3.Text, null, tdate.Text, theure.Text, tusername.Text, datecreated);
+            string num = rdv.Coderdv();
+            rdv.CreerRDV(num,Label1.Text, Label3.Text, null, tdate.Text, theure.Text, tusername.Text, datecreated);
         }
     }
 }

@@ -38,6 +38,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewAdmin
             string status = "Actif";
             codemedecin = medecin.CodeMedecin(tnomp.Text, tprenomp.Text);
             medecin.CreerMedecin(codemedecin, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, ddspecial.Text, tdateEmbauch.Text, ttypeP, tpseudo.Text, tpass.Text, status, tusername.Text, tdatenow.Text);
+            ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Sucess!','Enregistrement effectuer avec success!','success')", true);
+
             Vider();
         }
         void Vider()

@@ -63,12 +63,12 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             LinkButton btn = sender as LinkButton;
             GridViewRow row = btn.NamingContainer as GridViewRow;
             string codepers = magride.DataKeys[row.RowIndex].Values[0].ToString();
-
-            bool find = patient.Recherchepatient(codepers);
             Label1.Text = codepers;
+            bool find = patient.Recherchepatient(codepers);
             tnomp.Text = patient.getNomP();
             tprenomp.Text = patient.getPrenomP();
-            ddsexe.Text = patient.getSexe();
+            dsexe.Text = 
+            dd.Text = patient.getSexe();
             tdatenaiss.Text = patient.getDateNaiss();
             tadresse.Text = patient.getAdresse();
             tphone.Text = patient.getPhone();
@@ -78,7 +78,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             ddg_s.Text = patient.getG_S();
             tp_respon.Text = patient.getP_Respon();
             ddlienp.Text = patient.getLienARespon();
-
             Labe1.Text = patient.getNomP();
             Label2.Text = patient.getPrenomP();
         }
@@ -111,7 +110,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
           //  codepatient = "";
             tnomp.Text = "";
             tprenomp.Text = "";
-            ddsexe.Text = "";
+            dsexe.Text = "";
             tdatenaiss.Text = "";
             tadresse.Text = "";
             tphone.Text = "";
@@ -127,12 +126,17 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected void btnvalider_Click(object sender, EventArgs e)
         {
             string code = Label1.Text;
-            string type = "";
-            string date = "";
-            patient.ModifierPatient(code, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, tp_respon.Text, ddlienp.Text, type, tusername.Text, date);
+
+            patient.ModifierPatient(code, tnomp.Text, tprenomp.Text, dsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, tp_respon.Text, ddlienp.Text, null, tusername.Text, null);
+           
             Vider();
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "swalDefaultSuccess();", true);
-            Response.Redirect("ModifierPatient.aspx");
+            string msg = "Swal.fire('Sucess!','Modification reusir!','success')";
+            ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
+            Afficher();
+            //Response.Redirect("ModifierPatient.aspx");
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "viewprof1()", true);
+            //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "Swal.fire('Sucess!','Modification reusir!','success')", true);
+            //ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Sucess!','Enregistrement reusir!','success')", true);
 
         }
 
