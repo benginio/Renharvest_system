@@ -58,6 +58,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                     AddDefaultFirstRecord();
                     AddDefaultFirstRecordEx();
                     drop();
+                    ddmotifs();
+                    ddtypeExamen();
                     Maladie();
                     Listantfamille();
                     Listantpers();
@@ -148,6 +150,36 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             // to retrive specific  textfield name   
             ddnomM.DataSource = ds.Tables[0];     //assigning datasource to the dropdownlist  
             ddnomM.DataBind();  //binding dropdownlist  
+        }
+        void ddmotifs()
+        {
+            connection();
+            SqlCommand com = new SqlCommand("select description from tbmotifCons ORDER BY description ASC", con);
+            // table name   
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataSet ds = new DataSet();
+            da.Fill(ds);  // fill dataset  
+            DDmotif.DataTextField = ds.Tables[0].Columns["description"].ToString(); // text field name of table dispalyed in dropdown
+                                                                          // 
+            DDmotif.DataValueField = ds.Tables[0].Columns["description"].ToString();
+            // to retrive specific  textfield name   
+            DDmotif.DataSource = ds.Tables[0];     //assigning datasource to the dropdownlist  
+            DDmotif.DataBind();  //binding dropdownlist  
+        }
+        void ddtypeExamen()
+        {
+            connection();
+            SqlCommand com = new SqlCommand("select description from tbtypeExamen ORDER BY description ASC", con);
+            // table name   
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataSet ds = new DataSet();
+            da.Fill(ds);  // fill dataset  
+            tdesc.DataTextField = ds.Tables[0].Columns["description"].ToString(); // text field name of table dispalyed in dropdown
+                                                                                  // 
+            tdesc.DataValueField = ds.Tables[0].Columns["description"].ToString();
+            // to retrive specific  textfield name   
+            tdesc.DataSource = ds.Tables[0];     //assigning datasource to the dropdownlist  
+            tdesc.DataBind();  //binding dropdownlist  
         }
         private void AddDefaultFirstRecord()
         {
@@ -572,7 +604,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             string codecons = cons.codecons();
             my = Session["codeUser"].ToString();
             bool find = medecin.Recherchemedecin(my);
-            cons.AjouterConsultation(codecons,Session["codePatien"].ToString(), Session["codeUser"].ToString(), lage.Text, thistoire.Text, tsigne.Text, tsymp.Text, ddiag.Text, tcomment.Text, Session["pseudo"].ToString(), Session["dateC"].ToString(), Session["heure"].ToString());
+            cons.AjouterConsultation(codecons,Session["codePatien"].ToString(), Session["codeUser"].ToString(), DDmotif.Text, lage.Text, thistoire.Text, tsigne.Text, tsymp.Text, ddiag.Text, tcomment.Text, Session["pseudo"].ToString(), Session["dateC"].ToString(), Session["heure"].ToString());
             if (!string.IsNullOrEmpty(tdurer.Text) || !string.IsNullOrEmpty(tprevention.Text))
             {
                 numT = Session["numT"].ToString();

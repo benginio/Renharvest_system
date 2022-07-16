@@ -13,6 +13,7 @@ using iTextSharp.text.html;
 using iTextSharp.text.html.simpleparser;
 using System.IO;
 using iTextSharp.text;
+using System.Drawing;
 
 namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 {
@@ -113,59 +114,67 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
         protected void btnsearch_Click(object sender, EventArgs e)
         {
-            if (ddsearch.Text.Equals("Prenom"))
+            if (ddsearch.Text == "")
             {
-                if (DDsexe.Text.Equals("Masculin"))
-                {
-                    magride.DataSource = patient.GetListerPatientPS(tsearchNP.Text, "Masculin");
-                    magride.DataBind();
-                }
-                else if (DDsexe.Text.Equals("Feminin"))
-                {
-                    magride.DataSource = patient.GetListerPatientPS(tsearchNP.Text, "Feminin");
-                    magride.DataBind();
-                }
-                else
-                {
-                    magride.DataSource = patient.GetListerPatientP(tsearchNP.Text);
-                    magride.DataBind();
-                }
-            }
-            else if (ddsearch.Text.Equals("Nom"))
-            {
-                if (DDsexe.Text.Equals("Masculin"))
-                {
-                    magride.DataSource = patient.GetListerPatientNS(tsearchNP.Text, "Masculin");
-                    magride.DataBind();
-                }
-                else if (DDsexe.Text.Equals("Feminin"))
-                {
-                    magride.DataSource = patient.GetListerPatientNS(tsearchNP.Text, "Feminin");
-                    magride.DataBind();
-                }
-                else
-                {
-                    magride.DataSource = patient.GetListerPatientN(tsearchNP.Text);
-                    magride.DataBind();
-                }
+                Afficher();
             }
             else
             {
-                magride.DataSource = patient.GetListerPatient();
-                magride.DataBind();
+                if (ddsearch.Text.Equals("Prenom"))
+                {
+                    if (DDsexe.Text.Equals("Masculin"))
+                    {
+                        magride.DataSource = patient.GetListerPatientPS(tsearchNP.Text, "Masculin");
+                        magride.DataBind();
+                    }
+                    else if (DDsexe.Text.Equals("Feminin"))
+                    {
+                        magride.DataSource = patient.GetListerPatientPS(tsearchNP.Text, "Feminin");
+                        magride.DataBind();
+                    }
+                    else
+                    {
+                        magride.DataSource = patient.GetListerPatientP(tsearchNP.Text);
+                        magride.DataBind();
+                    }
+                }
+                else if (ddsearch.Text.Equals("Nom"))
+                {
+                    if (DDsexe.Text.Equals("Masculin"))
+                    {
+                        magride.DataSource = patient.GetListerPatientNS(tsearchNP.Text, "Masculin");
+                        magride.DataBind();
+                    }
+                    else if (DDsexe.Text.Equals("Feminin"))
+                    {
+                        magride.DataSource = patient.GetListerPatientNS(tsearchNP.Text, "Feminin");
+                        magride.DataBind();
+                    }
+                    else
+                    {
+                        magride.DataSource = patient.GetListerPatientN(tsearchNP.Text);
+                        magride.DataBind();
+                    }
+                }
+                else
+                {
+                    magride.DataSource = patient.GetListerPatient();
+                    magride.DataBind();
+                }
             }
         }
 
         protected void btnpdf_Click(object sender, EventArgs e)
         {
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=Panel.pdf");
+            string FileName = "DHlistP" + DateTime.Now.ToString("MM/dd/yyyy") + ".pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=" + FileName);
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             StringWriter stringWriter = new StringWriter();
             HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
-            export.RenderControl(htmlTextWriter);
+            magride.RenderControl(htmlTextWriter);
             StringReader stringReader = new StringReader(stringWriter.ToString());
-            Document Doc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+            Document Doc = new Document(PageSize.A4.Rotate(), 10f, 10f, 10f, 0f);
             HTMLWorker htmlparser = new HTMLWorker(Doc);
             PdfWriter.GetInstance(Doc, Response.OutputStream);
             Doc.Open();
@@ -173,20 +182,24 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Doc.Close();
             Response.Write(Doc);
             Response.End();
+            magride.DataBind();
         }
 
         protected void btnexcel_Click(object sender, EventArgs e)
         {
             Response.Clear();
             Response.Buffer = true;
-            Response.ContentType = "application/ms-excel";
-            Response.AddHeader("content-disposition", "attachment; filename=DHlist.xlsx");
+            Response.ContentType = "application/vnd.ms-excel";
+            string FileName = "DHlistP" + DateTime.Now.ToString("MM/dd/yyyy") + ".xls";
+            Response.AddHeader("content-disposition", "attachment; filename="+FileName);
             Response.Charset = "";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
             magride.RenderControl(htw);
             Response.Output.Write(sw.ToString());
             Response.End();
+
+
         }
         public override void VerifyRenderingInServerForm(Control control) { }
     }

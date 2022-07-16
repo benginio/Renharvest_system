@@ -41,7 +41,10 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (presc.ListerPrescription(codeMedecin, codePatient, datecreated));
         }
-        
+        public DataSet getListerPrescriptionAll(string codeMedecin, string codePatient)
+        {
+            return (presc.ListerPrescriptionAll(codeMedecin, codePatient));
+        }
         public bool RechercherPrescription(string id)
         {
             return (presc.Rechercheprescription(id));

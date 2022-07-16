@@ -40,13 +40,79 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
             }
         }
+
+        protected void btnlogout_Click(object sender, EventArgs e)
+        {
+
+        }
         void Afficher()
         {
             gridlistRDV.DataSource = rdv.GetListerRDV3(Session["codeUser"].ToString());
             gridlistRDV.DataBind();
         }
+        void Afficheid()
+        {
+            gridlistRDV.DataSource = rdv.GetListerRDVI(tsearch.Text, Session["codeUser"].ToString());
+            gridlistRDV.DataBind();
+        }
+        void AfficherN()
+        {
+            gridlistRDV.DataSource = rdv.GetListerRDVN(tsearch.Text, Session["codeUser"].ToString());
+            gridlistRDV.DataBind();
+        }
+        void AfficherP()
+        {
+            gridlistRDV.DataSource = rdv.GetListerRDVP(tsearch.Text, Session["codeUser"].ToString());
+            gridlistRDV.DataBind();
+        }
+        void AfficherD()
+        {
+            gridlistRDV.DataSource = rdv.GetListerRDVD(tsearch.Text, Session["codeUser"].ToString());
+            gridlistRDV.DataBind();
+        }
+        protected void tbnsearch_Click(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Equals(""))
+            {
+                Response.Redirect("ListeRDV.aspx");
+            }
+            else
+            {
+                if (DDtrier.Text.Equals("Id RDV"))
+                {
+                    Afficheid();
 
-        protected void btnlogout_Click(object sender, EventArgs e)
+                }
+                else if (DDtrier.Text.Equals("Prenom Patient"))
+                {
+                    AfficherP();
+                }
+                else if (DDtrier.Text.Equals("Nom Patient"))
+                {
+                    AfficherN();
+                }
+                else if(DDtrier.Text.Equals("Date RDV"))
+                {
+                    AfficherD();
+                }
+                else
+                {
+                    Afficher();
+                }
+            }
+        }
+
+        protected void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = sender as LinkButton;
+            GridViewRow row = btn.NamingContainer as GridViewRow;
+            string coderdv = gridlistRDV.DataKeys[row.RowIndex].Values[0].ToString();
+
+            rdv.cancelrdv(coderdv, null, null, null, null, null, "Inactive", null, null);
+            Afficher();
+        }
+
+        protected void DDtrier_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

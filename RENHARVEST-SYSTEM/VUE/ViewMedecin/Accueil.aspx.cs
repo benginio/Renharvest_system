@@ -37,6 +37,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                     ListRDVnow();
                     nbrRDV.Text = rdv.nbrRDVtoDay(my);
                     tConstoday.Text = cons.nbrConsToday(my);
+                    nbfille.Text = rdv.nbrRDVfille(my);
+                    nbgarc.Text = rdv.nbrRDVgarc(my);
                 }
                 else
                 {

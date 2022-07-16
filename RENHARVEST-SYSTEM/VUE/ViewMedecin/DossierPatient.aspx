@@ -57,7 +57,7 @@
             </div>
             <!-- /menu profile quick info -->
            
-             <!-- sidebar menu -->
+              <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -77,7 +77,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -86,18 +86,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -112,13 +114,7 @@
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
               
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -143,14 +139,7 @@
                     </div>
 
                   </li>
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                      
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
@@ -179,7 +168,7 @@
 								</div>
 							</div>
                                  <div class="col-md-4 col-sm-4 form-group"><br />
-                                 <h6>Filter  <asp:DropDownList ID="DDtrier" runat="server" ForeColor="#0D5B86" AutoPostBack="true">
+                                 <h6>Filter  <asp:DropDownList ID="DDtrier" class="form-control" runat="server" ForeColor="#0D5B86" AutoPostBack="true">
                                     <asp:ListItem>Prenom</asp:ListItem>
                                     <asp:ListItem>Nom</asp:ListItem>
                                     <asp:ListItem>Matricule</asp:ListItem>
@@ -199,7 +188,7 @@
                             <Columns> 
                                  <asp:TemplateField HeaderText="-->">                       
                                 <ItemTemplate>                            
-                                    <asp:LinkButton ID="btnbul" runat="server" Height="30px" CssClass="btn btn-success menu " OnClick="btnbul_Click" OnClientClick="viewprof()" ><span class="me-2"><i class="fa fa-check-circle"></i></span></asp:LinkButton> 
+                                    <asp:LinkButton ID="btnbul" runat="server" Height="30px" CssClass="btn btn-pam menu " OnClick="btnbul_Click" OnClientClick="viewprof()" ><span class="me-2"><i class="fa fa-check-circle"></i></span></asp:LinkButton> 
                                 </ItemTemplate>                         
                              </asp:TemplateField>
                                 <asp:BoundField DataField="codepers" HeaderText="code" ReadOnly="True" SortExpression="codePatient" />  
@@ -495,6 +484,8 @@
                                     <HeaderStyle BackColor="#F5F7FA" Font-Bold="True" ForeColor="black" />
 
                                     <Columns>
+                                        <asp:BoundField DataField="age" HeaderText="Age" ReadOnly="True" SortExpression="age" />
+                                        <asp:BoundField DataField="motif" HeaderText="Motif" ReadOnly="True" SortExpression="motif" />
                                         <asp:BoundField DataField="signe" HeaderText="signe" ReadOnly="True" SortExpression="signe" />
                                         <asp:BoundField DataField="symptomes" HeaderText="symptomes" ReadOnly="True" SortExpression="symp" />
                                         <asp:BoundField DataField="histoire" HeaderText="Histoire" SortExpression="hist" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
@@ -521,10 +512,68 @@
                         </a>
                         <div id="collapsesix1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsix">
                           <div class="panel-body">
-                            <p><strong>Collapsible Item 3 data</strong>
-                            </p>
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
-                          </div>
+                              <div class="x_panel">
+                               <div class="row">
+                                   <h5>Liste Traitement</h5>
+                               </div>
+                                   <div class="table-responsive">
+                                <asp:GridView ID="Gridtraitement" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="datecreated" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                                    <HeaderStyle BackColor="#F5F7FA" Font-Bold="True" ForeColor="black" />
+
+                                    <Columns>
+                                        <asp:BoundField DataField="numT" HeaderText="code" ReadOnly="True" SortExpression="signe" />
+                                        <asp:BoundField DataField="prevention" HeaderText="Precaution" ReadOnly="True" SortExpression="symp" />
+                                        <asp:BoundField DataField="durer" HeaderText="Durer" SortExpression="hist" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+                                        <asp:BoundField DataField="datecreated" HeaderText="Date" SortExpression="date" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+                                    <asp:TemplateField HeaderText="-->">                       
+                                <ItemTemplate>                            
+                                    <asp:LinkButton ID="btntraitement" runat="server" Height="30px" CssClass="btn btn-pam menu " OnClick="btntraitement_Click" ><span class="me-2"><i class="fa fa-file-text-o"></i></span></asp:LinkButton> 
+                                </ItemTemplate>                         
+                             </asp:TemplateField>
+                                        </Columns>
+
+                                </asp:GridView>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                        <div class="panel">
+                        <a class="panel-heading collapsed" role="tab" id="headingseven1" data-toggle="collapse" data-parent="#accordion1" href="#collapseseven1" aria-expanded="false" aria-controls="collapseseven">
+                          <h4 class="panel-title">Ordonnance</h4>
+                        </a>
+                        <div id="collapseseven1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingseven">
+                          <div class="panel-body">
+                           <div class="x_panel">
+                               <div class="row">
+                                   <h5>Liste des Ordonnance</h5>
+                               </div>
+                               <div class="row">
+                                   <div class="table-responsive">
+                        <asp:GridView ID="gridprescription" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="datecreated" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                            <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
+
+                            <Columns>
+                                    <asp:BoundField DataField="codeMed" HeaderText="codeMedicament" ReadOnly="True" SortExpression="codeM" />
+                                    <asp:BoundField DataField="nomM" HeaderText="Nom_Medicament" ReadOnly="True" SortExpression="codeM" />
+                                    <asp:BoundField DataField="dosage" HeaderText="Dosage" ReadOnly="True" SortExpression="codeM" />
+                                    <asp:BoundField DataField="nbrFois" HeaderText="Posologie" SortExpression="Nbrfois" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+                                    <asp:BoundField DataField="quant" HeaderText="Quantite" SortExpression="quant" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />
+                                    <asp:BoundField DataField="form" HeaderText="Form" SortExpression="form" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+                                     <asp:BoundField DataField="datecreated" HeaderText="creation" SortExpression="form" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />
+                                 <asp:TemplateField HeaderText="-->">                       
+                                <ItemTemplate>                            
+                                    <asp:LinkButton ID="btnordo" runat="server" Height="30px" CssClass="btn btn-pam menu " OnClick="btnordo_Click" ><span class="me-2"><i class="fa fa-file-text-o"></i></span></asp:LinkButton> 
+                                </ItemTemplate>                         
+                             </asp:TemplateField>
+                           </Columns>
+
+                        </asp:GridView>
+                        
+                        </div>
+                               </div>
+                           </div>
+                              </div>
                         </div>
                       </div>
                          <div class="panel">
@@ -563,6 +612,7 @@
                               </div>
                         </div>
                       </div>
+                        
                     </div>
                     <!-- end of accordion -->
                     

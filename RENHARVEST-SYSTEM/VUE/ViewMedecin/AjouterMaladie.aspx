@@ -19,6 +19,8 @@
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="../build/css/sweetalert2.min.css" rel="stylesheet" />
+      <script type="text/javascript" src="../build/js/sweetalert2.js"></script>
     <!-- jQuery custom content scroller -->
     <link href="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
     
@@ -72,7 +74,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -81,18 +83,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -106,14 +110,6 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -138,14 +134,7 @@
                     </div>
 
                   </li>
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                      
-                    
-                  </li>
+                  
                 </ul>
               </nav>
             </div>
@@ -160,22 +149,30 @@
               <div class="title_left"><br/>
                 <h5>Ajouter Maladie|</h5>
               </div>
+                 <div class="title_right">
+                     <div class="col-md-8 col-sm-8 form-group  top_search offset-2"><br />
+								<div class="input-group">
+                                    <asp:TextBox ID="tsearch" runat="server" class="form-control" placeholder="Recherche..." Text=""></asp:TextBox>
+									<span class="input-group-btn">
+                                        <asp:LinkButton ID="tbnsearch" runat="server" class="btn btn-pam" OnClick="tbnsearch_Click">
+                                            <span><i class="fa fa-search"></i></span>
+                                        </asp:LinkButton>
+									</span>
+								</div>
+							</div>
+                 </div>
             </div>
                <div class="row">
               
-                <div class="x_panel col-md-12 page" id="addM">
-                    <asp:UpdatePanel runat="server"><ContentTemplate>
-                  <div class="x_title">
-                    <div class="form-group row">
-                      <div class="col-md-5 col-sm-5">
-                          <asp:TextBox ID="tcodeM" class="form-control" placeholder="Code Maladie..."  runat="server" Enabled="False"></asp:TextBox>
-                        </div> 
-                        </div>
-                  </div>
+                <div class="x_panel col-md-12 page" style="background: url('../build/images/bgform3.png');">
                   <div class="x_content">
                       <div class="form-group row">
                           <div class="col-md-8 col-sm-8 ">
-                      <div class="col-md-6 col-sm-6 ">
+                               <div class="col-md-2 col-sm-2">
+                                  <label>code</label>
+                          <asp:Label ID="tcodeM" class="form-control" BackColor="#CCCCCC" runat="server" Text=""></asp:Label>
+                        </div> 
+                      <div class="col-md-4 col-sm-4 ">
                           <label>Nom Maladie</label>
                           <asp:TextBox ID="tnomM" class="form-control" placeholder=""  runat="server" OnTextChanged="tnomM_TextChanged" AutoPostBack="true" ></asp:TextBox>
                         </div>
@@ -187,7 +184,7 @@
                           <div class="col-md-4 col-sm-4 py-4">
                               <asp:LinkButton ID="btnajouter" CssClass="btn btn-success" OnClick="btnajouter_Click" runat="server">Ajouter</asp:LinkButton>
                               <asp:LinkButton ID="btnmodif" CssClass="btn btn-pam" OnClick="btnmodif_Click" runat="server">Modifier</asp:LinkButton>
-                              <asp:LinkButton ID="btncancel" CssClass="btn btn-pam" OnClick="btncancel_Click" runat="server">Annuler</asp:LinkButton>
+                              <asp:LinkButton ID="btncancel" CssClass="btn btn-default" BorderColor="#29458D" OnClick="btncancel_Click" runat="server">Annuler</asp:LinkButton>
 
                          </div><!--end col-4-->
                       </div><!--end row-->
@@ -219,7 +216,6 @@
 
                       </div>
                       
-                   </ContentTemplate></asp:UpdatePanel>
                 </div><!--end add maladie-->
 
             </div>

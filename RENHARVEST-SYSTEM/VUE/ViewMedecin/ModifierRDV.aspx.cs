@@ -62,17 +62,17 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         }
         void AfficherN()
         {
-            magride.DataSource = rdv.GetListerRDVN(tbnsearch.Text, Session["codeUser"].ToString());
+            magride.DataSource = rdv.GetListerRDVN(tsearch.Text, Session["codeUser"].ToString());
             magride.DataBind();
         }
         void AfficherP()
         {
-            magride.DataSource = rdv.GetListerRDVP(tbnsearch.Text, Session["codeUser"].ToString());
+            magride.DataSource = rdv.GetListerRDVP(tsearch.Text, Session["codeUser"].ToString());
             magride.DataBind();
         }
         void AfficherD()
         {
-            magride.DataSource = rdv.GetListerRDVD(tbnsearch.Text, Session["codeUser"].ToString());
+            magride.DataSource = rdv.GetListerRDVD(tsearch.Text, Session["codeUser"].ToString());
             magride.DataBind();
         }
         protected void tbnsearch_Click(object sender, EventArgs e)
@@ -111,13 +111,31 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
         protected void btnvalider_Click(object sender, EventArgs e)
         {
-            rdv.Modifierrdv(Session["numrdv"].ToString(), null, Session["codeUser"].ToString(),tmotif.Text,tdate.Text,theure.Text,null,null);
-            ClientScript.RegisterClientScriptBlock(GetType(), "id", "up();", true);
-            string msg = "Swal.fire('Sucess!','Modification reusir!','success')";
-            ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
-            Afficher();
-            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "viewprof1()", true);
+            DateTime d = Convert.ToDateTime(tdate.Text);
+            string check = rdv.verifierrdv(Label3.Text, tdate.Text, theure.Text);
+            if (check.Equals("0"))
+            {
 
+                if (d.Date < DateTime.Now.Date)
+                {
+                    string msg1 = "Swal.fire('Oopss!','vous avez choisir une date passer!','warning')";
+                    ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg1, true);
+                }
+                else
+                {
+                    rdv.Modifierrdv(Session["numrdv"].ToString(), null, Session["codeUser"].ToString(), tmotif.Text, tdate.Text, theure.Text, null, null, null);
+                    ClientScript.RegisterClientScriptBlock(GetType(), "id", "up();", true);
+                    string msg = "Swal.fire('Sucess!','Modification reusir!','success')";
+                    ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
+                    Afficher();
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "viewprof1()", true);
+                }
+            }
+            else
+            {
+                string msg2 = "Swal.fire('Oopss!','Vous avez deja une RDV a cette Date!','warning')";
+                ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg2, true);
+            }
         }
 
         protected void btnliste_Click(object sender, EventArgs e)
@@ -142,6 +160,11 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             bool find1 = patient.Recherchepatient(Label1.Text);
             Labe1.Text = patient.getNomP();
             Label2.Text = patient.getPrenomP();
+        }
+
+        protected void DDtrier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

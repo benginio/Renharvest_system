@@ -67,5 +67,23 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label nbrRDV;
+
+        /// <summary>
+        /// nbrrdvcancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nbrrdvcancel;
+
+        /// <summary>
+        /// nbrpatientins control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nbrpatientins;
     }
 }

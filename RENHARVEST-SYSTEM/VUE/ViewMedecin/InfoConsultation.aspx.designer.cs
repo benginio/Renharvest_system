@@ -33,6 +33,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// tusername control.
         /// </summary>
         /// <remarks>
@@ -141,6 +150,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.Label tdatenaiss;
 
         /// <summary>
+        /// tjob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label tjob;
+
+        /// <summary>
         /// tage control.
         /// </summary>
         /// <remarks>
@@ -157,24 +175,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label tadresse;
-
-        /// <summary>
-        /// tphone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tphone;
-
-        /// <summary>
-        /// tjob control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tjob;
 
         /// <summary>
         /// temail control.
@@ -195,13 +195,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.Label tmatricule;
 
         /// <summary>
-        /// tgs control.
+        /// tphone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tgs;
+        protected global::System.Web.UI.WebControls.Label tphone;
 
         /// <summary>
         /// tprespon control.
@@ -220,6 +220,24 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label tlienrespon;
+
+        /// <summary>
+        /// lbltelrespon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltelrespon;
+
+        /// <summary>
+        /// tgs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label tgs;
 
         /// <summary>
         /// Gridantfamille control.
@@ -267,6 +285,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.GridView gridexamen;
 
         /// <summary>
+        /// lblage1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblage1;
+
+        /// <summary>
         /// lblpoid control.
         /// </summary>
         /// <remarks>
@@ -312,15 +339,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.Label lblpouls;
 
         /// <summary>
-        /// lblcodepatient control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcodepatient;
-
-        /// <summary>
         /// lblagep control.
         /// </summary>
         /// <remarks>
@@ -328,6 +346,24 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblagep;
+
+        /// <summary>
+        /// lblmotif control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmotif;
+
+        /// <summary>
+        /// lblhistoire control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblhistoire;
 
         /// <summary>
         /// lblsigne control.
@@ -346,15 +382,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblsymp;
-
-        /// <summary>
-        /// lblhistoire control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblhistoire;
 
         /// <summary>
         /// lbldiag control.
@@ -382,6 +409,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbldcreated;
+
+        /// <summary>
+        /// lblheuree control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblheuree;
 
         /// <summary>
         /// lblprevention control.

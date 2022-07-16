@@ -18,7 +18,7 @@
     <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <%--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">--%>
     <!-- jQuery custom content scroller -->
     <link href="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 
@@ -72,7 +72,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -81,18 +81,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -107,13 +109,13 @@
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+<%--              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
               </a>
               
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
                 <i class="fa fa-sign-out pull-right"></i>
-              </a>
+              </a>--%>
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -138,14 +140,7 @@
                     </div>
 
                   </li>
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                      
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
@@ -212,10 +207,11 @@
           
         </div>
         <!-- /.row -->
-        <div class="x_panel">
+       
             <div class="row">
+                <div class="col-sm-7 col-md-7">
+                     <div class="x_panel">
                 <h5>Liste Rendez-vous D'aujourd'hui</h5>
-            </div>
             <div class="table-responsive">
                         <asp:GridView ID="gridlistRDV" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="nomP" EmptyDataText="Pas de rendez-vous aujourd'huit!." OnSelectedIndexChanged="Page_Load">
                             <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
@@ -235,7 +231,19 @@
                         </asp:GridView>
                         
                         </div>
-        </div>
+                         </div>
+                    </div>
+                <div class="col-sm-5 col-md-5">
+                    <div class="x_panel">
+                        <strong><label>Feminin :</label></strong><asp:Label ID="nbfille" runat="server" Text="" ></asp:Label>&nbsp;&nbsp;
+                        <strong><label>Masculin :</label></strong><asp:Label ID="nbgarc" runat="server" Text=""></asp:Label><br />
+                        <div class="x_content">
+                        <canvas id="pieChart"></canvas>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        
              
 
 
@@ -259,16 +267,56 @@
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- FastClick -->
+   <%-- <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
+    <script src="../vendors/nprogress/nprogress.js"></script>--%>
     <!-- jQuery custom content scroller -->
     <script src="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-
+     <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script type="text/javascript">
+        
+            document.addEventListener('DOMContentLoaded', function () {
+                fille = document.getElementById('nbfille').textContent;
+                garc = document.getElementById('nbgarc').textContent;
+                
+                var xValues = ["Masculin", "Feminin"];
+                var yValues = [parseInt(garc), parseInt(fille)];
+                var barColors = [
+                    "#00aba9",
+                    "#BDC3C7",
+                    "#2b5797",
+                    "#e8c3b9",
+                    "#1e7145"
+                ];
 
+                if ($("#pieChart").length) e = document.getElementById("pieChart"),
+                new Chart(e, {
+                    type: "pie",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "Graph suivant le sexe des patients qui possede un rendez-vous"
+                        }
+                    }
+                });
+
+
+            });
+           
+
+        
+    </script>
     
 </body>
 </html>

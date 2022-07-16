@@ -21,10 +21,11 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string motifRDV;
         private string date;
         private string heure;
+        private string status;
         private string createdby;
         private string datecreated;
 
-        public ModeleRDV(string num, string codePatient, string codeMedecin, string motifRDV, string date, string heure, string createdby, string datecreated)
+        public ModeleRDV(string num, string codePatient, string codeMedecin, string motifRDV, string date, string heure, string status, string createdby, string datecreated)
         {
             this.num = num;
             this.codePatient = codePatient;
@@ -32,11 +33,12 @@ namespace RENHARVEST_SYSTEM.MODELE
             this.motifRDV = motifRDV;
             this.date = date;
             this.heure = heure;
+            this.status = status;
             this.createdby = createdby;
             this.datecreated = datecreated;
         }
 
-        public ModeleRDV():this(null,null,null, null, null, null, null, null) 
+        public ModeleRDV():this(null,null,null, null, null, null, null, null, null) 
         { }
 
         public string Num
@@ -72,7 +74,11 @@ namespace RENHARVEST_SYSTEM.MODELE
             get { return this.heure; }
             set { this.heure = value; }
         }
-
+        public string Status
+        {
+            get { return this.status; }
+            set { this.status = value; }
+        }
         public string Createdby
         {
             get { return this.createdby; }
@@ -109,7 +115,7 @@ namespace RENHARVEST_SYSTEM.MODELE
         public void CreerRDV()
         {
            // string typeAction = "Insertion";
-            string req = string.Format("INSERT INTO tbrendez_vous VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", num, codePatient, codeMedecin, motifRDV, date, heure, createdby, datecreated);
+            string req = string.Format("INSERT INTO tbrendez_vous VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')", num, codePatient, codeMedecin, motifRDV, date, heure, status, createdby, datecreated);
            // string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, date, heure, typeAction, createdby, datecreated);
 
             SqlConnection con = new SqlConnection(chcon);
@@ -127,8 +133,21 @@ namespace RENHARVEST_SYSTEM.MODELE
         public void ModifierRDV()
         {
             //string typeAction = "Modification";
-            string Req = string.Format("UPDATE tbrendez_vous SET codeMedecin='{1}', motifRDV='{2}',daterdv='{3}', heure='{4}' where id='{0}'",num, codeMedecin, motifRDV, date, heure);
+            string Req = string.Format("UPDATE tbrendez_vous SET codeMedecin='{1}', motifRDV='{2}',daterdv='{3}', heure='{4}' where id='{0}'",num, codeMedecin, motifRDV, date, heure, status);
             //string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, date, heure, typeAction, createdby, datecreated);
+
+            SqlConnection con = new SqlConnection(chcon);
+
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand(Req, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void cancelRDV()
+        {
+            
+            string Req = string.Format("UPDATE tbrendez_vous SET  status='{1}' where id='{0}'", num, status);
 
             SqlConnection con = new SqlConnection(chcon);
 
@@ -199,11 +218,25 @@ namespace RENHARVEST_SYSTEM.MODELE
             //}
 
         }
-        public void AnnulerRDV(string codePatient, string codeMedecin, string createdby, string datecreated)
+        public void DeleteRDV(string num, string codeMedecin)
         {
-            string typeAction = "Annulation";
-            string Req = string.Format("DELETE FROM tbrendez_vous where codepers='{0}' AND codeMedecin='{1}'", codePatient, codeMedecin);
-            string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, typeAction, createdby, datecreated);
+            //string typeAction = "Annulation";
+            string Req = string.Format("DELETE FROM tbrendez_vous where id='{0}' AND codemedecin='{1}'", num, codeMedecin);
+            //string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, typeAction, createdby, datecreated);
+
+            SqlConnection con = new SqlConnection(chcon);
+
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand(Req, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void DeleteRDVall(string num)
+        {
+            //string typeAction = "Annulation";
+            string Req = string.Format("DELETE FROM tbrendez_vous where id='{0}'", num);
+            //string req1 = string.Format("INSERT INTO tbhisRDV VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", codePatient, codeMedecin, typeAction, createdby, datecreated);
 
             SqlConnection con = new SqlConnection(chcon);
 
@@ -214,29 +247,30 @@ namespace RENHARVEST_SYSTEM.MODELE
             con.Close();
         }
 
-        //public DataSet ListerRDV()
-        //{
-        //    SqlDataAdapter adapter;
-        //    SqlConnection con;
+        public DataSet ListerRDV()
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
 
-        //    con = new SqlConnection(chcon);
-        //    string command = string.Format("SELECT * FROM tbrendez_vous");
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV order by id ASC");
 
-        //    con.Open();
-        //    adapter = new SqlDataAdapter(command, con);
-        //    SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
-        //    data = new DataSet();
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
 
-        //    adapter.Fill(data, "tbrendez_vous");
-        //    con.Close();
+            adapter.Fill(data, "tbrendez_vous");
+            con.Close();
 
-        //    return data;
-        //}
+            return data;
+        }
         public string nbrRDVtoDay(string codeMedecin)
         {
             string nombreRDV;
             string nbrtoday;
-            string Req = string.Format("SELECT COUNT(*) FROM V_listeRDV WHERE codeMedecin='{0}' AND daterdv=CONVERT(DATE, GETDATE())", codeMedecin);
+            string stat = "Active";
+            string Req = string.Format("SELECT COUNT(*) FROM V_listeRDV WHERE codeMedecin='{0}' AND daterdv=CONVERT(DATE, GETDATE()) AND status='{1}'", codeMedecin, stat);
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = new SqlCommand(Req, con);
 
@@ -255,11 +289,110 @@ namespace RENHARVEST_SYSTEM.MODELE
             nbrtoday =  nombreRDV;
             return nbrtoday;
         }
+        public string nbrRDVtoDayCancel(string codeMedecin)
+        {
+            string nombreRDV;
+            string nbrtoday;
+            string stat = "Inactive";
+            string Req = string.Format("SELECT COUNT(*) FROM V_listeRDV WHERE codeMedecin='{0}' AND daterdv=CONVERT(DATE, GETDATE()) AND status='{1}'", codeMedecin, stat);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreRDV = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreRDV = "0";
+            }
+            con.Close();
+
+            nbrtoday = nombreRDV;
+            return nbrtoday;
+        }
         public string nbrRDVtoDay1()
         {
             string nombreRDV;
             string nbrtoday;
-            string Req = string.Format("SELECT COUNT(*) FROM V_listeRDV WHERE daterdv=CONVERT(DATE, GETDATE())");
+            string stat = "Active";
+            string Req = string.Format("SELECT COUNT(*) FROM V_listeRDV WHERE daterdv=CONVERT(DATE, GETDATE()) AND status='{0}'",stat);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreRDV = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreRDV = "0";
+            }
+            con.Close();
+
+            nbrtoday = nombreRDV;
+            return nbrtoday;
+        }
+        public string nbrRDVtoDay1Cancel()
+        {
+            string nombreRDV;
+            string nbrtoday;
+            string stat = "Inactive";
+            string Req = string.Format("SELECT COUNT(*) FROM V_listeRDV WHERE daterdv=CONVERT(DATE, GETDATE()) AND status='{0}'", stat);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreRDV = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreRDV = "0";
+            }
+            con.Close();
+
+            nbrtoday = nombreRDV;
+            return nbrtoday;
+        }
+        public string nbrRDVfille(string codeMedecin)
+        {
+            string nombreRDV;
+            string nbrtoday;
+            string stat = "Active";
+            string s = "Feminin";
+            string Req = string.Format("SELECT COUNT(sexe) FROM V_listeRDV WHERE daterdv=CONVERT(DATE, GETDATE()) AND sexe='{0}' AND status='{1}' AND codeMedecin='{2}' GROUP BY sexe", s, stat, codeMedecin);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreRDV = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreRDV = "0";
+            }
+            con.Close();
+
+            nbrtoday = nombreRDV;
+            return nbrtoday;
+        }
+        public string nbrRDVgarc(string codeMedecin)
+        {
+            string nombreRDV;
+            string nbrtoday;
+            string stat = "Active";
+            string s = "Masculin";
+            string Req = string.Format("SELECT COUNT(sexe) FROM V_listeRDV WHERE daterdv=CONVERT(DATE, GETDATE()) AND sexe='{0}' AND status='{1}' AND codeMedecin='{2}' GROUP BY sexe", s, stat, codeMedecin);
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = new SqlCommand(Req, con);
 
@@ -300,9 +433,9 @@ namespace RENHARVEST_SYSTEM.MODELE
         {
             SqlDataAdapter adapter;
             SqlConnection con;
-
+            string stat = "Active";
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listeRDV where codeMedecin='{0}' AND daterdv=CONVERT(DATE, GETDATE())", codeMedecin);
+            string command = string.Format("SELECT * FROM V_listeRDV where codeMedecin='{0}' AND daterdv=CONVERT(DATE, GETDATE()) AND status='{1}'", codeMedecin,stat);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
@@ -318,63 +451,9 @@ namespace RENHARVEST_SYSTEM.MODELE
         {
             SqlDataAdapter adapter;
             SqlConnection con;
-
+            string stat = "Active";
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listeRDV where codeMedecin='{0}' ", codeMedecin);
-
-            con.Open();
-            adapter = new SqlDataAdapter(command, con);
-            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
-            data = new DataSet();
-
-            adapter.Fill(data, "V_listeRDV");
-            con.Close();
-
-            return data;
-        }
-        public DataSet ListerRDVN(string nom, string codeMedecin)
-        {
-            SqlDataAdapter adapter;
-            SqlConnection con;
-
-            con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listeRDV  where nomP='{0}' AND codeMedecin='{1}'", nom, codeMedecin);
-
-            con.Open();
-            adapter = new SqlDataAdapter(command, con);
-            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
-            data = new DataSet();
-
-            adapter.Fill(data, "V_listeRDV");
-            con.Close();
-
-            return data;
-        }
-        public DataSet ListerRDVP(string prenom, string codeMedecin)
-        {
-            SqlDataAdapter adapter;
-            SqlConnection con;
-
-            con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listeRDV  where prenomP='{0}' AND codeMedecin='{1}'", prenom, codeMedecin);
-
-            con.Open();
-            adapter = new SqlDataAdapter(command, con);
-            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
-            data = new DataSet();
-
-            adapter.Fill(data, "V_listeRDV");
-            con.Close();
-
-            return data;
-        }
-        public DataSet ListerRDVD(string date, string codeMedecin)
-        {
-            SqlDataAdapter adapter;
-            SqlConnection con;
-
-            con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listeRDV  where daterdv='{0}' AND codeMedecin='{1}'", date, codeMedecin);
+            string command = string.Format("SELECT * FROM V_listeRDV where codeMedecin='{0}' AND status='{1}' ORDER BY id ASC", codeMedecin, stat);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
@@ -390,9 +469,9 @@ namespace RENHARVEST_SYSTEM.MODELE
         {
             SqlDataAdapter adapter;
             SqlConnection con;
-
+            string stat = "Active";
             con = new SqlConnection(chcon);
-            string command = string.Format("SELECT * FROM V_listeRDV  where id='{0}' AND codemedecin='{1}'", id, codeMedecin);
+            string command = string.Format("SELECT * FROM V_listeRDV  where id='{0}' AND codemedecin='{1}' AND status='{2}'", id, codeMedecin, stat);
 
             con.Open();
             adapter = new SqlDataAdapter(command, con);
@@ -404,6 +483,330 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
+        public DataSet ListerRDVN(string nom, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Active";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  WHERE nomP='{0}' AND codeMedecin='{1}' AND status='{2}'", nom, codeMedecin, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVP(string prenom, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Active";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where prenomP='{0}' AND codeMedecin='{1}' AND status='{2}'", prenom, codeMedecin, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVD(string date, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Active";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where daterdv='{0}' AND codeMedecin='{1}' AND status='{2}'", date, codeMedecin, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+
+        //********************recherche rendez-vous pour tous par id,nomPatient, prenomPatient, date rdv
+        public DataSet ListerRDVIall(string id)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Active";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where id='{0}' AND status='{1}'", id,stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVNall(string nom)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Active";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  WHERE nomP='{0}' AND status='{1}'", nom, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVPall(string prenom)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Active";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where prenomP='{0}' AND status='{1}'", prenom, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        public DataSet ListerRDVDall(string date)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Active";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where daterdv='{0}' AND status='{1}'", date, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+
+        //end***************
+
+        //liste des rendez-vous annuler pour un medecin
+        public DataSet ListerRDVcancel(string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where status='{0}' AND codeMedecin='{1}'", stat, codeMedecin);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        //recherch dans la liste des rendez-vous annuler par numero rendez-vous pour un Medecin
+        public DataSet ListerRDVICancel(string id, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where id='{0}' AND codemedecin='{1}' AND status='{2}'", id, codeMedecin,stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        //recherch dans la liste des rendez-vous annuler par nom patient pour un Medecin
+        public DataSet ListerRDVNCancel(string nom, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV WHERE nomP='{0}' AND codeMedecin='{1}' AND status='{2}'", nom, codeMedecin, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        //recherch dans la liste des rendez-vous annuler par prenom patient pour un Medecin
+        public DataSet ListerRDVPCancel(string prenom, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where prenomP='{0}' AND codeMedecin='{1}' AND status='{2}'", prenom, codeMedecin, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        //recherch dans la liste des rendez-vous annuler par date rendez-vous pour un Medecin
+        public DataSet ListerRDVDCancel(string date, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where daterdv='{0}' AND codeMedecin='{1}' AND status='{2}'", date, codeMedecin,stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+
+        //liste rendez-vous annuler pour tous
+        public DataSet ListerRDVcancelall()
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where status='{0}'", stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        //recherche dans la liste rendez-vous annuler par id pour tous
+        public DataSet ListerRDVICancelall(string id)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where id='{0}' AND status='{1}'", id, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        //recherche dans la liste rendez-vous annuler par nomPatient pour tous
+        public DataSet ListerRDVNCancelall(string nom)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV WHERE nomP='{0}' AND status='{1}'", nom, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        //recherche dans la liste rendez-vous annuler par prenomPatient pour tous
+        public DataSet ListerRDVPCancelall(string prenom)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where prenomP='{0}' AND status='{1}'", prenom,stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+        //recherche dans la liste rendez-vous annuler par date rendez-vous pour tous
+        public DataSet ListerRDVDCancelall(string date)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+            string stat = "Inactive";
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listeRDV  where daterdv='{0}' AND status='{1}'", date, stat);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listeRDV");
+            con.Close();
+
+            return data;
+        }
+
+
 
     }
 }

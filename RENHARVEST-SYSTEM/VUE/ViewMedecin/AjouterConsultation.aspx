@@ -80,7 +80,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -89,23 +89,26 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
                 </ul>
               </div><!--menu-section-->
+             
 
             </div>
             <!-- /sidebar menu -->
@@ -203,7 +206,7 @@
 								</div>
 							</div>
                                  <div class="col-md-4 col-sm-4 form-group"><br />
-                                 <h6>Filter  <asp:DropDownList ID="DDtrier" runat="server" ForeColor="#0D5B86" AutoPostBack="true">
+                                 <h6>Filter  <asp:DropDownList ID="DDtrier" class="form-control" runat="server" ForeColor="#0D5B86" AutoPostBack="true">
                                     <asp:ListItem>Prenom</asp:ListItem>
                                     <asp:ListItem>Nom</asp:ListItem>
                                     <asp:ListItem>Matricule</asp:ListItem>

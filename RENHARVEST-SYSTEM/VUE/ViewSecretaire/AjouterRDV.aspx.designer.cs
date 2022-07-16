@@ -60,6 +60,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
         protected global::System.Web.UI.WebControls.Label Username1;
 
         /// <summary>
+        /// btnlogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnlogout;
+
+        /// <summary>
         /// update control.
         /// </summary>
         /// <remarks>
@@ -105,15 +114,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
         /// tmotif control.
         /// </summary>
         /// <remarks>
@@ -141,13 +141,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
         protected global::System.Web.UI.WebControls.TextBox theure;
 
         /// <summary>
-        /// tspecial control.
+        /// dropMedecin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tspecial;
+        protected global::System.Web.UI.WebControls.DropDownList dropMedecin;
 
         /// <summary>
         /// btnvalider control.
@@ -166,15 +166,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnannuler;
-
-        /// <summary>
-        /// magrid1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView magrid1;
 
         /// <summary>
         /// update1 control.

@@ -51,7 +51,7 @@
             </div>
             <!-- /menu profile quick info -->
            
-             <!-- sidebar menu -->
+            <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -59,7 +59,7 @@
                   
                   <li><a><i class="fa fa-user"></i> Patients <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="AjouterPatient.aspx">Ajouter</a></li>
+                     <li><a href="AjouterPatient.aspx">Ajouter</a></li>
                       <li><a href="ModifierPatient.aspx">Modifier</a></li>
                       <li><a href="ListePatient.aspx">Lister</a></li>
                     </ul>
@@ -67,37 +67,28 @@
                   <li><a><i class="fa fa-user-md"></i> Medecin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedecin.aspx" >Ajouter</a></li>
-                     <li><a href="ModiferMedecin.aspx">Modifier</a></li>
+                      <li><a href="ModiferMedecin.aspx">Modifier</a></li>
                       <li><a href="ListerMedecin.aspx">lister</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
-                      
-                     
-                    </ul>
-                  </li>
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
-                      <li><a href="#">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="AjouterRDV.aspx">Ajouter</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
+                      <li><a href="ListerRDV">lister</a></li>
                       
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
+                      <li><a href="AllrendezVous.aspx">Des Medecin</a></li>
+                      <li><a href="plannigMedecin.aspx">D'un Medecin</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Rapport <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-area-chart"></i> Rapport <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
+                      <li><a href="rapport.aspx">Du mois</a></li>
                       <li><a href="#">....</a></li>
                       
                     </ul>
@@ -105,19 +96,14 @@
                 </ul>
               </div><!--menu-section-->
              
+
             </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
+             
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -136,18 +122,11 @@
                       <i class="fa fa-user"></i> &nbsp;<asp:Label ID="Username1" runat="server" Text=""></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="#"> Profile</a>
                       <a class="dropdown-item"  href="../Login.aspx"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
   
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                    
-                  </li>
+                  
                 </ul>
               </nav>
             </div>

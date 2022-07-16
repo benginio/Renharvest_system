@@ -72,19 +72,19 @@
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
-                      <li><a href="#">Modifier</a></li>
-                      <li><a href="#">lister</a></li>
-                      <li><a href="#">Annuler</a></li>
+                      <li><a href="ModifierRDV.aspx">Modifier</a></li>
+                      <li><a href="ListeRDV.aspx">lister</a></li>
+                      <li><a href="listRDVannuler.aspx">liste Annuler</a></li>
                     </ul>
                   </li>
                   <li><a href="plannigMedecin.aspx"><i class="fa fa-table"></i> Agenda Medecin</a>
                   </li>
-                    <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
+                   <%-- <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">....</a></li>
                       <li><a href="#">....</a></li>
                     </ul>
-                  </li>
+                  </li>--%>
                   
                 </ul>
               </div><!--menu-section-->
@@ -97,13 +97,7 @@
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
+             
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -122,20 +116,13 @@
                       <i class="fa fa-user"></i> &nbsp;<asp:Label ID="Username1" runat="server" Text=""></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="#"> Profile</a>
+                      <%--<a class="dropdown-item"  href="#"> Profile</a>--%>
                       <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
 
                     </div>
 
                   </li>
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                      
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
@@ -168,47 +155,51 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
+
+            <div class=" col-sm-3 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Nbr rendez-vous annuler</span>
+                <span class="info-box-number">
+                    <asp:Label ID="nbrrdvcancel" runat="server" Text=""></asp:Label>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
           <div class=" col-sm-3 col-md-3">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-pam elevation-1"><i class="fa fa-users"></i></span>
-
               <div class="info-box-content">
-                <span class="info-box-text">Nombres Utilisateur</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">Nbr Patients Inscrit</span>
+                <span class="info-box-number">
+                    <asp:Label ID="nbrpatientins" runat="server" Text=""></asp:Label>
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          
-          <div class=" col-sm-3 col-md-3">
+
+          <%--<div class=" col-sm-3 col-md-3">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Utilisateur Actif</span>
+                <span class="info-box-text">....</span>
                 <span class="info-box-number">2,000</span>
               </div>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
           </div>
-          <!-- /.col -->
-
-          <div class=" col-sm-3 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Utilisateur Inactif</span>
-                <span class="info-box-number">2,000</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
+          <!-- /.col -->--%>
         </div>
         <!-- /.row -->
           

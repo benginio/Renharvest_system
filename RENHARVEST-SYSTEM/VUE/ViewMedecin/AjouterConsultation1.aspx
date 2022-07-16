@@ -64,7 +64,7 @@
             </div>
             <!-- /menu profile quick info -->
            
-            <!-- sidebar menu -->
+             <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -84,7 +84,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -93,18 +93,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -610,6 +612,12 @@
                                  <div class="profile_title">
                                       <h2 class="offset-1">Motif Consultation</h2>
                                       </div>
+                                 <div class="form-group row">
+                        <div class="col-md-8 col-sm-8 offset-1">
+                          <label>Motif</label>
+                            <asp:DropDownList ID="DDmotif" class="form-control" runat="server"></asp:DropDownList>
+                          </div>
+                        </div><!--end row-->
                             <div class="form-group row">
                         <div class="col-md-8 col-sm-8 offset-1">
                           <label>Histoire <small>(anamenese)</small></label>
@@ -739,7 +747,7 @@
                                    <div class="row">
                                   <div class="col-md-4 col-sm-4 ">
                                       <label for="inputname">Description Examen</label>
-                                       <asp:TextBox ID="tdesc" runat="server" class="form-control" ></asp:TextBox>
+                                      <asp:DropDownList ID="tdesc" class="form-control" runat="server"></asp:DropDownList>
                                       </div>
                                   <div class="col-md-6 col-sm-6 ">
                                       <label for="inputname">Resultat Examen</label>

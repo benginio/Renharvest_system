@@ -69,12 +69,48 @@ namespace RENHARVEST_SYSTEM.VUE
         protected global::System.Web.UI.WebControls.Label nbrPers;
 
         /// <summary>
-        /// nbruser control.
+        /// lbluser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nbruser;
+        protected global::System.Web.UI.WebControls.Label lbluser;
+
+        /// <summary>
+        /// lblNbrinscription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNbrinscription;
+
+        /// <summary>
+        /// lblconsultation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblconsultation;
+
+        /// <summary>
+        /// nbfille control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nbfille;
+
+        /// <summary>
+        /// nbgarc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nbgarc;
     }
 }

@@ -2282,40 +2282,7 @@ function init_charts() {
     }
 
 
-    // Pie chart
-    if ($('#pieChart').length) {
-
-        var ctx = document.getElementById("pieChart");
-        var data = {
-            datasets: [{
-                data: [120, 50, 140, 180, 100],
-                backgroundColor: [
-                    "#455C73",
-                    "#9B59B6",
-                    "#BDC3C7",
-                    "#26B99A",
-                    "#3498DB"
-                ],
-                label: 'My dataset' // for legend
-            }],
-            labels: [
-                "Dark Gray",
-                "Purple",
-                "Gray",
-                "Green",
-                "Blue"
-            ]
-        };
-
-        var pieChart = new Chart(ctx, {
-            data: data,
-            type: 'pie',
-            otpions: {
-                legend: false
-            }
-        });
-
-    }
+    
 
 
     // PolarArea chart

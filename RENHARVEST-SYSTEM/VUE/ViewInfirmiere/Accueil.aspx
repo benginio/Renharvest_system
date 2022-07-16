@@ -73,13 +73,7 @@
                      
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">...</a></li>
-                      <li><a href="#">...</a></li>
-                      
-                    </ul>
-                  </li>
+                 
                   
                 </ul>
               </div><!--menu-section-->

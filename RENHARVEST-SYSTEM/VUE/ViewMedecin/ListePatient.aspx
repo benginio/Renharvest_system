@@ -59,7 +59,7 @@
             </div>
             <!-- /menu profile quick info -->
            
-            <!-- sidebar menu -->
+             <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -79,7 +79,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -88,18 +88,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -109,16 +111,11 @@
 
             </div>
             <!-- /sidebar menu -->
+
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
               
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -142,13 +139,7 @@
                     </div>
                   </li>
   
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
@@ -177,7 +168,7 @@
                            </div>
                            <div class="col-md-5 col-sm-5">
                                <asp:DropDownList ID="DDsexe" CssClass="form-control" runat="server">
-                                   <asp:ListItem>--choisir Sexe--</asp:ListItem>
+                                   <asp:ListItem>--Tout Sexe--</asp:ListItem>
                                    <asp:ListItem>Masculin</asp:ListItem>
                                     <asp:ListItem>Feminin</asp:ListItem>
                                </asp:DropDownList>
@@ -241,20 +232,18 @@
                                      <asp:LinkButton ID="btnexcel" CssClass="dropdown-item" runat="server" OnClick="btnexcel_Click"><i class="fa fa-file-excel-o"></i> Excel</asp:LinkButton>
                                  </div>
                               </div>
-                  </div>
+                         </div>
                 </div>
-                  </div>
-              <div class="row" id="export" runat="server">
+                </div>  
+               <div class="row" id="export" runat="server">
                 <div class="x_panel col-lg-12">
-                        <div class="x_title">
-                    
-                        </div>
                     <div class="x_content">
-                        <div class="table-responsive">
-                        <asp:GridView ID="magride" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codepers" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
-                            <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
-
-                            <Columns> 
+                        <div class="table-responsive" >
+                            <asp:UpdatePanel runat="server"><ContentTemplate>
+                        <asp:GridView ID="magride" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codepers" EmptyDataText="Pas info a afficher." >
+                            <HeaderStyle Font-Bold="True" ForeColor="black"/>
+                            <%--BackColor="#34495E"--%>
+                            <Columns>  
                                 <asp:BoundField DataField="codepers" HeaderText="codePatient" ReadOnly="True" SortExpression="codePatient" />  
                                 <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                 <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
@@ -268,21 +257,18 @@
                                 <asp:BoundField DataField="persResp" HeaderText="Responsable" SortExpression="Personne_Respnsable" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
                                 <asp:BoundField DataField="lienApersResp" HeaderText="Lien_respon" SortExpression="Lien_Personne responsable" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                 <asp:BoundField DataField="createdby" HeaderText="CreerPar" SortExpression="Createdby" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
-                                <asp:BoundField DataField="datecreated" HeaderText="DCreation" SortExpression="datecreated" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+<%--                                <asp:BoundField DataField="datecreated" HeaderText="DCreation" SortExpression="datecreated" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  --%>
                                             
                              </Columns> 
 
                         </asp:GridView>
-                        
-                        
+                        </ContentTemplate></asp:UpdatePanel>
+                        </div>
                     </div>
-                    
                 </div>
              </div>
-                 <%-- </ContentTemplate></asp:UpdatePanel>--%>
+                </div>
           </div>
-        </div> <!-- clSS -->
-            </div>
         <!-- /page content -->
 
         <!-- footer content -->
@@ -311,10 +297,10 @@
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
     <script type="text/javascript">
-         function Searchage() {
-             document.getElementById('Searchage').style.display = 'block';
-             document.getElementById('Searchsexe').style.display = 'none';
-             document.getElementById('Search').style.display = 'none';
+        function Searchage() {
+            document.getElementById('Searchage').style.display = 'block';
+            document.getElementById('Searchsexe').style.display = 'none';
+            document.getElementById('Search').style.display = 'none';
         }
         function Searchsexe() {
             document.getElementById('Searchsexe').style.display = 'block';

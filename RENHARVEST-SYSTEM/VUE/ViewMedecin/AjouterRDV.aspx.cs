@@ -118,11 +118,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                 {
                     string msg1 = "Swal.fire('Oopss!','vous avez choisir une date passer!','warning')";
                     ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg1, true);
+                    tdate.Text = "";
+                    theure.Text = "";
                 }
                 else
                 {
                     string num = rdv.Coderdv();
-                    rdv.CreerRDV(num, Label1.Text, Label3.Text, tmotif.Text, tdate.Text, theure.Text, tusername.Text, datecreated);
+                    rdv.CreerRDV(num, Label1.Text, Label3.Text, tmotif.Text, tdate.Text, theure.Text,"Active", tusername.Text, datecreated);
                     string msg = "Swal.fire('Sucess!','Enregistrement  reusir!','success')";
                     ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
                     Afficher();
@@ -156,5 +158,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Session.Abandon();
             Response.Redirect("../Login.aspx");
         }
+
+        
     }
 }

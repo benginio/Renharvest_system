@@ -60,6 +60,33 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.LinkButton btnlogout;
 
         /// <summary>
+        /// tsearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tsearch;
+
+        /// <summary>
+        /// tbnsearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton tbnsearch;
+
+        /// <summary>
+        /// DDtrier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DDtrier;
+
+        /// <summary>
         /// gridlistRDV control.
         /// </summary>
         /// <remarks>

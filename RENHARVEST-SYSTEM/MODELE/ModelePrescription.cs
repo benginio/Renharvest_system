@@ -184,7 +184,25 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
-      
+        public DataSet ListerPrescriptionAll(string codeMedecin, string codePatient)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_listePrescription where codeMedecin='{0}' AND codePatient='{1}' ", codeMedecin, codePatient);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_listePrescription");
+            con.Close();
+
+            return data;
+        }
+
         public string lastdate(string createdby, string codePatient)
         {
             //string last;

@@ -21,6 +21,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         private static ControlleurPatients patient = new ControlleurPatients();
         string my = "";
         private static string codeM = "";
+        private static string status = "";
         private static bool find1;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,11 +50,12 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
         protected void btnlogout_Click(object sender, EventArgs e)
         {
+            
+            Response.Redirect("../Login.aspx");
             Session.Clear();
             Session.RemoveAll();
             Session.Abandon();
-            Response.Redirect("../Login.aspx");
-            
+
         }
         [WebMethod]
         public static List<CalendarEvents> GetCalendarData()
@@ -87,7 +89,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                         {
                              find1 = patient.Recherchepatient(dt.Rows[i]["codepatient"].ToString());
                             string patien=patient.getNomP()+" "+patient.getPrenomP();
-                           
+                            status= dt.Rows[i]["status"].ToString();
+
                             string codeStart =dt.Rows[i]["daterdv"] + " " + dt.Rows[i]["heure"];
                             CalendarEvents Calendar = new CalendarEvents();
                             Calendar.slotID = Convert.ToInt32(dt.Rows[i]["id"]);
@@ -97,15 +100,14 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                             Calendar.slotStartTime = Convert.ToDateTime(codeStart);
                             Calendar.slotEndTime = Convert.ToDateTime(codeStart);
 
-
-                            //if (Calendar.slotStatus == "ACTIVE")
-                            //{
+                            if (status == "Active")
+                            {
                                 Calendar.color = "green";
-                            //}
-                            //else
-                            //{
-                            //    Calendar.color = "grey";
-                            //}
+                            }
+                            else
+                            {
+                                Calendar.color = "red";
+                            }
 
                             CalendarList.Add(Calendar);
                         }
@@ -134,6 +136,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             public bool AllDayEvent { get; set; }
             public string color { get; set; }
             public string slotPatient { get;  set; }
+            public string status { get; set; }
         }
     }
 }

@@ -30,7 +30,7 @@
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Connexion <asp:Label ID="Label1" runat="server" Text=""></asp:Label></h3></div>
-                                    <div class="card-body" style="background-image: url('build/images/design1.PNG');" >
+                                    <div class="card-body" style="background-image: url('build/images/design1.PNG'); border-radius:5px;" >
                                             <div class="form-floating mb-3">
 
 
@@ -40,7 +40,7 @@
                                             </div>
                                             <div class="form-floating mb-3">
 
-                                                     <asp:TextBox ID="tpass" TextMode="Password" class="form-control" placeholder="Password..." runat="server" Text=""></asp:TextBox>
+                                                     <asp:TextBox ID="tpass" TextMode="Password" class="form-control" placeholder="Password..." runat="server" Text="pass"></asp:TextBox>
 
                                                
                                                 <label for="inputPassword">Mot de passe</label>
@@ -50,7 +50,7 @@
                                                 <label class="form-check-label" for="inputRememberPassword">Souvenir</label>
                                             </div>-->
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small forg offset-4 btn" href="password.html">Mot de passe oublie</a>
+                                              &nbsp; &nbsp;  &nbsp;  <%--<a class="small forg offset-4 btn" href="password.html">Mot de passe oublie</a>--%>
                                                 <asp:Button ID="btnvalider" class="btn btn-pam" runat="server" Text="Connecter" OnClick="btnvalider_Click" />
                                                 </div>
                                     </div>
@@ -64,7 +64,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; RenHarvest 2021</div>
+                            <div class="text-muted">Copyright &copy; RenHarvest 2022</div>
                         </div>
                     </div>
                 </footer>

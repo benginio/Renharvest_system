@@ -34,6 +34,10 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return (traitement.ListeTraitement(codePatient, codeMedecin, datecreated));
         }
+        public DataSet GetListeTraitementAll(string codePatient, string codeMedecin)
+        {
+            return (traitement.ListeTraitementAll(codePatient, codeMedecin));
+        }
         public bool Recherchetraitement(string codePatient, string codeMedecin, string datecreated)
         {
             return traitement.Recherchetraitement(codePatient, codeMedecin, datecreated);

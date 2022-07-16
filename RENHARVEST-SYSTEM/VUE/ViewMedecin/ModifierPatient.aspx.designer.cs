@@ -123,6 +123,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
+        /// btnliste control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnliste;
+
+        /// <summary>
         /// Labe1 control.
         /// </summary>
         /// <remarks>
@@ -139,15 +148,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// btnliste control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnliste;
 
         /// <summary>
         /// Label1 control.
@@ -177,13 +177,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.TextBox tprenomp;
 
         /// <summary>
-        /// dsexe control.
+        /// ddsexe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dsexe;
+        protected global::System.Web.UI.WebControls.DropDownList ddsexe;
 
         /// <summary>
         /// tdatenaiss control.
@@ -193,6 +193,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tdatenaiss;
+
+        /// <summary>
+        /// tage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tage;
 
         /// <summary>
         /// tadresse control.
@@ -267,13 +276,22 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.DropDownList ddlienp;
 
         /// <summary>
-        /// dd control.
+        /// taddressResp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dd;
+        protected global::System.Web.UI.WebControls.TextBox taddressResp;
+
+        /// <summary>
+        /// tphoneResp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tphoneResp;
 
         /// <summary>
         /// btnvalider control.

@@ -62,7 +62,7 @@
                         </div>
                         <!-- /menu profile quick info -->
 
-                        <!-- sidebar menu -->
+                         <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -82,7 +82,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -91,18 +91,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -112,16 +114,11 @@
 
             </div>
             <!-- /sidebar menu -->
+
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer hidden-small">
 
-                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                            </a>
-
-                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                                <i class="fa fa-sign-out pull-right"></i>
-                            </a>
+                            
                         </div>
                         <!-- /menu footer buttons -->
                     </div>
@@ -140,18 +137,11 @@
                                         <i class="fa fa-user"></i> &nbsp;<asp:Label ID="Username1" runat="server" Text=""></asp:Label>
                                     </a>
                                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#"> Profile</a>
                                        <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
                                     </div>
                                 </li>
 
-                                <li role="presentation" class="nav-item dropdown open">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">1</span>
-                                    </a>
-
-                                </li>
+                               
                             </ul>
                         </nav>
                     </div>
@@ -275,7 +265,7 @@
 								</div>
 							</div>
                                  <div class="col-md-4 col-sm-4 form-group"><br />
-                                 <h6>Filter  <asp:DropDownList ID="DDtrier" runat="server" ForeColor="#0D5B86" AutoPostBack="true">
+                                 <h6>Filter  <asp:DropDownList ID="DDtrier" class="form-control" runat="server" ForeColor="#0D5B86" AutoPostBack="true">
                                     <asp:ListItem>Prenom</asp:ListItem>
                                     <asp:ListItem>Nom</asp:ListItem>
                                     <asp:ListItem>Matricule</asp:ListItem>

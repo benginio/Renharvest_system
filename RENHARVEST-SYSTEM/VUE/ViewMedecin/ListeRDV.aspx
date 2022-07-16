@@ -72,7 +72,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -81,18 +81,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -160,6 +162,26 @@
               <div class="title_left"><br/>
                 <h5> Liste Rendez-vous |</h5>
               </div>
+                 <div class="title_right">
+                     <div class="col-md-8 col-sm-8 form-group  top_search"><br />
+								<div class="input-group">
+                                    <asp:TextBox ID="tsearch" runat="server" class="form-control" placeholder="Recherche..."></asp:TextBox>
+									<span class="input-group-btn">
+                                        <asp:LinkButton ID="tbnsearch" runat="server" class="btn btn-pam" OnClick="tbnsearch_Click">
+                                            <span><i class="fa fa-search"></i></span>
+                                        </asp:LinkButton>
+									</span>
+								</div>
+							</div>
+                                 <div class="col-md-4 col-sm-4 form-group"><br />
+                                 <h6>Filter  <asp:DropDownList ID="DDtrier" runat="server" ForeColor="#0D5B86" OnSelectedIndexChanged="DDtrier_SelectedIndexChanged" AutoPostBack="true">
+                                     <asp:ListItem>Id RDV</asp:ListItem>
+                                     <asp:ListItem>Date RDV</asp:ListItem>
+                                     <asp:ListItem>Prenom Patient</asp:ListItem>
+                                     <asp:ListItem>Nom Patient</asp:ListItem>
+                                </asp:DropDownList> </h6>
+                                    </div>
+                 </div>
             </div>
             <div class="row">
                 <div class="x_panel col-md-12">
@@ -180,7 +202,11 @@
                                 <asp:BoundField DataField="createdby" HeaderText="createdby" SortExpression="createdby" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                 <asp:BoundField DataField="datecreated" HeaderText="dateCreated" SortExpression="date" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
                                     
-                                    
+                                  <asp:TemplateField HeaderText="-->">                       
+                                    <ItemTemplate>                            
+                                        <asp:LinkButton ID="btnAnnuler" runat="server" Height="30px" CssClass="btn btn-danger menu " OnClick="btnAnnuler_Click" ><span class="me-2"><i class="fa fa-times"></i></span></asp:LinkButton> 
+                                    </ItemTemplate> 
+                                      </asp:TemplateField>  
                              </Columns> 
 
                         </asp:GridView>

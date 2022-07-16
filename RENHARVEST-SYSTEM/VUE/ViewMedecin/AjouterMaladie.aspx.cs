@@ -52,6 +52,11 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             magrid.DataSource = malad.GetListerMaladie();
             magrid.DataBind();
         }
+        public void ListMedN()
+        {
+            magrid.DataSource = malad.GetListerMaladieN(tsearch.Text);
+            magrid.DataBind();
+        }
         protected void btnbul_Click(object sender, EventArgs e)
         {
             LinkButton btn = sender as LinkButton;
@@ -75,18 +80,34 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
         protected void btnajouter_Click(object sender, EventArgs e)
         {
-            string codeMed = malad.CodeMaladie(tnomM.Text);
-            malad.AjouterMaladie(codeMed, tnomM.Text, tdetail.Text, Session["pseudo"].ToString(), datecreated);
-            ListMed();
-            Vider();
+            if (!string.IsNullOrEmpty(tcodeM.Text))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "Swal.fire('Oopss!','vous ne pouvez pas ajouter!','warning')", true);
+
+            }
+            else
+            {
+                malad.AjouterMaladie(tcodeM.Text, tnomM.Text, tdetail.Text, Session["pseudo"].ToString(), datecreated);
+                ListMed();
+                ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Sucess!','Enregistrement reusir!','success')", true);
+                Vider();
+            }
         }
 
         protected void btnmodif_Click(object sender, EventArgs e)
         {
-           
-            malad.ModifierMaladie(tcodeM.Text, tnomM.Text, tdetail.Text, Session["pseudo"].ToString(), datecreated);
-            ListMed();
-            Vider();
+            if (!string.IsNullOrEmpty(tcodeM.Text))
+            {
+                malad.ModifierMaladie(tcodeM.Text, tnomM.Text, tdetail.Text, Session["pseudo"].ToString(), datecreated);
+                ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Sucess!','Modification effectuer avec success!','success')", true);
+                ListMed();
+                Vider();
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "Swal.fire('Oopss!','veillez Selectionner ce que vous voulez modifier!','warning')", true);
+
+            }
         }
         void Vider()
         {
@@ -101,12 +122,29 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
         protected void tnomM_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tnomM.Text))
+            if (!string.IsNullOrEmpty(tcodeM.Text))
             {
-                string codemalad = malad.CodeMaladie(tnomM.Text);
-                tcodeM.Text = codemalad;
+
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(tnomM.Text))
+                {
+                    string codemalad = malad.CodeMaladie(tnomM.Text);
+                    tcodeM.Text = codemalad;
+                }
             }
         }
 
+        protected void tbnsearch_Click(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Equals(""))
+            {
+            }
+            else
+            {
+                ListMedN();
+            }
+        }
     }
 }

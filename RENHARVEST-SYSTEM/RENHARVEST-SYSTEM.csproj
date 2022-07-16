@@ -116,6 +116,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="VUE\ViewAdmin\AllrendezVous.aspx" />
     <Content Include="VUE\build\css\bootstrap-4.min.css" />
     <Content Include="VUE\build\css\custom.css" />
     <Content Include="VUE\build\css\sweetalert2.min.css" />
@@ -123,8 +124,12 @@
     <Content Include="VUE\build\images\bgform.JPG" />
     <Content Include="VUE\build\images\bgform2.png" />
     <Content Include="VUE\build\images\bgform3.png" />
+    <Content Include="VUE\build\images\DHLOGO.png" />
+    <Content Include="VUE\build\images\DHLOGO1.png" />
+    <Content Include="VUE\build\images\LOGOGHH.png" />
     <Content Include="VUE\build\images\User2.png" />
     <Content Include="VUE\build\images\userP.png" />
+    <Content Include="VUE\build\js\custom.min.js" />
     <Content Include="VUE\build\js\myjs.js" />
     <Content Include="VUE\build\js\sweetalert2.all.js" />
     <Content Include="VUE\build\js\sweetalert2.js" />
@@ -451,7 +456,6 @@
     <Content Include="VUE\ViewAdminSys\ListerUser.aspx" />
     <Content Include="VUE\ViewAdmin\Accueil.aspx" />
     <Content Include="VUE\ViewAdmin\AjouterMedecin.aspx" />
-    <Content Include="VUE\ViewAdmin\AjouterPatient.aspx" />
     <Content Include="VUE\build\css\custom.min.css" />
     <Content Include="VUE\build\css\login.css" />
     <Content Include="VUE\build\images\back_disabled.png" />
@@ -463,12 +467,10 @@
     <Content Include="VUE\build\images\loading.gif" />
     <Content Include="VUE\build\images\th.jpg" />
     <Content Include="VUE\build\js\custom.js" />
-    <Content Include="VUE\build\js\custom.min.js" />
     <Content Include="VUE\build\js\jslogin.js" />
     <Content Include="VUE\Login.aspx" />
     <Content Include="VUE\vendors\animate.css\animate.css" />
     <Content Include="VUE\vendors\animate.css\animate.min.css" />
-    <Content Include="VUE\vendors\animate.css\gulpfile.js" />
     <Content Include="VUE\vendors\bootstrap-daterangepicker\daterangepicker.css" />
     <Content Include="VUE\vendors\bootstrap-daterangepicker\daterangepicker.js" />
     <Content Include="VUE\vendors\bootstrap-daterangepicker\drp.png" />
@@ -533,52 +535,15 @@
     <Content Include="VUE\vendors\bootstrap-progressbar\css\bootstrap-progressbar-3.3.2.min.css" />
     <Content Include="VUE\vendors\bootstrap-progressbar\css\bootstrap-progressbar-3.3.4.css" />
     <Content Include="VUE\vendors\bootstrap-progressbar\css\bootstrap-progressbar-3.3.4.min.css" />
-    <Content Include="VUE\vendors\bootstrap\.babelrc.js" />
-    <Content Include="VUE\vendors\bootstrap\build\banner.js" />
-    <Content Include="VUE\vendors\bootstrap\build\build-plugins.js" />
-    <Content Include="VUE\vendors\bootstrap\build\change-version.js" />
-    <Content Include="VUE\vendors\bootstrap\build\generate-sri.js" />
-    <Content Include="VUE\vendors\bootstrap\build\postcss.config.js" />
-    <Content Include="VUE\vendors\bootstrap\build\rollup.config.js" />
-    <Content Include="VUE\vendors\bootstrap\build\vnu-jar.js" />
-    <Content Include="VUE\vendors\bootstrap\dist\css\bootstrap-grid.css" />
-    <Content Include="VUE\vendors\bootstrap\dist\css\bootstrap-grid.min.css" />
-    <Content Include="VUE\vendors\bootstrap\dist\css\bootstrap-reboot.css" />
-    <Content Include="VUE\vendors\bootstrap\dist\css\bootstrap-reboot.min.css" />
     <Content Include="VUE\vendors\bootstrap\dist\css\bootstrap.css" />
     <Content Include="VUE\vendors\bootstrap\dist\css\bootstrap.min.css" />
     <Content Include="VUE\vendors\bootstrap\dist\js\bootstrap.bundle.js" />
     <Content Include="VUE\vendors\bootstrap\dist\js\bootstrap.bundle.min.js" />
     <Content Include="VUE\vendors\bootstrap\dist\js\bootstrap.js" />
     <Content Include="VUE\vendors\bootstrap\dist\js\bootstrap.min.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\alert.js" />
     <Content Include="VUE\vendors\bootstrap\js\dist\button.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\carousel.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\collapse.js" />
     <Content Include="VUE\vendors\bootstrap\js\dist\dropdown.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\index.js" />
     <Content Include="VUE\vendors\bootstrap\js\dist\modal.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\popover.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\scrollspy.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\tab.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\toast.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\tooltip.js" />
-    <Content Include="VUE\vendors\bootstrap\js\dist\util.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\alert.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\button.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\carousel.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\collapse.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\dropdown.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\index.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\modal.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\popover.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\scrollspy.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\tab.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\toast.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\tools\sanitizer.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\tooltip.js" />
-    <Content Include="VUE\vendors\bootstrap\js\src\util.js" />
-    <Content Include="VUE\vendors\bootstrap\package.js" />
     <Content Include="VUE\vendors\Chart.js\dist\Chart.bundle.js" />
     <Content Include="VUE\vendors\Chart.js\dist\Chart.bundle.min.js" />
     <Content Include="VUE\vendors\Chart.js\dist\Chart.js" />
@@ -587,11 +552,6 @@
     <Content Include="VUE\vendors\Chart.js\karma.conf.ci.js" />
     <Content Include="VUE\vendors\Chart.js\karma.conf.js" />
     <Content Include="VUE\vendors\Chart.js\karma.coverage.conf.js" />
-    <Content Include="VUE\vendors\dropzone\dist\basic.css" />
-    <Content Include="VUE\vendors\dropzone\dist\dropzone-amd-module.js" />
-    <Content Include="VUE\vendors\dropzone\dist\dropzone.css" />
-    <Content Include="VUE\vendors\dropzone\dist\dropzone.js" />
-    <Content Include="VUE\vendors\fastclick\lib\fastclick.js" />
     <Content Include="VUE\vendors\font-awesome\css\font-awesome.css" />
     <Content Include="VUE\vendors\font-awesome\css\font-awesome.min.css" />
     <Content Include="VUE\vendors\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -688,20 +648,15 @@
     <Content Include="VUE\vendors\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.css" />
     <Content Include="VUE\vendors\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.js" />
     <Content Include="VUE\vendors\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.min.css" />
-    <Content Include="VUE\vendors\nprogress\nprogress.css" />
-    <Content Include="VUE\vendors\nprogress\nprogress.js" />
-    <Content Include="VUE\vendors\nprogress\support\extras.css" />
-    <Content Include="VUE\vendors\nprogress\support\style.css" />
-    <Content Include="VUE\vendors\pdfmake\build\pdfmake.js" />
-    <Content Include="VUE\vendors\pdfmake\build\vfs_fonts.js" />
-    <Content Include="VUE\vendors\validator\fv.css" />
-    <Content Include="VUE\vendors\validator\multifield.js" />
     <Content Include="VUE\vendors\validator\validator.js" />
+    <Content Include="VUE\ViewAdmin\AjouterPatient.aspx" />
     <Content Include="VUE\ViewAdmin\AjouterRDV.aspx" />
-    <Content Include="VUE\ViewAdmin\ListerMedecin.aspx" />
     <Content Include="VUE\ViewAdmin\ListePatient.aspx" />
+    <Content Include="VUE\ViewAdmin\ListerMedecin.aspx" />
     <Content Include="VUE\ViewAdmin\ModiferMedecin.aspx" />
     <Content Include="VUE\ViewAdmin\ModifierPatient.aspx" />
+    <Content Include="VUE\ViewAdmin\plannigMedecin.aspx" />
+    <Content Include="VUE\ViewAdmin\planningMedecin1.aspx" />
     <Content Include="VUE\ViewAdmin\rapport.aspx" />
     <Content Include="VUE\ViewCaissier\Accueil.aspx" />
     <Content Include="VUE\ViewCaissier\ajouterPaiement.aspx" />
@@ -716,9 +671,12 @@
     <Content Include="VUE\ViewMedecin\AjouterConsultation1.aspx" />
     <Content Include="VUE\ViewMedecin\AjouterMaladie.aspx" />
     <Content Include="VUE\ViewMedecin\AjouterMedicament.aspx" />
+    <Content Include="VUE\ViewMedecin\ajouterMotifCons.aspx" />
     <Content Include="VUE\ViewMedecin\AjouterPatient.aspx" />
     <Content Include="VUE\ViewMedecin\AjouterRDV.aspx" />
-    <Content Include="VUE\ViewMedecin\AnnulerRDV.aspx" />
+    <Content Include="VUE\ViewMedecin\ajouterTypeExamen.aspx" />
+    <Content Include="VUE\ViewMedecin\ListeConsultation.aspx" />
+    <Content Include="VUE\ViewMedecin\listRDVannuler.aspx" />
     <Content Include="VUE\ViewMedecin\DossierPatient.aspx" />
     <Content Include="VUE\ViewMedecin\InfoConsultation.aspx" />
     <Content Include="VUE\ViewMedecin\ListePatient.aspx" />
@@ -735,7 +693,10 @@
     <Content Include="VUE\ViewSecretaire\AjouterPatient.aspx" />
     <Content Include="VUE\ViewSecretaire\AjouterRDV.aspx" />
     <Content Include="VUE\ViewSecretaire\ListePatient.aspx" />
+    <Content Include="VUE\ViewSecretaire\ListeRDV.aspx" />
+    <Content Include="VUE\ViewSecretaire\listRDVannuler.aspx" />
     <Content Include="VUE\ViewSecretaire\ModifierPatient.aspx" />
+    <Content Include="VUE\ViewSecretaire\ModifierRDV.aspx" />
     <Content Include="VUE\ViewSecretaire\plannigMedecin.aspx" />
     <Content Include="VUE\ViewSecretaire\planningMedecin1.aspx" />
     <Content Include="Web.config" />
@@ -748,6 +709,7 @@
     <Compile Include="CONTROLLEUR\ControlleurMaladie.cs" />
     <Compile Include="CONTROLLEUR\ControlleurMedecin.cs" />
     <Compile Include="CONTROLLEUR\ControlleurMedicament.cs" />
+    <Compile Include="CONTROLLEUR\ControlleurMotifCons.cs" />
     <Compile Include="CONTROLLEUR\ControlleurPaiement.cs" />
     <Compile Include="CONTROLLEUR\ControlleurPatients.cs" />
     <Compile Include="CONTROLLEUR\ControlleurPrescription.cs" />
@@ -756,12 +718,8 @@
     <Compile Include="CONTROLLEUR\ControlleurSigneV.cs" />
     <Compile Include="CONTROLLEUR\ControlleurSpecialisation.cs" />
     <Compile Include="CONTROLLEUR\ControlleurTraitement.cs" />
+    <Compile Include="CONTROLLEUR\ControlleurTypeExamen.cs" />
     <Compile Include="CONTROLLEUR\ControlleurUser.cs" />
-    <Compile Include="DBHARVESTDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBHARVESTDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DBHARVESTDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -774,6 +732,7 @@
     <Compile Include="MODELE\ModeleMaladie.cs" />
     <Compile Include="MODELE\ModeleMedecin.cs" />
     <Compile Include="MODELE\ModeleMedicament.cs" />
+    <Compile Include="MODELE\ModeleMotifCons.cs" />
     <Compile Include="MODELE\ModelePaiement.cs" />
     <Compile Include="MODELE\ModelePatients.cs" />
     <Compile Include="MODELE\ModelePrescription.cs" />
@@ -782,8 +741,16 @@
     <Compile Include="MODELE\ModeleSigneV.cs" />
     <Compile Include="MODELE\ModeleSpecialisation.cs" />
     <Compile Include="MODELE\ModeleTraitement.cs" />
+    <Compile Include="MODELE\ModeleTypeExamen.cs" />
     <Compile Include="MODELE\ModeleUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VUE\ViewAdmin\AllrendezVous.aspx.cs">
+      <DependentUpon>AllrendezVous.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\AllrendezVous.aspx.designer.cs">
+      <DependentUpon>AllrendezVous.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VUE\Rapport\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -861,19 +828,19 @@
     <Compile Include="VUE\ViewAdmin\AjouterMedecin.aspx.designer.cs">
       <DependentUpon>AjouterMedecin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VUE\ViewAdmin\AjouterPatient.aspx.cs">
-      <DependentUpon>AjouterPatient.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VUE\ViewAdmin\AjouterPatient.aspx.designer.cs">
-      <DependentUpon>AjouterPatient.aspx</DependentUpon>
-    </Compile>
     <Compile Include="VUE\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VUE\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\AjouterPatient.aspx.cs">
+      <DependentUpon>AjouterPatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\AjouterPatient.aspx.designer.cs">
+      <DependentUpon>AjouterPatient.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewAdmin\AjouterRDV.aspx.cs">
       <DependentUpon>AjouterRDV.aspx</DependentUpon>
@@ -882,19 +849,19 @@
     <Compile Include="VUE\ViewAdmin\AjouterRDV.aspx.designer.cs">
       <DependentUpon>AjouterRDV.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VUE\ViewAdmin\ListerMedecin.aspx.cs">
-      <DependentUpon>ListerMedecin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VUE\ViewAdmin\ListerMedecin.aspx.designer.cs">
-      <DependentUpon>ListerMedecin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="VUE\ViewAdmin\ListePatient.aspx.cs">
       <DependentUpon>ListePatient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VUE\ViewAdmin\ListePatient.aspx.designer.cs">
       <DependentUpon>ListePatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\ListerMedecin.aspx.cs">
+      <DependentUpon>ListerMedecin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\ListerMedecin.aspx.designer.cs">
+      <DependentUpon>ListerMedecin.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewAdmin\ModiferMedecin.aspx.cs">
       <DependentUpon>ModiferMedecin.aspx</DependentUpon>
@@ -909,6 +876,20 @@
     </Compile>
     <Compile Include="VUE\ViewAdmin\ModifierPatient.aspx.designer.cs">
       <DependentUpon>ModifierPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\plannigMedecin.aspx.cs">
+      <DependentUpon>plannigMedecin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\plannigMedecin.aspx.designer.cs">
+      <DependentUpon>plannigMedecin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\planningMedecin1.aspx.cs">
+      <DependentUpon>planningMedecin1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewAdmin\planningMedecin1.aspx.designer.cs">
+      <DependentUpon>planningMedecin1.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewAdmin\rapport.aspx.cs">
       <DependentUpon>rapport.aspx</DependentUpon>
@@ -1008,6 +989,13 @@
     <Compile Include="VUE\ViewMedecin\AjouterMedicament.aspx.designer.cs">
       <DependentUpon>AjouterMedicament.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VUE\ViewMedecin\ajouterMotifCons.aspx.cs">
+      <DependentUpon>ajouterMotifCons.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\ajouterMotifCons.aspx.designer.cs">
+      <DependentUpon>ajouterMotifCons.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VUE\ViewMedecin\AjouterPatient.aspx.cs">
       <DependentUpon>AjouterPatient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1022,12 +1010,26 @@
     <Compile Include="VUE\ViewMedecin\AjouterRDV.aspx.designer.cs">
       <DependentUpon>AjouterRDV.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VUE\ViewMedecin\AnnulerRDV.aspx.cs">
-      <DependentUpon>AnnulerRDV.aspx</DependentUpon>
+    <Compile Include="VUE\ViewMedecin\ajouterTypeExamen.aspx.cs">
+      <DependentUpon>ajouterTypeExamen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VUE\ViewMedecin\AnnulerRDV.aspx.designer.cs">
-      <DependentUpon>AnnulerRDV.aspx</DependentUpon>
+    <Compile Include="VUE\ViewMedecin\ajouterTypeExamen.aspx.designer.cs">
+      <DependentUpon>ajouterTypeExamen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\ListeConsultation.aspx.cs">
+      <DependentUpon>ListeConsultation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\ListeConsultation.aspx.designer.cs">
+      <DependentUpon>ListeConsultation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\listRDVannuler.aspx.cs">
+      <DependentUpon>listRDVannuler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewMedecin\listRDVannuler.aspx.designer.cs">
+      <DependentUpon>listRDVannuler.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewMedecin\DossierPatient.aspx.cs">
       <DependentUpon>DossierPatient.aspx</DependentUpon>
@@ -1141,12 +1143,33 @@
     <Compile Include="VUE\ViewSecretaire\ListePatient.aspx.designer.cs">
       <DependentUpon>ListePatient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VUE\ViewSecretaire\ListeRDV.aspx.cs">
+      <DependentUpon>ListeRDV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\ListeRDV.aspx.designer.cs">
+      <DependentUpon>ListeRDV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\listRDVannuler.aspx.cs">
+      <DependentUpon>listRDVannuler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\listRDVannuler.aspx.designer.cs">
+      <DependentUpon>listRDVannuler.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VUE\ViewSecretaire\ModifierPatient.aspx.cs">
       <DependentUpon>ModifierPatient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="VUE\ViewSecretaire\ModifierPatient.aspx.designer.cs">
       <DependentUpon>ModifierPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\ModifierRDV.aspx.cs">
+      <DependentUpon>ModifierRDV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VUE\ViewSecretaire\ModifierRDV.aspx.designer.cs">
+      <DependentUpon>ModifierRDV.aspx</DependentUpon>
     </Compile>
     <Compile Include="VUE\ViewSecretaire\plannigMedecin.aspx.cs">
       <DependentUpon>plannigMedecin.aspx</DependentUpon>
@@ -1164,17 +1187,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBHARVESTDataSet.xsc">
-      <DependentUpon>DBHARVESTDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="DBHARVESTDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DBHARVESTDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="DBHARVESTDataSet.xss">
-      <DependentUpon>DBHARVESTDataSet.xsd</DependentUpon>
-    </Content>
     <Content Include="DBHARVESTDataSet1.xsc">
       <DependentUpon>DBHARVESTDataSet1.xsd</DependentUpon>
     </Content>
@@ -1211,9 +1223,11 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="VUE\Rapport\DHprescription.rdlc" />
+    <Folder Include="VUE\vendors\bootstrap\build\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VUE\Rapport\ListPatientNom.rdlc" />
     <EmbeddedResource Include="VUE\Rapport\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>

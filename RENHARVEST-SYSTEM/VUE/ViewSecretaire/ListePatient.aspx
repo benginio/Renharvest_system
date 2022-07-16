@@ -26,8 +26,7 @@
 </head>
 <body class="nav-md">
     <form id="form1" runat="server">
-       
-
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
          <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -96,19 +95,13 @@
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
               
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
             </div> 
             <!-- /menu footer buttons -->
           </div>
         </div>
 
-        <!-- top navigation -->
+       <!-- top navigation -->
         <div class="top_nav navbar-fixed-top">
             <div class="nav_menu">
                 <div class="nav toggle">
@@ -126,13 +119,7 @@
                     </div>
                   </li>
   
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
@@ -148,48 +135,125 @@
                 <h5> Liste Patient |</h5>
               </div>
             </div>
-
               <div class="row">
-              
+                  <div class="col-sm-2 col-md-2">
+                      <asp:LinkButton ID="LinkButton1" CssClass="btn btn-success" runat="server" OnClick="LinkButton1_Click">Ajouter <span><i class="fa fa-plus-circle"></i></span></asp:LinkButton>
+                  </div>
+                  <div class="col-sm-10 col-md-10">
+                      
+                      <div class="col-md-8 col-sm-8" id="Search">
+                          <asp:UpdatePanel runat="server"><ContentTemplate>
+                           <div class="col-md-5 col-sm-5">
+                               <asp:TextBox ID="tsearchNP" runat="server" class="form-control" placeholder="Rechercher..."></asp:TextBox>
+                           </div>
+                           <div class="col-md-5 col-sm-5">
+                               <asp:DropDownList ID="DDsexe" CssClass="form-control" runat="server">
+                                   <asp:ListItem>--choisir Sexe--</asp:ListItem>
+                                   <asp:ListItem>Masculin</asp:ListItem>
+                                    <asp:ListItem>Feminin</asp:ListItem>
+                               </asp:DropDownList>
+                           </div>
+                           <div class="col-md-2 col-sm-2">
+                               <span class="input-group-btn">
+                                        <asp:LinkButton ID="btnsearch" runat="server" class="btn btn-pam" OnClick="btnsearch_Click">
+                                            <span><i class="fa fa-search"></i></span>
+                                        </asp:LinkButton>
+									</span>
+                               </div>
+                              </ContentTemplate></asp:UpdatePanel>
+                            </div>
+                       <div class="col-md-8 col-sm-8 pag" id="Searchage">
+                           <asp:UpdatePanel runat="server"><ContentTemplate>
+                           <div class="col-md-5 col-sm-5">
+                               <asp:TextBox ID="tagebebut" runat="server" class="form-control" ></asp:TextBox>
+                           </div>
+                           <div class="col-md-5 col-sm-5">
+                               <asp:TextBox ID="tagefin" runat="server" class="form-control" ></asp:TextBox>
+                           </div>
+                           <div class="col-md-2 col-sm-2">
+                               <span class="input-group-btn">
+                                        <asp:LinkButton ID="btnsearchage" runat="server" class="btn btn-pam" OnClick="btnsearchage_Click">
+                                            <span><i class="fa fa-search"></i></span>
+                                        </asp:LinkButton>
+									</span>
+                               </div>
+                               </ContentTemplate></asp:UpdatePanel>
+                            </div>
+                            <div class="col-md-8 col-sm-8 pag" id="Searchsexe">
+                                <asp:UpdatePanel runat="server"><ContentTemplate>
+                           <div class="col-md-5 col-sm-5 offset-2">
+                               <asp:DropDownList ID="DDsexe1" CssClass="form-control" runat="server" OnSelectedIndexChanged="DDsexe1_SelectedIndexChanged" AutoPostBack="true">
+                                   <asp:ListItem>--choisir Sexe--</asp:ListItem>
+                                   <asp:ListItem>Masculin</asp:ListItem>
+                                    <asp:ListItem>Feminin</asp:ListItem>
+                               </asp:DropDownList>
+                           </div>
+                                  </ContentTemplate></asp:UpdatePanel>
+                            </div>
+                        
+                            <div class="col-md-4 col-sm-4">
+                                <div class="col-md-6 col-sm-6">
+                                <asp:UpdatePanel runat="server"><ContentTemplate>
+                                <asp:DropDownList ID="ddsearch" CssClass="form-control" OnSelectedIndexChanged="ddsearch_SelectedIndexChanged" runat="server" AutoPostBack="true">
+                                    
+                                    <asp:ListItem>Prenom</asp:ListItem>
+                                    <asp:ListItem>Nom</asp:ListItem>
+                                    <asp:ListItem>Age</asp:ListItem>
+                                    <asp:ListItem>Sexe</asp:ListItem>
+                                </asp:DropDownList>
+                                  </ContentTemplate></asp:UpdatePanel>
+                                    </div>
+                                 <div class="col-md-6 col-sm-6">
+                                     <asp:LinkButton ID="navbarDropdown2" class="btn btn-default dropdown-toggle" aria-haspopup="true"  data-toggle="dropdown" aria-expanded="false" runat="server" BorderColor="#29458D">
+                                         <i class="fa fa-print"></i>Export
+                                     </asp:LinkButton>
+                                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown2">
+                                     <asp:LinkButton ID="btnpdf" CssClass="dropdown-item" runat="server" OnClick="btnpdf_Click"><i class="fa fa-file-pdf-o"></i> Pdf</asp:LinkButton>
+                                     <asp:LinkButton ID="btnexcel" CssClass="dropdown-item" runat="server" OnClick="btnexcel_Click"><i class="fa fa-file-excel-o"></i> Excel</asp:LinkButton>
+                                 </div>
+                              </div>
+                         </div>
+                </div>
+                </div>  
+               <div class="row" id="export" runat="server">
                 <div class="x_panel col-lg-12">
-                   
                     <div class="x_content">
-                        <div class="table-responsive">
-                        <asp:GridView ID="magride" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codepers" EmptyDataText="Pas info a afficher.">
-                            <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
-
+                        <div class="table-responsive" >
+                            <asp:UpdatePanel runat="server"><ContentTemplate>
+                        <asp:GridView ID="magride" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codepers" EmptyDataText="Pas info a afficher." >
+                            <HeaderStyle Font-Bold="True" ForeColor="black"/>
+                            <%--BackColor="#34495E"--%>
                             <Columns>  
-                                            <asp:BoundField DataField="codepers" HeaderText="codePatient" ReadOnly="True" SortExpression="codePatient" />  
-                                            <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
-                                            <asp:BoundField DataField="sexe" HeaderText="Sexe" SortExpression="Sexe" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />  
-                                            <asp:BoundField DataField="dateNaiss" HeaderText="Date_Naissance" SortExpression="Date Naissance" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="adresse" HeaderText="Addresse" SortExpression="Adresse" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="telephone" HeaderText="Telephone" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-                                            <asp:BoundField DataField="email" HeaderText="Email" SortExpression="Email" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="job" HeaderText="Profession" SortExpression="Profession" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-                                            <asp:BoundField DataField="gps" HeaderText="Groupe_S" SortExpression="Groupe_S." HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="persResp" HeaderText="Personne_Responsable" SortExpression="Personne_Respnsable" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-                                            <asp:BoundField DataField="lienApersResp" HeaderText="Lien_Personne_responsable" SortExpression="Lien_Personne responsable" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="createdby" HeaderText="Createdby" SortExpression="Createdby" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="datecreated" HeaderText="datecreated" SortExpression="datecreated" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="codepers" HeaderText="codePatient" ReadOnly="True" SortExpression="codePatient" />  
+                                <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
+                                <asp:BoundField DataField="sexe" HeaderText="Sexe" SortExpression="Sexe" HeaderStyle-CssClass="visible-xs" ItemStyle-CssClass="visible-xs" />  
+                                <asp:BoundField DataField="dateNaiss" HeaderText="Date_Naissance" SortExpression="Date Naissance" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="adresse" HeaderText="Addresse" SortExpression="Adresse" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="telephone" HeaderText="Telephone" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                                <asp:BoundField DataField="email" HeaderText="Email" SortExpression="Email" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="job" HeaderText="Profession" SortExpression="Profession" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                                <asp:BoundField DataField="gps" HeaderText="G_S" SortExpression="Groupe_S." HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="persResp" HeaderText="Responsable" SortExpression="Personne_Respnsable" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
+                                <asp:BoundField DataField="lienApersResp" HeaderText="Lien_respon" SortExpression="Lien_Personne responsable" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+                                <asp:BoundField DataField="createdby" HeaderText="CreerPar" SortExpression="Createdby" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
+<%--                                <asp:BoundField DataField="datecreated" HeaderText="DCreation" SortExpression="datecreated" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  --%>
                                             
                              </Columns> 
 
                         </asp:GridView>
-                        
+                        </ContentTemplate></asp:UpdatePanel>
                         </div>
                     </div>
                 </div>
              </div>
-
+                </div>
           </div>
-        </div>
         <!-- /page content -->
 
         <!-- footer content -->
         <footer>
-          <div class="pull-right">
+          <div class="pull-right" >
             <strong >Copyright &copy; 2021-2025 <a href="#">TGLcomputing</a>.</strong> tout droit reservé.
           </div>
           <div class="clearfix"></div>
@@ -212,7 +276,23 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-
+    <script type="text/javascript">
+        function Searchage() {
+            document.getElementById('Searchage').style.display = 'block';
+            document.getElementById('Searchsexe').style.display = 'none';
+            document.getElementById('Search').style.display = 'none';
+        }
+        function Searchsexe() {
+            document.getElementById('Searchsexe').style.display = 'block';
+            document.getElementById('Searchage').style.display = 'none';
+            document.getElementById('Search').style.display = 'none';
+        }
+        function Search() {
+            document.getElementById('Search').style.display = 'block';
+            document.getElementById('Searchsexe').style.display = 'none';
+            document.getElementById('Searchage').style.display = 'none';
+        }
+    </script>
     
 
 </body>

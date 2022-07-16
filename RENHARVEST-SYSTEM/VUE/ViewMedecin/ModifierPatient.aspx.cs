@@ -16,12 +16,13 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         private ControlleurMedecin medecin = new ControlleurMedecin();
         string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
         string my = "";
+        public string matri = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 tdatenow.Text = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
-                
+
                 if (Session["codeUser"] != null)
                 {
                     Afficher();
@@ -29,6 +30,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                     bool find = medecin.Recherchemedecin(my);
                     tusername.Text = "Dr." + medecin.getPrenomP();
                     Username1.Text = "Dr." + medecin.getPrenomP();
+
                 }
                 else
                 {
@@ -67,19 +69,23 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             bool find = patient.Recherchepatient(codepers);
             tnomp.Text = patient.getNomP();
             tprenomp.Text = patient.getPrenomP();
-            dsexe.Text = 
-            dd.Text = patient.getSexe();
+            ddsexe.Text = patient.getSexe();
             tdatenaiss.Text = patient.getDateNaiss();
+            DateTime d = Convert.ToDateTime(tdatenaiss.Text);
+            tage.Text = Convert.ToString(DateTime.Now.Year - d.Year) + "  Ans";
             tadresse.Text = patient.getAdresse();
             tphone.Text = patient.getPhone();
             temail.Text = patient.getEmail();
             tmatricule.Text = patient.getMatricule();
+            matri= patient.getMatricule();
             tjob.Text = patient.getJob();
             ddg_s.Text = patient.getG_S();
             tp_respon.Text = patient.getP_Respon();
             ddlienp.Text = patient.getLienARespon();
             Labe1.Text = patient.getNomP();
             Label2.Text = patient.getPrenomP();
+            taddressResp.Text = patient.getAdresseResp();
+            tphoneResp.Text = patient.getPhoneResp();
         }
 
         protected void tbnsearch_Click(object sender, EventArgs e)
@@ -110,34 +116,47 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
           //  codepatient = "";
             tnomp.Text = "";
             tprenomp.Text = "";
-            dsexe.Text = "";
             tdatenaiss.Text = "";
             tadresse.Text = "";
             tphone.Text = "";
             temail.Text = "";
             tmatricule.Text = "";
             tjob.Text = "";
-            ddg_s.Text = "";
             tp_respon.Text = "";
             ddlienp.Text = "";
             Label1.Text = "";
+            taddressResp.Text = "";
+            tphoneResp.Text = "";
 
         }
         protected void btnvalider_Click(object sender, EventArgs e)
         {
-            string code = Label1.Text;
+            if (tnomp.Text.Equals("") || tprenomp.Text.Equals("") || tdatenaiss.Text.Equals("") || tphone.Text.Equals("") || tadresse.Text.Equals(""))
+            {
+                ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert1", "valide()", true);
+            }
+            else
+            {
 
-            patient.ModifierPatient(code, tnomp.Text, tprenomp.Text, dsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, tp_respon.Text, ddlienp.Text, null, tusername.Text, null);
-           
-            Vider();
-            string msg = "Swal.fire('Sucess!','Modification reusir!','success')";
-            ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
-            Afficher();
-            //Response.Redirect("ModifierPatient.aspx");
-            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "viewprof1()", true);
-            //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "Swal.fire('Sucess!','Modification reusir!','success')", true);
-            //ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Sucess!','Enregistrement reusir!','success')", true);
+                string code = Label1.Text;
+                DateTime d = Convert.ToDateTime(tdatenaiss.Text);
+                if (d.Date > DateTime.Now.Date)
+                {
+                    tdatenaiss.Text = "";
+                    string msg = "Swal.fire('Oopss!','La date de naissance est superieure a aujourdhui!','warning')";
+                    ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
+                }
+                else
+                {
+                    patient.ModifierPatient(code, tnomp.Text, tprenomp.Text, ddsexe.Text, tdatenaiss.Text, tadresse.Text, tphone.Text, temail.Text, tmatricule.Text, tjob.Text, ddg_s.Text, tp_respon.Text, ddlienp.Text, taddressResp.Text, tphoneResp.Text, null, tusername.Text, null);
 
+                    Vider();
+                    string msg = "Swal.fire('Sucess!','Modification reusir!','success')";
+                    ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
+                    Afficher();
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "id", "viewprof1()", true);
+                }
+            }
         }
 
         protected void btnliste_Click(object sender, EventArgs e)
@@ -151,6 +170,31 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Session.RemoveAll();
             Session.Abandon();
             Response.Redirect("../Login.aspx");
+        }
+
+        protected void tmatricule_TextChanged(object sender, EventArgs e)
+        {
+            string mat = patient.verifierMatri(tmatricule.Text);
+            if (mat.Equals("0"))
+            {
+
+            }
+            else if (tmatricule.Text.Equals(matri))
+            {
+
+            }else
+            {
+                tmatricule.Text = "";
+                string msg = "Swal.fire('Oopss!','Cet Matricule a deja ete utiliser!','warning')";
+                ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", msg, true);
+                
+            }
+
+        }
+
+        protected void btnannuler_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModifierPatient.aspx");
         }
     }
 }

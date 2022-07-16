@@ -36,6 +36,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewSecretaire
                     Username1.Text = Session["pseudo"].ToString();
 
                     nbrRDV.Text = rdv.nbrRDVtoDay1();
+                    nbrrdvcancel.Text = rdv.nbrRDVtoDay1Cancel();
                 }
                 else
                 {

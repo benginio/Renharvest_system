@@ -96,13 +96,7 @@
                   <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                    <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="AjouterMedicament.aspx">Medicament</a></li>
-                      <li><a href="AjouterMaladie.aspx">Maladie</a></li>
-                      
-                    </ul>
-                  </li>
+                    
                 </ul>
               </div><!--menu-section-->
              
@@ -113,13 +107,6 @@
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer hidden-small">
 
-                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                            </a>
-
-                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                                <i class="fa fa-sign-out pull-right"></i>
-                            </a>
                         </div>
                         <!-- /menu footer buttons -->
                     </div>
@@ -144,13 +131,7 @@
                                 </div>
                                 </li>
 
-                                <li role="presentation" class="nav-item dropdown open">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">1</span>
-                                    </a>
-
-                                </li>
+                               
                             </ul>
                         </nav>
                     </div>

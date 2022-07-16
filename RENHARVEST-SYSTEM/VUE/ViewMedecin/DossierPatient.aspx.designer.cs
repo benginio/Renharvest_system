@@ -330,6 +330,24 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.GridView Gridconsultation;
 
         /// <summary>
+        /// Gridtraitement control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView Gridtraitement;
+
+        /// <summary>
+        /// gridprescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridprescription;
+
+        /// <summary>
         /// gridlistRDV control.
         /// </summary>
         /// <remarks>

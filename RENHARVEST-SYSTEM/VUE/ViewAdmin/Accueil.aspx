@@ -73,32 +73,23 @@
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
-                      
-                     
-                    </ul>
-                  </li>
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListerRDV">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
+                      <li><a href="AllrendezVous.aspx">Des Medecin</a></li>
+                      <li><a href="plannigMedecin.aspx">D'un Medecin</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-area-chart"></i> Rapport <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
+                      <li><a href="rapport.aspx">Du mois</a></li>
                       <li><a href="#">....</a></li>
                       
                     </ul>
@@ -114,13 +105,6 @@
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -139,20 +123,13 @@
                       <i class="fa fa-user"></i> &nbsp;<asp:Label ID="Username1" runat="server" Text=""></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="#"> Profile</a>
+                      
                       <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
 
                     </div>
 
                   </li>
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                      
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
@@ -175,7 +152,7 @@
               <span class="info-box-icon bg-green elevation-1"><i class="fa fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Nbr Personne</span>
+                <span class="info-box-text">Nbr Patients</span>
                 <span class="info-box-number">
                     <asp:Label ID="nbrPers" runat="server" Text=""></asp:Label>
                 </span>
@@ -187,12 +164,12 @@
           <!-- /.col -->
           <div class=" col-sm-3 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-pam elevation-1"><i class="fa fa-users"></i></span>
+              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Nombres Utilisateur</span>
                 <span class="info-box-number">
-                    <asp:Label ID="nbruser" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="lbluser" runat="server" Text=""></asp:Label>
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -203,11 +180,13 @@
           
           <div class=" col-sm-3 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
+              <span class="info-box-icon bg-pam elevation-1"><i class="fa fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Utilisateur Actif</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-text"> Patients inscrit aujourd'hui</span>
+                <span class="info-box-number">
+                     <asp:Label ID="lblNbrinscription" runat="server" Text=""></asp:Label>
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -220,8 +199,10 @@
               <span class="info-box-icon bg-white elevation-1"><i class="fa fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Utilisateur Inactif</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-text">Consultation aujourd'hui</span>
+                <span class="info-box-number">
+                    <asp:Label ID="lblconsultation" runat="server" Text=""></asp:Label>
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -233,12 +214,22 @@
           
 
               <div class="row">
-              <div class="col-sm-6 col-md-6">
-             <div class="x_panel">
-                 <div class="x_content">
-                     <canvas id="pieChart"></canvas>
-                 </div>
-             </div>
+              <div class="col-sm-5 col-md-5">
+                    <div class="x_panel">
+                        <strong><label>Feminin :</label></strong><asp:Label ID="nbfille" runat="server" Text="" ></asp:Label>&nbsp;&nbsp;
+                        <strong><label>Masculin :</label></strong><asp:Label ID="nbgarc" runat="server" Text=""></asp:Label><br />
+                        <div class="x_content">
+                        <canvas id="pieChart"></canvas>
+                        </div>
+                        </div>
+                </div>
+
+                  <div class="col-sm-7 col-md-7">
+                      <div class="x_panel">
+                           <div class="x_content">
+                    <canvas id="mybarChart"></canvas>
+                  </div>
+                      </div>
                   </div>
                   </div>
 
@@ -269,311 +260,99 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
      <!-- Chart.js -->
     <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-    <script type="text/javascript">
-        function init_echarts() {
-
-            if (typeof (echarts) === 'undefined') { return; }
-            console.log('init_echarts');
-
-
-            var theme = {
-                color: [
-                    '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
-                    '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
-                ],
-
-                title: {
-                    itemGap: 8,
-                    textStyle: {
-                        fontWeight: 'normal',
-                        color: '#408829'
-                    }
-                },
-
-                dataRange: {
-                    color: ['#1f610a', '#97b58d']
-                },
-
-                toolbox: {
-                    color: ['#408829', '#408829', '#408829', '#408829']
-                },
-
-                tooltip: {
-                    backgroundColor: 'rgba(0,0,0,0.5)',
-                    axisPointer: {
-                        type: 'line',
-                        lineStyle: {
-                            color: '#408829',
-                            type: 'dashed'
-                        },
-                        crossStyle: {
-                            color: '#408829'
-                        },
-                        shadowStyle: {
-                            color: 'rgba(200,200,200,0.3)'
-                        }
-                    }
-                },
-
-                dataZoom: {
-                    dataBackgroundColor: '#eee',
-                    fillerColor: 'rgba(64,136,41,0.2)',
-                    handleColor: '#408829'
-                },
-                grid: {
-                    borderWidth: 0
-                },
-
-                categoryAxis: {
-                    axisLine: {
-                        lineStyle: {
-                            color: '#408829'
-                        }
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: ['#eee']
-                        }
-                    }
-                },
-
-                valueAxis: {
-                    axisLine: {
-                        lineStyle: {
-                            color: '#408829'
-                        }
-                    },
-                    splitArea: {
-                        show: true,
-                        areaStyle: {
-                            color: ['rgba(250,250,250,0.1)', 'rgba(200,200,200,0.1)']
-                        }
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: ['#eee']
-                        }
-                    }
-                },
-                timeline: {
-                    lineStyle: {
-                        color: '#408829'
-                    },
-                    controlStyle: {
-                        normal: { color: '#408829' },
-                        emphasis: { color: '#408829' }
-                    }
-                },
-
-                k: {
-                    itemStyle: {
-                        normal: {
-                            color: '#68a54a',
-                            color0: '#a9cba2',
-                            lineStyle: {
-                                width: 1,
-                                color: '#408829',
-                                color0: '#86b379'
-                            }
-                        }
-                    }
-                },
-                map: {
-                    itemStyle: {
-                        normal: {
-                            areaStyle: {
-                                color: '#ddd'
-                            },
-                            label: {
-                                textStyle: {
-                                    color: '#c12e34'
-                                }
-                            }
-                        },
-                        emphasis: {
-                            areaStyle: {
-                                color: '#99d2dd'
-                            },
-                            label: {
-                                textStyle: {
-                                    color: '#c12e34'
-                                }
-                            }
-                        }
-                    }
-                },
-                force: {
-                    itemStyle: {
-                        normal: {
-                            linkStyle: {
-                                strokeColor: '#408829'
-                            }
-                        }
-                    }
-                },
-                chord: {
-                    padding: 4,
-                    itemStyle: {
-                        normal: {
-                            lineStyle: {
-                                width: 1,
-                                color: 'rgba(128, 128, 128, 0.5)'
-                            },
-                            chordStyle: {
-                                lineStyle: {
-                                    width: 1,
-                                    color: 'rgba(128, 128, 128, 0.5)'
-                                }
-                            }
-                        },
-                        emphasis: {
-                            lineStyle: {
-                                width: 1,
-                                color: 'rgba(128, 128, 128, 0.5)'
-                            },
-                            chordStyle: {
-                                lineStyle: {
-                                    width: 1,
-                                    color: 'rgba(128, 128, 128, 0.5)'
-                                }
-                            }
-                        }
-                    }
-                },
-                gauge: {
-                    startAngle: 225,
-                    endAngle: -45,
-                    axisLine: {
-                        show: true,
-                        lineStyle: {
-                            color: [[0.2, '#86b379'], [0.8, '#68a54a'], [1, '#408829']],
-                            width: 8
-                        }
-                    },
-                    axisTick: {
-                        splitNumber: 10,
-                        length: 12,
-                        lineStyle: {
-                            color: 'auto'
-                        }
-                    },
-                    axisLabel: {
-                        textStyle: {
-                            color: 'auto'
-                        }
-                    },
-                    splitLine: {
-                        length: 18,
-                        lineStyle: {
-                            color: 'auto'
-                        }
-                    },
-                    pointer: {
-                        length: '90%',
-                        color: 'auto'
-                    },
-                    title: {
-                        textStyle: {
-                            color: '#333'
-                        }
-                    },
-                    detail: {
-                        textStyle: {
-                            color: 'auto'
-                        }
-                    }
-                },
-                textStyle: {
-                    fontFamily: 'Arial, Verdana, sans-serif'
-                }
-            };
-            if ($('#echart_pie').length) {
-
-                var echartPie = echarts.init(document.getElementById('echart_pie'), theme);
-
-                echartPie.chart('container', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Browser market shares in January, 2018'
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    accessibility: {
-                        point: {
-                            valueSuffix: '%'
-                        }
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: false
-                            },
-                            showInLegend: true
-                        }
-                    },
-                    series: [{
-                        name: 'Brands',
-                        colorByPoint: true,
-                        data: [{
-                            name: 'Chrome',
-                            y: 61.41,
-                            sliced: true,
-                            selected: true
-                        }, {
-                            name: 'Other',
-                            y: 7.05
-                        }]
-                    }]
-                });
-
-                var dataStyle = {
-                    normal: {
-                        label: {
-                            show: false
-                        },
-                        labelLine: {
-                            show: false
-                        }
-                    }
-                };
-
-                var placeHolderStyle = {
-                    normal: {
-                        color: 'rgba(0,0,0,0)',
-                        label: {
-                            show: false
-                        },
-                        labelLine: {
-                            show: false
-                        }
-                    },
-                    emphasis: {
-                        color: 'rgba(0,0,0,0)'
-                    }
-                };
-
-            }
-
-        }
-        $(document).ready(function () {
-            init_echarts();
-        });
-    </script>
+    
 
     <!-- jQuery custom content scroller -->a
     <script src="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script type="text/javascript">
 
+        document.addEventListener('DOMContentLoaded', function () {
+            fille = document.getElementById('nbfille').textContent;
+            garc = document.getElementById('nbgarc').textContent;
+
+            var xValues = ["Masculin", "Feminin"];
+            var yValues = [parseInt(garc), parseInt(fille)];
+            var barColors = [
+                "#00aba9",
+                "#BDC3C7",
+                "#2b5797",
+                "#e8c3b9",
+                "#1e7145"
+            ];
+
+            if ($("#pieChart").length) e = document.getElementById("pieChart"),
+                new Chart(e, {
+                    type: "pie",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "Graph suivant le sexe des patients dans le systeme"
+                        }
+                    }
+                });
+
+
+        });
+
+
+
+    </script>
+    <script type="text/javascript">
+        // Bar chart
+        function init_charts() {
+
+            console.log('run_charts  typeof [' + typeof (Chart) + ']');
+
+            if (typeof (Chart) === 'undefined') { return; }
+
+            console.log('init_charts');
+
+
+            Chart.defaults.global.legend = {
+                enabled: false
+            };
+
+            if ($('#mybarChart').length) {
+
+                var ctx = document.getElementById("mybarChart");
+                var mybarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["January", "February", "March", "April", "May", "June", "July", "March", "April", "May", "June", "July"],
+                        datasets: [{
+                            label: '#',
+                            backgroundColor: "#26B99A",
+                            data: [51, 30, 40, 28, 92, 50, 45, 40, 28, 92, 50, 45]
+                        }]
+                    },
+
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+        }
+        $(document).ready(function () {
+            init_charts();
+        });
+    </script>
     
 </body>
 </html>

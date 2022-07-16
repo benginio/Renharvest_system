@@ -81,7 +81,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             tprespon.Text = patient.getP_Respon();
             tdatecreation.Text = Session["datecreated"].ToString();
             tgs.Text = patient.getG_S();
-            
+            lbltelrespon.Text = patient.getPhoneResp();
 
         }
         void InfoMedecin()
@@ -112,15 +112,18 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             //Gridconsultation.DataSource = cons.getListerConsPM(Session["codePatien"].ToString(), Session["codeUser"].ToString(), Session["datecreated"].ToString());
             //Gridconsultation.DataBind();
             bool find = cons.RechercheConsultationD(Session["codePatien"].ToString(), Session["codeUser"].ToString(), Session["datecreated"].ToString());
-            lblcodepatient.Text = Session["codePatien"].ToString();
+            
             lblagep.Text = cons.getAge();
             lblsigne.Text = cons.getSigne();
+            lblmotif.Text = cons.getMotif();
             lblsymp.Text = cons.getSymptomes();
             lblhistoire.Text = cons.getHistoire();
             lbldiag.Text = cons.getDetail();
             lblcomment.Text = cons.getComment();
             lblheure.Text = cons.getHeurecreated();
+            lblheuree.Text= cons.getHeurecreated();
             lbldcreated.Text = Session["datecreated"].ToString();
+            
         }
         void Listetraitement()
         {
@@ -140,19 +143,23 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             lbltaille.Text = sign.getTaille();
             lblta.Text = sign.getTensionA();
             lblpouls.Text = sign.getPouls();
+
+            bool find1 = cons.RechercheConsultationD(Session["codePatien"].ToString(), Session["codeUser"].ToString(), Session["datecreated"].ToString());
+            lblage1.Text = cons.getAge();
         }
 
         protected void btnExportpdf_Click(object sender, EventArgs e)
         {
         
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename=Panel.pdf");
+                string FileName = "DHPatient" + DateTime.Now.ToString("MM/dd/yyyy") + ".pdf";
+                Response.AddHeader("content-disposition", "attachment;filename="+FileName);
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 StringWriter stringWriter = new StringWriter();
                 HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
                 fieldPdf.RenderControl(htmlTextWriter);
                 StringReader stringReader = new StringReader(stringWriter.ToString());
-                Document Doc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+                Document Doc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
                 HTMLWorker htmlparser = new HTMLWorker(Doc);
                 PdfWriter.GetInstance(Doc, Response.OutputStream);
                 Doc.Open();
@@ -160,6 +167,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
                 Doc.Close();
                 Response.Write(Doc);
                 Response.End();
+                
             
 
     }

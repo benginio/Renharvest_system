@@ -16,6 +16,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         private ControlleurMedecin medecin = new ControlleurMedecin();
         string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
         string my = "";
+        public string code = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -52,6 +53,11 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             magrid.DataSource = med.GetListerMedicament();
             magrid.DataBind();
         }
+        public void ListMedNom()
+        {
+            magrid.DataSource = med.GetListerMedicamentN(tsearch.Text);
+            magrid.DataBind();
+        }
         protected void btnbul_Click(object sender, EventArgs e)
         {
             LinkButton btn = sender as LinkButton;
@@ -71,21 +77,40 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             string codeMed = magrid.DataKeys[row.RowIndex].Values[0].ToString();
             med.DeleteM(codeMed);
             ListMed();
+            Vider();
+
         }
 
         protected void btnajouter_Click(object sender, EventArgs e)
         {
-            string codeMed = med.CodeMedicament(tnomM.Text);
-            med.AjouterMedicament(codeMed,tnomM.Text,tdosage.Text,Session["pseudo"].ToString(),datecreated);
-            ListMed();
-            Vider();
+            if (!string.IsNullOrEmpty(tcodeM.Text))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "Swal.fire('Oopss!','vous ne pouvez pas ajouter!','warning')", true);
+
+            }
+            else
+            {
+                med.AjouterMedicament(tcodeM.Text, tnomM.Text, tdosage.Text, tusername.Text, datecreated);
+                ListMed();
+                ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Sucess!','Enregistrement reusir!','success')", true);
+                Vider();
+            }
         }
 
         protected void btnmodif_Click(object sender, EventArgs e)
         {
-            med.ModifierMedicament(tcodeM.Text, tnomM.Text, tdosage.Text, Session["pseudo"].ToString(), datecreated);
-            ListMed();
-            Vider();
+            if (!string.IsNullOrEmpty(tcodeM.Text))
+            {
+                med.ModifierMedicament(tcodeM.Text, tnomM.Text, tdosage.Text, tusername.Text, datecreated);
+                ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Sucess!','Modification effectuer avec success!','success')", true);
+                ListMed();
+                Vider();
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "Swal.fire('Oopss!','veillez Selectionner ce que vous voulez modifier!','warning')", true);
+
+            }
         }
         void Vider()
         {
@@ -100,10 +125,28 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
 
         protected void tnomM_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tnomM.Text))
+            if (!string.IsNullOrEmpty(tcodeM.Text))
             {
-                string codeMed = med.CodeMedicament(tnomM.Text);
-                tcodeM.Text = codeMed;
+
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(tnomM.Text))
+                {
+                    code = med.CodeMedicament(tnomM.Text);
+                    tcodeM.Text = code;
+                }
+            }
+        }
+
+        protected void tbnsearch_Click(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Equals(""))
+            {
+            }
+            else
+            {
+            ListMedNom();
             }
         }
     }

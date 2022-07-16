@@ -14,8 +14,6 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
     {
         private ControlleurMedecin medecin = new ControlleurMedecin();
         private Login log = new Login();
-        string datecreated = DateTime.Now.ToString("MM/dd/yy hh:mm:ss");
-        string my = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 

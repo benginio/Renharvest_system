@@ -52,7 +52,7 @@
             </div>
             <!-- /menu profile quick info -->
            
-             <!-- sidebar menu -->
+            <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -73,32 +73,23 @@
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
-                      
-                     
-                    </ul>
-                  </li>
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
                       <li><a href="ListerRDV">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
                       
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
-                      <li><a href="#">....</a></li>
+                      <li><a href="AllrendezVous.aspx">Des Medecin</a></li>
+                      <li><a href="plannigMedecin.aspx">D'un Medecin</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-area-chart"></i> Rapport <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">....</a></li>
+                      <li><a href="rapport.aspx">Du mois</a></li>
                       <li><a href="#">....</a></li>
                       
                     </ul>
@@ -113,14 +104,7 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
+             
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -139,25 +123,17 @@
                       <i class="fa fa-user"></i> &nbsp;<asp:Label ID="Username1" runat="server" Text=""></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="#"> Profile</a>
                       <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
 
                     </div>
 
                   </li>
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                      
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
           </div>
-        <!-- /top navigation -->
+        <!-- /top navigation --><br />
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -167,10 +143,42 @@
               <div class="title_left"><br/>
                 <h5> Accueil |</h5>
               </div>
+                 <div class="pull-right">
+                     <asp:LinkButton ID="btnExport" CssClass="btn btn-default" OnClick="btnExport_Click" BorderColor="#29458D" runat="server">Export pdf <span><i class="fa fa-file-pdf-o"></i></span></asp:LinkButton>
+                 </div>
             </div>
+              <div class="row" id="export" runat="server">
+              <div class="x_panel" >
+              <div class="row">
+                   <table border="1">  
+                        <tr>  
+                            <td colspan="2"> <h5>Nombre de patient qui ont trouve des soins</h5></td>  
+                        </tr>  
+                        <tr>  
+                            <td><b>Nombre Mineur:</b></td>  
+                            <td>  
+                                <asp:Label ID="lblmineur" runat="server"></asp:Label>  
+                            </td>  
+                        </tr>  
+                        <tr>  
+                            <td><b>Nombre adult:</b></td>  
+                            <td>  
+                                <asp:Label ID="lbladult" runat="server"></asp:Label>  
+                            </td>  
+                        </tr>  
+                       <tr>  
+                            <td><b>Total:</b></td>  
+                            <td>  
+                                <asp:Label ID="lbltotal" runat="server"></asp:Label>  
+                            </td>  
+                        </tr>  
+                       </table>
+                  </div>
+              <div class="row"><br />
+                  <h5>Liste des maladie les plus frequents</h5>
              <div class="table-responsive">
                         <asp:GridView ID="magride" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codeMalad" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
-                            <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle  Font-Bold="True" ForeColor="black" />
 
                             <Columns>  
                                 <asp:BoundField DataField="codeMalad" HeaderText="code" ReadOnly="True" SortExpression="codePatient" />  
@@ -183,7 +191,9 @@
                         </asp:GridView>
                         
                         </div>
-                
+                  </div><!--end row-->
+              </div><!--end x_panel-->
+                </div>
              
 
 

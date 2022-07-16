@@ -33,15 +33,6 @@ namespace RENHARVEST_SYSTEM.VUE.Rapport
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// rpt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer rpt;
-
-        /// <summary>
         /// TextBox1 control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace RENHARVEST_SYSTEM.VUE.Rapport
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
+
+        /// <summary>
+        /// rpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rpt;
 
         /// <summary>
         /// SqlDataSource1 control.

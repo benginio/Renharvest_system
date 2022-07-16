@@ -184,6 +184,24 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
+        public DataSet ListeTraitementAll(string codePatient, string codeMedecin)
+        {
+            SqlDataAdapter adapter;
+            SqlConnection con;
+
+            con = new SqlConnection(chcon);
+            string command = string.Format("SELECT * FROM V_traitement where codePatient='{0}' AND codeMedecin='{1}' ORDER BY datecreated DESC", codePatient, codeMedecin);
+
+            con.Open();
+            adapter = new SqlDataAdapter(command, con);
+            SqlCommandBuilder cmdBldr = new SqlCommandBuilder(adapter);
+            data = new DataSet();
+
+            adapter.Fill(data, "V_traitement");
+            con.Close();
+
+            return data;
+        }
 
 
 

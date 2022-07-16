@@ -60,6 +60,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         protected global::System.Web.UI.WebControls.Label Username1;
 
         /// <summary>
+        /// btnlogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnlogout;
+
+        /// <summary>
         /// btnliste control.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tdatenaiss;
+
+        /// <summary>
+        /// tage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tage;
 
         /// <summary>
         /// tadresse control.
@@ -184,6 +202,24 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlienp;
+
+        /// <summary>
+        /// taddressResp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox taddressResp;
+
+        /// <summary>
+        /// tphoneResp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tphoneResp;
 
         /// <summary>
         /// btnvalider control.

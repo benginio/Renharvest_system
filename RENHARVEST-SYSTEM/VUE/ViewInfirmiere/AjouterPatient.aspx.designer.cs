@@ -24,6 +24,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// tusername control.
         /// </summary>
         /// <remarks>
@@ -75,7 +84,7 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tcodep;
+        protected global::System.Web.UI.WebControls.Label tcodep;
 
         /// <summary>
         /// tnomp control.
@@ -112,6 +121,15 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tdatenaiss;
+
+        /// <summary>
+        /// tage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tage;
 
         /// <summary>
         /// tadresse control.
@@ -184,6 +202,24 @@ namespace RENHARVEST_SYSTEM.VUE.ViewInfirmiere
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlienp;
+
+        /// <summary>
+        /// taddressResp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox taddressResp;
+
+        /// <summary>
+        /// tphoneResp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tphoneResp;
 
         /// <summary>
         /// btnvalider control.

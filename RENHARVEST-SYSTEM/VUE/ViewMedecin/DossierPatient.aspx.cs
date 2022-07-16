@@ -94,6 +94,8 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Listeexament();
             Listconsultation();
             ListeRDV();
+            Listetraitement();
+            Listeprescriptiont();
         }
         void InfoPatient()
         {
@@ -149,12 +151,16 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
         }
         void Listetraitement()
         {
-            //bool find1 = traitement.Recherchetraitement(Session["codePatien"].ToString(), Session["codeUser"].ToString(), Session["datecreated"].ToString());
-            //lblprevention.Text = traitement.getPrevention();
-            //lbldurer.Text = traitement.getDurer();
 
-            //GridOrdonance.DataSource = pres.getListerPrescription(Session["codeUser"].ToString(), Session["codePatien"].ToString(), Session["datecreated"].ToString());
-            //GridOrdonance.DataBind();
+            Gridtraitement.DataSource = traitement.GetListeTraitementAll(Session["codePatien"].ToString(), Session["codeUser"].ToString());
+            Gridtraitement.DataBind();
+
+        }
+        void Listeprescriptiont()
+        {
+
+            gridprescription.DataSource =pres.getListerPrescriptionAll(Session["codeUser"].ToString(), Session["codePatien"].ToString());
+            gridprescription.DataBind();
 
         }
         void ListeRDV()
@@ -213,6 +219,22 @@ namespace RENHARVEST_SYSTEM.VUE.ViewMedecin
             Response.Redirect("InfoConsultation.aspx");
         }
 
+        protected void btntraitement_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = sender as LinkButton;
+            GridViewRow row = btn.NamingContainer as GridViewRow;
+            string datecreated = Gridtraitement.DataKeys[row.RowIndex].Values[0].ToString();
+            Session["datecreated"] = datecreated;
+            Response.Redirect("InfoConsultation.aspx");
+        }
 
+        protected void btnordo_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = sender as LinkButton;
+            GridViewRow row = btn.NamingContainer as GridViewRow;
+            string datecreated = gridprescription.DataKeys[row.RowIndex].Values[0].ToString();
+            Session["datecreated"] = datecreated;
+            Response.Redirect("printpresc.aspx");
+        }
     }
 }

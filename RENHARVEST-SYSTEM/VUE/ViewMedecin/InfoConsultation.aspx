@@ -27,7 +27,7 @@
 </head>
 <body class="nav-md" id="printttdiv" runat="server">
     <form id="form1" runat="server">
-
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -72,7 +72,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -81,18 +81,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -107,13 +109,7 @@
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
+             
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -132,20 +128,13 @@
                       <i class="fa fa-user"></i> &nbsp;<asp:Label ID="Username1" runat="server" Text=""></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="#"> Profile</a>
+                      <%--<a class="dropdown-item"  href="#"> Profile</a>--%>
                       <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
 
                     </div>
 
                   </li>
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                      
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
@@ -198,60 +187,65 @@
                 <div class="right">
                     <h3 class="bg-pam">Information personnelle</h3>
                     <div class="form-group row">
-                        <div class="col-md-5 col-sm-2">
+                        <div class="col-md-4 col-sm-4">
                               <label><b>Sexe:</b></label>
                             <asp:Label ID="tsexe" runat="server" Text=""></asp:Label>
                         </div>
-                         <div class="col-md-4 col-sm-4">
+                         <div class="col-md-3 col-sm-3">
                             <label><b>Date Naiss:</b></label>
                              <asp:Label ID="tdatenaiss" runat="server" Text=""></asp:Label>
                         </div>
-                        
-                         <div class="col-md-3 col-sm-1">
+                         <div class="col-md-3 col-sm-3">
+                            <label><b>Profession:</b></label>
+                             <asp:Label ID="tjob" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="col-md-2 col-sm-2">
                             <label><b>Age:</b></label>
                              <asp:Label ID="tage" runat="server" Text=""></asp:Label>
                         </div>
                         
                     </div><!--end row-->
                      <div class="form-group row">
-                         <div class="col-md-5 col-sm-5">
+                         <div class="col-md-4 col-sm-4">
                             <label><b>Adresse:</b></label>
                              <asp:Label ID="tadresse" runat="server" Text=""></asp:Label>
                         </div>
-                         <div class="col-md-4 col-sm-2">
-                            <label><b>Tel:</b></label>
-                             <asp:Label ID="tphone" runat="server" Text=""></asp:Label>
-                        </div>
-                         <div class="col-md-3 col-sm-4">
-                            <label><b>Profession:</b></label>
-                             <asp:Label ID="tjob" runat="server" Text=""></asp:Label>
-                        </div>
-                        
-                    </div><!--end row-->
-                    <div class="form-group row">
-                         <div class="col-md-5 col-sm-5">
+                          <div class="col-md-3 col-sm-3">
                               <label><b>Email:</b></label>
                             <asp:Label ID="temail" runat="server" Text=""></asp:Label>
                         </div>
-                        <div class="col-md-4 col-sm-4">
+                         
+                        <div class="col-md-3 col-sm-3">
                             <label><b>Matricule:</b></label>
                              <asp:Label ID="tmatricule" runat="server" Text=""></asp:Label>
                         </div>
-                         <div class="col-md-3 col-sm-3">
+                        <div class="col-md-2 col-sm-2">
+                            <label><b>Tel:</b></label>
+                             <asp:Label ID="tphone" runat="server" Text=""></asp:Label>
+                        </div>
+                    </div><!--end row-->
+                    <div class="form-group row">
+                         <div class="col-md-4 col-sm-4">
+                            <label><b>P. responsable:</b></label>
+                             <asp:Label ID="tprespon" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <label><b>Lien P respon:</b></label>
+                             <asp:Label ID="tlienrespon" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <label><b>Tel respon:</b></label>
+                             <asp:Label ID="lbltelrespon" runat="server" Text=""></asp:Label>
+                        </div>
+                         <div class="col-md-2 col-sm-2">
                             <label><b>G S:</b></label>
                              <asp:Label ID="tgs" runat="server" Text=""></asp:Label>
                         </div>
                         
                     </div><!--end row-->
                     <div class="form-group row">
-                         <div class="col-md-5 col-sm-5">
-                            <label><b>Pers responsable:</b></label>
-                             <asp:Label ID="tprespon" runat="server" Text=""></asp:Label>
-                        </div>
-                         <div class="col-md-5 col-sm-5">
-                            <label><b>Lien P responsable:</b></label>
-                             <asp:Label ID="tlienrespon" runat="server" Text=""></asp:Label>
-                        </div>
+                        
+                         
                     </div>
                 </div>
                 </div><!--end mail-list-->
@@ -329,7 +323,6 @@
                 </div>
                 <div class="right">
                     <h3 class="bg-pam">Consultation</h3>
-                    <div class="col-md-9 col-sm-9">
                         <div class="row">
                             <h5>Examen</h5>
                         <div class="col-md-12 col-sm-12">
@@ -349,26 +342,29 @@
                         </div><!--end col6-->
                         </div><!--end row-->
                         
-                    </div><!--end col8-->
-                    <div class="col-md-3 col-sm-3">
-                         <h5 >Signe vitaux</h5>
-                         <div class="row">
+                    <div class="form-group row">
+                         <h5 >Signe vitaux</h5><br />
+                        <div class="col-sm-2 col-md-2">
+                             <label><strong>Age: </strong></label><br />
+                             <asp:Label ID="lblage1" runat="server" Text=""></asp:Label>
+                        </div><!--end col-2-->
+                         <div class="col-sm-2 col-md-2">
                              <label><strong>Poids (Kg): </strong></label><br />
                              <asp:Label ID="lblpoid" runat="server" Text=""></asp:Label>
-                        </div><!--end row-->
-                        <div class="row">
+                        </div><!--end col-2-->
+                        <div class="col-sm-2 col-md-2">
                              <label><strong>Temperature (C°): </strong></label><br />
                              <asp:Label ID="lbltemp" runat="server" Text=""></asp:Label>
                         </div><!--end row-->
-                        <div class="row">
+                        <div class="col-sm-2 col-md-2">
                              <label><strong>Taille (m): </strong></label><br />
                              <asp:Label ID="lbltaille" runat="server" Text=""></asp:Label>
                         </div><!--end row-->
-                        <div class="row">
+                        <div class="col-sm-2 col-md-2">
                              <label><strong> TA (mm/Hg): </strong></label><br />
                              <asp:Label ID="lblta" runat="server" Text=""></asp:Label>
                         </div><!--end row-->
-                        <div class="row">
+                        <div class="col-sm-2 col-md-2">
                              <label><strong>Pouls: </strong></label><br />
                              <asp:Label ID="lblpouls" runat="server" Text=""></asp:Label>
                         </div><!--end row-->
@@ -379,12 +375,16 @@
                             
                             <div class="form-group row">
                             <div class="col-md-4">
-                                 <label><strong>Code Patient:</strong></label>
-                             <asp:Label ID="lblcodepatient" runat="server" Text=""></asp:Label>
-                            </div><!--end col-4-->
-                            <div class="col-md-4">
                                  <label><strong>Age:</strong></label>
                              <asp:Label ID="lblagep" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                                <div class="col-md-4">
+                                 <label><strong>Motif:</strong></label>
+                             <asp:Label ID="lblmotif" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                            <div class="col-md-4">
+                             <label><strong>Histoire:</strong></label>
+                             <asp:Label ID="lblhistoire" runat="server" Text=""></asp:Label>
                             </div><!--end col-4-->
                              </div><!--end row-->
                             <div class="form-group row">
@@ -396,16 +396,12 @@
                                  <label><strong>Symptomes:</strong></label><br />
                              <asp:Label ID="lblsymp" runat="server" Text=""></asp:Label>
                             </div><!--end col-4-->
-                            <div class="col-md-4">
-                                 <label><strong>Histoire:</strong></label><br />
-                             <asp:Label ID="lblhistoire" runat="server" Text=""></asp:Label>
-                            </div><!--end col-4-->
-                             </div><!--end row-->
-                            <div class="form-group row">
-                            <div class="col-md-4">
+                                <div class="col-md-4">
                                  <label><strong>Diagnostique:</strong></label><br />
                              <asp:Label ID="lbldiag" runat="server" Text=""></asp:Label>
                             </div><!--end col-4-->
+                             </div><!--end row-->
+                            <div class="form-group row">
                             <div class="col-md-4">
                                  <label><strong>Notes:</strong></label><br />
                              <asp:Label ID="lblcomment" runat="server" Text=""></asp:Label>
@@ -413,6 +409,10 @@
                             <div class="col-md-4">
                                  <label><strong>Date creation:</strong></label><br />
                              <asp:Label ID="lbldcreated" runat="server" Text=""></asp:Label>
+                            </div><!--end col-4-->
+                            <div class="col-md-4">
+                                 <label><strong>Heure:</strong></label><br />
+                             <asp:Label ID="lblheuree" runat="server" Text=""></asp:Label>
                             </div><!--end col-4-->
                              </div>
                             </div>
@@ -429,7 +429,7 @@
                     <h3 class="bg-pam">Traitment</h3>
                     <div class="form-group row">
                         <div class="col-md-6 col-sm-6">
-                            <label><strong>Prevention: </strong></label>
+                            <label><strong>Precaution: </strong></label>
                             <asp:Label ID="lblprevention" runat="server" Text="Label"></asp:Label>
                         </div>
                         <div class="col-md-6 col-sm-6">

@@ -52,7 +52,7 @@
             </div>
             <!-- /menu profile quick info -->
            
-           <!-- sidebar menu -->
+            <!-- sidebar menu -->
              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                <a href="Accueil.aspx"> <h2><i class="fa fa-home"></i>Accueil</h2></a>
@@ -72,7 +72,7 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterConsultation.aspx">Ajouter</a></li>
                          <li><a href="suividossier.aspx">Suivi</a></li>
-                      <li><a href="listecons.aspx">Lister</a></li>
+                      <li><a href="ListeConsultation.aspx">Lister</a></li>
                       
                      
                     </ul>
@@ -81,18 +81,20 @@
                     <ul class="nav child_menu">
                       <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="ModifierRDV.aspx">Modifier</a></li>
-                      <li><a href="ListeRDV.aspx">lister</a></li>
-                      <li><a href="AnnulerRDV.aspx">Annuler</a></li>
+                      <li><a href="ListeRDV.aspx">Lister</a></li>
+                      <li><a href="listRDVannuler.aspx">Liste Annuler</a></li>
                       
                     </ul>
                   </li>
-                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="rendezVous.aspx"><i class="fa fa-table"></i> Agenda </a>
                     
                   </li>
                     <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="AjouterMedicament.aspx">Medicament</a></li>
                       <li><a href="AjouterMaladie.aspx">Maladie</a></li>
+                      <li><a href="ajouterTypeExamen.aspx">Type Examen</a></li>
+                      <li><a href="ajouterMotifCons.aspx">Motif Consultation</a></li>
                       
                     </ul>
                   </li>
@@ -107,13 +109,7 @@
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
               
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <i class="fa fa-sign-out pull-right"></i>
-              </a>
             </div> 
             <!-- /menu footer buttons -->
           </div>
@@ -138,14 +134,7 @@
                     </div>
 
                   </li>
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">1</span>
-                    </a>
-                      
-                    
-                  </li>
+                 
                 </ul>
               </nav>
             </div>
@@ -158,10 +147,11 @@
               <div class="pull-right hidden-print" >
                   <asp:LinkButton ID="btnExportpdf" CssClass="btn btn-default" OnClientClick="Printt()" BorderColor="#29458D" runat="server"><span><i class="fa fa-print"></i></span> Imprimer</asp:LinkButton>
               </div>
-                <div class="x_panel col-md-10 col-sm-10 offset-1" id="printdiv" runat="server">
+              <div class="row">
+                <div class="x_panel col-md-8 col-sm-8 offset-1" id="printdiv" runat="server">
               <div class="x_content ">
               <div class="row">
-                <div class="col-sm-6 col-md-6 offset-2">
+                <div class="col-sm-10 col-md-10 offset-3">
                   <h3>&nbsp;&nbsp; Hopital Double Harvest</h3>
                 </div>
               </div>
@@ -174,7 +164,9 @@
                 </strong>
                 </div>
                 <div class="col-sm-4 col-md-4">
-
+                   <%-- <div class="imgPam">--%>
+                        <img src="../build/images/DHLOGO.png" alt="..." style="width:100%; height:auto">
+                   <%-- </div>--%>
                 </div>
                 <div class="col-sm-4 col-md-4">
                   <strong>Tel:</strong> 509 2227-9892<br/>
@@ -195,22 +187,23 @@
               </div>
               <div class="x_title"></div>
               <div class="row">
-               <div class="col-md-6 col-sm-6 offset-1">
-                <label><strong>Prevention: </strong> </label>
+               <div class="col-md-6 col-sm-6 offset-2">
+                <label><strong>Precaution: </strong> </label>
                    <asp:Label ID="tprevention" runat="server" Text=""></asp:Label>
                </div>
                <div class="col-md-4 col-sm-4">
                 <label><strong>Durer: </strong> </label>
                     <asp:Label ID="tdurer" runat="server" Text=""></asp:Label>
                </div>
-              </div>
+                      </div>
+             <br />
                   <div class="row">
                       <div class="table-responsive">
-                            <asp:GridView ID="GridOrdonance" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codeMed" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
+                            <asp:GridView ID="GridOrdonance" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="nomM" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
                                 <HeaderStyle BackColor="#F5F7FA" Font-Bold="True" ForeColor="black" />
 
                                 <Columns>
-                                    <asp:BoundField DataField="codeMed" HeaderText="codeMedicament" ReadOnly="True" SortExpression="codeM" />
+                                    <%--<asp:BoundField DataField="codeMed" HeaderText="codeMedicament" ReadOnly="True" SortExpression="codeM" />--%>
                                     <asp:BoundField DataField="nomM" HeaderText="Nom_Medicament" ReadOnly="True" SortExpression="codeM" />
                                     <asp:BoundField DataField="dosage" HeaderText="Dosage" ReadOnly="True" SortExpression="codeM" />
                                     <asp:BoundField DataField="nbrFois" HeaderText="Posologie" SortExpression="Nbrfois" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
@@ -223,24 +216,36 @@
                             </asp:GridView>
                         </div>
 
-                  </div>
+                  </div><br /><br />
 
-              <div class="x_title"></div>
+              
               <div class="row">
-                <div class="col-md-6 col-sm-6 offset-1">
+                  <div class="col-sm-3 col-md-3"></div>
+                <div class="col-md-4 col-sm-4">
                  <label><strong>Prestataire: </strong> </label>
                     <asp:Label ID="tprestataire" runat="server" Text=""></asp:Label>
                 </div>
-                <div class="col-md-4 col-sm-4">
+                  
+                <div class="col-md-3 col-sm-3">
                  <label><strong>Specialite: </strong> </label> 
                     <asp:Label ID="tspecial" runat="server" Text=""></asp:Label>
                 </div>
-        </div>
-                  
+                   </div>
+                  <div class="x_title"></div>
+                  <div class="row">
+                       <div class="col-sm-4 col-md-4"></div>
+                      <div class="col-sm-6 col-md-6">
+                  <strong>
+                  10, Rue Accul, Roche Blanche Croix-des-Bouquets<br />
+                </strong>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Tel:</strong> 509 2227-9892<br/>
+                </div>
+                  </div>
 
       </div>
                     </div>
-              <div class=" offset-4">
+                  </div>
+                    <div class=" row offset-4">
                       <asp:LinkButton ID="btninfocons" CssClass="btn btn-pam" OnClick="btninfocons_Click" runat="server"><span><i class="fa fa-file"></i></span> Dossier Patient </asp:LinkButton>
                   </div>
               

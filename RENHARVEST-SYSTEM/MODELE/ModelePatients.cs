@@ -29,10 +29,12 @@ namespace RENHARVEST_SYSTEM.MODELE
         private string p_Respon;
         private string lienARespon;
         private string typeP = "Patient";
+        private string adresseResp;
+        private string phoneResp;
         private string createdby;
         private string datecreated;
 
-        public ModelePatients(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
+        public ModelePatients(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string adresseResp, string phoneResp, string typeP, string createdby, string datecreated)
         {
             this.codePatient = codePatient;
             this.nomP = nomP;
@@ -47,12 +49,14 @@ namespace RENHARVEST_SYSTEM.MODELE
             this.g_s = g_s;
             this.p_Respon = p_Respon;
             this.lienARespon = lienARespon;
+            this.adresseResp = adresseResp;
+            this.phoneResp = phoneResp;
             this.typeP = typeP;
             this.createdby = createdby;
             this.datecreated = datecreated;
         }
 
-    public ModelePatients() :this(null, null, null,null, null,null,null,null, null, null, null, null, null, null, null, null)
+    public ModelePatients() :this(null, null, null, null, null,null, null,null,null,null, null, null, null, null, null, null, null, null)
         { }
 
     public string CodePatient
@@ -132,7 +136,16 @@ namespace RENHARVEST_SYSTEM.MODELE
             get { return this.lienARespon; }
             set { this.lienARespon = value; }
         }
-
+        public string AdresseResp
+        {
+            get { return this.adresseResp; }
+            set { this.adresseResp = value; }
+        }
+        public string PhoneResp
+        {
+            get { return this.phoneResp; }
+            set { this.phoneResp = value; }
+        }
         public string TypeP
         {
             get { return this.typeP; }
@@ -156,7 +169,7 @@ namespace RENHARVEST_SYSTEM.MODELE
         {
             //string typeAction = "Insertion";
             string Req = string.Format("INSERT INTO tbpersonne VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, typeP, createdby, datecreated);
-            string Req2 = string.Format("INSERT INTO tbpatient (codePatient,codepers,persResp,LienApersResp,createdby,datecreated) VALUES ('" + codePatient + "','" + codePatient+ "','"+p_Respon+"', '"+lienARespon+"', '" + createdby+"', '"+datecreated+"')");
+            string Req2 = string.Format("INSERT INTO tbpatient (codePatient,codepers,persResp,LienApersResp,adresseResp,phoneResp,createdby,datecreated) VALUES ('" + codePatient + "','" + codePatient+ "','"+p_Respon+"', '"+lienARespon+ "','" + adresseResp + "','" + phoneResp + "', '" + createdby+"', '"+datecreated+"')");
             //string Req3 = string.Format("INSERT INTO tbhisPatient VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, typeAction, createdby, datecreated);
 
             SqlConnection con = new SqlConnection(chcon);
@@ -181,25 +194,34 @@ namespace RENHARVEST_SYSTEM.MODELE
 
         public string Codepatient(string nomP, string prenomP)
         {
-              string nombrePatient;
-              string codePatient;
-            SqlConnection con = new SqlConnection(chcon);
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbpatient", con);
-
-            con.Open();
-            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
-            if (count > 0)
+              
+            try
             {
-                nombrePatient = Convert.ToString(count.ToString());
-            }
-            else
-            {
-                nombrePatient = "0";
-            }
-            con.Close();
+                string nombrePatient;
+                string codePatient;
+                SqlConnection con = new SqlConnection(chcon);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tbpatient", con);
 
-            codePatient = nomP.Substring(0, 2) + prenomP.Substring(0, 2) + nombrePatient;
-            return codePatient;
+                con.Open();
+                Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+                if (count > 0)
+                {
+                    nombrePatient = Convert.ToString(count.ToString());
+                }
+                else
+                {
+                    nombrePatient = "0";
+                }
+                con.Close();
+
+                codePatient = nomP.Substring(0, 2) + prenomP.Substring(0, 2) + nombrePatient;
+                return codePatient;
+            }
+            catch
+            {
+                return codePatient;
+            }
+
         }
         public string Age(string dateNaiss, string codePatient)
         {
@@ -251,6 +273,8 @@ namespace RENHARVEST_SYSTEM.MODELE
                 typeP = reader[13].ToString();
                 createdby = reader[14].ToString();
                 datecreated = reader[15].ToString();
+                adresseResp= reader[16].ToString();
+                phoneResp= reader[17].ToString();
                 trouve = true;
             }
 
@@ -268,8 +292,8 @@ namespace RENHARVEST_SYSTEM.MODELE
         {
             string typeAction = "Modification";
             string Req = string.Format("UPDATE tbpersonne SET nomP='{1}', prenomP='{2}', sexe='{3}', dateNaiss='{4}', adresse='{5}',  telephone='{6}', email='{7}', matricule='{8}', job='{9}', gps='{10}' where codepers='{0}'", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s);
-            string Req1 = string.Format("UPDATE tbpatient SET persResp='{1}', LienApersResp='{2}',createdby='{3}' WHERE codePatient='{0}' ",codePatient, p_Respon, lienARespon, createdby);
-            string Requ = string.Format("INSERT INTO tbhisPatient VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, typeAction, createdby, datecreated);
+            string Req1 = string.Format("UPDATE tbpatient SET persResp='{1}', LienApersResp='{2}', adresseResp='{3}', phoneResp='{4}',createdby='{5}' WHERE codePatient='{0}' ",codePatient, p_Respon, lienARespon,adresseResp,phoneResp, createdby);
+            //string Requ = string.Format("INSERT INTO tbhisPatient VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')", codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, typeAction, createdby, datecreated);
 
             SqlConnection con = new SqlConnection(chcon);
 
@@ -452,7 +476,7 @@ namespace RENHARVEST_SYSTEM.MODELE
         public string nbrePersonne()
         {
             string nbr = "";
-            string R = string.Format("SELECT count(*) FROM tbpersonne ");
+            string R = string.Format("SELECT count(*) FROM tbpatient");
             SqlConnection con = new SqlConnection(chcon);
             SqlCommand cmd = new SqlCommand(R, con);
 
@@ -461,6 +485,95 @@ namespace RENHARVEST_SYSTEM.MODELE
             if (annee > 0)
             {
                 nbr = Convert.ToString(annee.ToString());
+            }
+            else
+            {
+                nbr = "0";
+            }
+            con.Close();
+            return nbr;
+        }
+        public string nbrePatientToday()
+        {
+            
+            string nbr = "";
+            string R = string.Format("SELECT count(*) FROM tbpatient where  datecreated=CONVERT(DATE, GETDATE())");
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(R, con);
+
+            con.Open();
+            Int32 annee = Convert.ToInt32(cmd.ExecuteScalar());
+            if (annee > 0)
+            {
+                nbr = Convert.ToString(annee.ToString());
+            }
+            else
+            {
+                nbr = "0";
+            }
+            con.Close();
+            return nbr;
+        }
+        public string nbrRDVfille()
+        {
+            string nombreRDV;
+            string nbrtoday;
+            string s = "Feminin";
+            string Req = string.Format("SELECT COUNT(sexe) FROM V_listePatient WHERE sexe='{0}' GROUP BY sexe", s);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreRDV = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreRDV = "0";
+            }
+            con.Close();
+
+            nbrtoday = nombreRDV;
+            return nbrtoday;
+        }
+        public string nbrRDVgarc()
+        {
+            string nombreRDV;
+            string nbrtoday;
+            string s = "Masculin";
+            string Req = string.Format("SELECT COUNT(sexe) FROM V_listePatient WHERE sexe='{0}' GROUP BY sexe", s);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(Req, con);
+
+            con.Open();
+            Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                nombreRDV = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                nombreRDV = "0";
+            }
+            con.Close();
+
+            nbrtoday = nombreRDV;
+            return nbrtoday;
+        }
+        public string verifierMatri(string matricule)
+        {
+            string nbr = "";
+            string R = string.Format("SELECT count(*) FROM tbpersonne where matricule='{0}'",matricule);
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(R, con);
+
+            con.Open();
+            Int32 nbrMatri = Convert.ToInt32(cmd.ExecuteScalar());
+            if (nbrMatri > 0)
+            {
+                nbr = Convert.ToString(nbrMatri.ToString());
             }
             else
             {

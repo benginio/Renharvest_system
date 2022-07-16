@@ -41,6 +41,10 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             return (user.RechercheUser(codeUser));
         }
 
+        public string nombreUtilsateur()
+        {
+            return user.nbreUtilisateur();
+        }
 
         public string getCodeUser()
         {

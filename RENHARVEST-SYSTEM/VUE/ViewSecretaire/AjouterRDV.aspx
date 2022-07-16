@@ -16,8 +16,8 @@
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="../build/css/sweetalert2.min.css" rel="stylesheet" />
+      <script type="text/javascript" src="../build/js/sweetalert2.js"></script>
     <!-- jQuery custom content scroller -->
     <link href="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
 
@@ -68,59 +68,39 @@
                   
                   <li><a><i class="fa fa-user"></i> Patients <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="AjouterPatient.aspx">Ajouter</a></li>
+                     <li><a href="AjouterPatient.aspx">Ajouter</a></li>
                       <li><a href="ModifierPatient.aspx">Modifier</a></li>
                       <li><a href="ListePatient.aspx">Lister</a></li>
                     </ul>
                   </li>
-                   <li><a><i class="fa fa-user-md"></i> Medecin <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="AjouterMedecin.aspx" >Ajouter</a></li>
-                     <li><a href="ModiferMedecin.aspx">Modifier</a></li>
-                      <li><a href="ListerMedecin.aspx">lister</a></li>
-                      
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-stethoscope"></i> Consultation <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
-                      <li><a href="#">Lister</a></li>
-                      
-                     
-                    </ul>
-                  </li>
+                  
                   <li><a><i class="fa fa-user-md"></i> Rendez-vous <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Ajouter</a></li>
+                      <li><a href="AjouterRDV.aspx">Ajouter</a></li>
                       <li><a href="#">Modifier</a></li>
                       <li><a href="#">lister</a></li>
                       <li><a href="#">Annuler</a></li>
-                      
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Agenda <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="plannigMedecin.aspx"><i class="fa fa-table"></i> Agenda Medecin</a>
+                  </li>
+                   <%-- <li><a><i class="fa fa-cogs"></i> Parametre <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">....</a></li>
                       <li><a href="#">....</a></li>
                     </ul>
-                  </li>
+                  </li>--%>
                   
                 </ul>
               </div><!--menu-section-->
              
+
             </div>
             <!-- /sidebar menu -->
 
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer hidden-small">
 
-                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                            </a>
-
-                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                                <i class="fa fa-sign-out pull-right"></i>
-                            </a>
                         </div>
                         <!-- /menu footer buttons -->
                     </div>
@@ -139,18 +119,10 @@
                                         <i class="fa fa-user"></i> &nbsp;<asp:Label ID="Username1" runat="server" Text=""></asp:Label>
                                     </a>
                                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#"> Profile</a>
-                                        <a class="dropdown-item" href="../Login.aspx"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                       <asp:LinkButton ID="btnlogout" runat="server" class="dropdown-item" OnClick="btnlogout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>
                                     </div>
                                 </li>
 
-                                <li role="presentation" class="nav-item dropdown open">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">1</span>
-                                    </a>
-
-                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -183,14 +155,13 @@
                       <div class="col-md-5 col-sm-5">
                            <h5> Patient:
                            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-                        &nbsp;Medecin: <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
                             </h5>
                           
                         </div> 
                         </div>
                   </div>
                   <div class="x_content">
-                       <div class="form-horizontal">
+                         <div class="form-horizontal">
                       
                         <div class="form-group row">
                                 <div class="col-md-8 col-sm-8 offset-3">
@@ -221,8 +192,8 @@
                            
                           <div class="form-group row">
                             <div class="col-md-6 col-sm-6 offset-3">
-                              <label>Specialiste*</label>
-                                <asp:TextBox ID="tspecial" class="form-control" placeholder="" runat="server" Enabled="False"></asp:TextBox>
+                              <label>Medecin*</label>
+                                <asp:DropDownList ID="dropMedecin" CssClass="form-control" runat="server"></asp:DropDownList>
                               </div>
                             </div>
 
@@ -233,43 +204,19 @@
 
                         </div>
                       </div>
-                        </div>
-                        
-                           <div class="col-md-8 col-sm-8">
-                               <h6>Selectionner un specialiste</h6>
-                            <div class="table-responsive">
-                        <asp:GridView ID="magrid1" runat="server" Width="100%" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" DataKeyNames="codepers" EmptyDataText="Pas info a afficher." OnSelectedIndexChanged="Page_Load">
-                            <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="White" />
-
-                            <Columns>  
-                                             <asp:TemplateField HeaderText="-->">                       
-                                           <ItemTemplate>                            
-                                              <asp:LinkButton ID="btnb" runat="server" Height="30px" CssClass="btn btn-pam" OnClick="btnb_Click"><span class="me-2"><i class="fa fa-check-square-o"></i></span></asp:LinkButton>
-                                           </ItemTemplate>                         
-                                           </asp:TemplateField>
-                                            <asp:BoundField DataField="codepers" HeaderText="code" ReadOnly="True" SortExpression="codePatient" />  
-                                            <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
-                                            <asp:BoundField DataField="adresse" HeaderText="Addresse" SortExpression="Adresse" ItemStyle-CssClass="visible-lg" HeaderStyle-CssClass="visible-lg" />  
-                                            <asp:BoundField DataField="telephone" HeaderText="Telephone" SortExpression="Telephone" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-                                            <asp:BoundField DataField="matricule" HeaderText="matricule" SortExpression="matricule" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-                                            <asp:BoundField DataField="specialisation" HeaderText="specialisation" SortExpression="specialisation" HeaderStyle-CssClass="visible-md" ItemStyle-CssClass="visible-md" />  
-
-                                           
-                             </Columns> 
-
-                        </asp:GridView>
-                        
-                        </div>
-                           </div>
-
+  
                     </div><!--end form horizontal-->
-                  </div><!-- end x_content-->
-                </div><!-- end x_panel-->
+                        </div><!-- end x_content-->
+                        
+                    </div><!-- end x_panel-->
                 </div><!-- end row-->
             </div><!-- end class=""-->
 
-             </ContentTemplate></asp:UpdatePanel>
+             </ContentTemplate>
+                  <Triggers>
+                             <asp:AsyncPostBackTrigger ControlID="btnvalider" EventName="click" />
+                         </Triggers>
+             </asp:UpdatePanel>
         </div>
         <!-- /page content -->
 
@@ -295,7 +242,7 @@
 								</div>
 							</div>
                                  <div class="col-md-4 col-sm-4 form-group"><br />
-                                 <h6>Filter  <asp:DropDownList ID="DDtrier" runat="server" ForeColor="#0D5B86" AutoPostBack="true">
+                                 <h6>Filter  <asp:DropDownList ID="DDtrier" class="form-control" runat="server" ForeColor="#0D5B86" AutoPostBack="true">
                                     <asp:ListItem>Prenom</asp:ListItem>
                                     <asp:ListItem>Nom</asp:ListItem>
                                     <asp:ListItem>Matricule</asp:ListItem>
@@ -315,9 +262,9 @@
                             <Columns>  
                                 <asp:TemplateField HeaderText="-->">                       
                                            <ItemTemplate>                            
-                                               <asp:LinkButton ID="btnbul" runat="server" Height="30px" CssClass="btn btn-success menu " OnClick="btnbul_Click" OnClientClick="viewprof()" ><span class="me-2"><i class="fa fa-check-square-o"></i></span></asp:LinkButton> 
+                                               <asp:LinkButton ID="btnbul" runat="server" Height="30px" CssClass="btn btn-pam menu " OnClick="btnbul_Click" OnClientClick="viewprof()" ><span class="me-2"><i class="fa fa-check-square-o"></i></span></asp:LinkButton> 
                                            </ItemTemplate>                         
-                   </asp:TemplateField>
+                             </asp:TemplateField>
                                             <asp:BoundField DataField="codepers" HeaderText="code" ReadOnly="True" SortExpression="codePatient" />  
                                             <asp:BoundField DataField="nomP" HeaderText="Nom" SortExpression="Nom" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />  
                                             <asp:BoundField DataField="prenomP" HeaderText="Prenom" SortExpression="Prenom" ItemStyle-CssClass="visible-xs" HeaderStyle-CssClass="visible-xs" />  
@@ -338,7 +285,11 @@
                 </div>
 
                     </div>
-                    </ContentTemplate></asp:UpdatePanel>
+                    </ContentTemplate>
+                  <Triggers>
+                             <asp:AsyncPostBackTrigger ControlID="btnvalider" EventName="click" />
+                         </Triggers>
+             </asp:UpdatePanel>
                 </div>
                 <!-- /page content -->
 
@@ -368,25 +319,6 @@
     <script src="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 
      <script type="text/javascript">
-         /*function showPage(page) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.style.display = 'none';
-             })
-
-             document.querySelector(`#${page}`).style.display = 'block';
-         }
-
-         document.addEventListener('DOMContentLoaded', function () {
-             document.querySelectorAll('.menu').forEach(menu => {
-                 menu.onclick = function () {
-                     showPage(this.dataset.page);
-                 }
-             });
-
-         });*/
-         $('#mymoda').modal({
-             backdrop: false
-         });
          
          function viewprof() {
              document.getElementById('liste').style.display = 'none';
@@ -395,9 +327,10 @@
 
          }
          function viewprof1() {
-             
-             
+             document.getElementById('liste').style.display = 'block';
 
+             document.getElementById('edit').style.display = 'none';
+             
          }
          
      </script>

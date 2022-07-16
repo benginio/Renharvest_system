@@ -84,7 +84,17 @@ namespace RENHARVEST_SYSTEM.VUE
 
         protected void btnvalider_Click(object sender, EventArgs e)
         {
-            connecter();
+            try
+            {
+                connecter();
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "idd", "Swal()", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "id", "Swal.fire('Erreur!','La Base de donnee n'est pas connecter....!','warning')", true);
+
+            }
+
         }
     }
 }

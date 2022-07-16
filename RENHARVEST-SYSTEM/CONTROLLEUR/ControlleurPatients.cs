@@ -17,15 +17,15 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
             patients = new ModelePatients();
         }
 
-        public void CreerPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
+        public void CreerPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string adresseResp, string phoneResp, string typeP, string createdby, string datecreated)
         {
-            this.patients = new ModelePatients(codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, createdby, datecreated);
+            this.patients = new ModelePatients(codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, adresseResp, phoneResp, typeP, createdby, datecreated);
             patients.CreerPatient();
         }
 
-        public void ModifierPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string typeP, string createdby, string datecreated)
+        public void ModifierPatient(string codePatient, string nomP, string prenomP, string sexe, string dateNaiss, string adresse, string phone, string email, string matricule, string job, string g_s, string p_Respon, string lienARespon, string adresseResp, string phoneResp, string typeP, string createdby, string datecreated)
         {
-            this.patients = new ModelePatients(codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, typeP, createdby, datecreated);
+            this.patients = new ModelePatients(codePatient, nomP, prenomP, sexe, dateNaiss, adresse, phone, email, matricule, job, g_s, p_Respon, lienARespon, adresseResp, phoneResp, typeP, createdby, datecreated);
             patients.ModifierPatient();
         }
 
@@ -33,9 +33,27 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             return patients.Codepatient(nomP, prenomP);
         }
+        public string verifierMatri(string matricule)
+        {
+            return patients.verifierMatri(matricule);
+        }
         public string nombrePers()
         {
             return patients.nbrePersonne();
+        }
+        public string nombrePatientToday()
+        {
+            return patients.nbrePatientToday();
+        }
+        //nombre de fille dans un rendez-vous aujourd'hui
+        public string nbrRDVfille()
+        {
+            return patients.nbrRDVfille();
+        }
+        //nombre de garcon dans un rendez-vous aujourd'hui
+        public string nbrRDVgarc()
+        {
+            return patients.nbrRDVgarc();
         }
         public string Age(string dateNaiss, string codePatient)
         {
@@ -188,6 +206,20 @@ namespace RENHARVEST_SYSTEM.CONTROLLEUR
         {
             if (patients != null)
                 return patients.LienArespon;
+            else
+                return null;
+        }
+        public string getAdresseResp()
+        {
+            if (patients != null)
+                return patients.AdresseResp;
+            else
+                return null;
+        }
+        public string getPhoneResp()
+        {
+            if (patients != null)
+                return patients.PhoneResp;
             else
                 return null;
         }

@@ -222,7 +222,7 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             //try
             //{
-            con.Open();
+                con.Open();
             cmd = new SqlCommand(chReq, con);
             SqlDataReader reader = cmd.ExecuteReader();
 
@@ -419,7 +419,27 @@ namespace RENHARVEST_SYSTEM.MODELE
 
             return data;
         }
+        public string nbreUtilisateur()
+        {
+            
+            string nbr = "";
+            string R = string.Format("SELECT count(*) FROM tbutilisateur ");
+            SqlConnection con = new SqlConnection(chcon);
+            SqlCommand cmd = new SqlCommand(R, con);
 
+            con.Open();
+            Int32 annee = Convert.ToInt32(cmd.ExecuteScalar());
+            if (annee > 0)
+            {
+                nbr = Convert.ToString(annee.ToString());
+            }
+            else
+            {
+                nbr = "0";
+            }
+            con.Close();
+            return nbr;
+        }
 
 
     }
